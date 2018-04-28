@@ -3,3 +3,9 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.carousel-control {
+  &:hover {
+    box-shadow: none;
+  }
+}
