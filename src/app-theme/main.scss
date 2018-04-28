@@ -1,0 +1,41 @@
+body {
+  font-family: 'Tajawal', sans-serif;
+}
+
+.container {
+  display: flex;
+  direction: rtl;
+  align-items: center;
+  height: 100%;
+}
+
+.row {
+  max-width: 100%;
+  width: 100%;
+  margin-right: 0px; 
+  margin-left: 0px;
+}
+
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+  }
+}
+
+.app-logo-container {
+  display: flex;
+  align-items: center;
+  h2 {
+    font-size: 36px;
+    color: white;
+  }
+  img {
+    fill: $brand-secondary;
+    margin: 14px;
+    width: 42px;
+  }
+}

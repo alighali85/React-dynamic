@@ -1,0 +1,23 @@
+
+.navbar-default {
+  background-color: $brand;
+  color: white;
+}
+
+.navbar {
+  height: 7.4em;
+  color: white;
+  border: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 8px 14px -7px #4B0082;
+  -moz-box-shadow: 0 8px 14px -7px #4B0082;
+  box-shadow: 0 8px 14px -7px #4B0082;
+  z-index: 10;
+  margin-bottom: 0px;
+  &.navbar-header {
+    color: white;
+    h2 {
+      color: white !important;
+    }
+  }
+}
