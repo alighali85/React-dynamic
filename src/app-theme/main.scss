@@ -1,6 +1,14 @@
 body {
   font-family: 'Tajawal', sans-serif;
 }
+
+.row {
+  max-width: 100%;
+  margin-right: 0px; 
+  margin-left: 0px;
+  background-image: url('../assest/img/row-background.jpg');
+}
+
 a {
   color: black;
   &:hover {
@@ -10,6 +18,7 @@ a {
     box-shadow: 0 8px 6px -6px #999;
   }
 }
+
 .container {
   display: flex;
   direction: rtl;
