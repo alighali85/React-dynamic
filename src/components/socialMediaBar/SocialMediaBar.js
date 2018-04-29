@@ -14,7 +14,7 @@ class SocialMedaibar extends Component {
     render() {
       return (
         <Row className="social-media-bar">
-        <div class="app-separator"></div> 
+        <div className="app-separator"></div> 
         <Row>
           <h2 className="brand-color text-center">{APP_CTA_SOCILA_MEDIA}</h2>
         </Row>

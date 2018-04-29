@@ -1,0 +1,26 @@
+.nav-tabs-container {
+  position: absolute;
+  left: 3px;
+}
+
+.nav {
+  li {
+    a {
+      color: white !important;
+      font-size: 21px;
+      &:hover {
+        color: #5A2158 !important;
+        background: white !important;
+      }
+    }
+    &.active {
+      color: #5A2158 !important;
+      background: white !important;
+    }
+  }
+}
+
+li.active {
+  color: #5A2158 !important;
+  background: white !important;
+}
