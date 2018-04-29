@@ -11,7 +11,6 @@ class CallToActionBar extends Component {
             <Row>
             <Col md={8}>{APP_CONTACT_PHONE}</Col>
             <Col md={3}>
-              <div className="vertical-row">.</div>
               {APP_CTA_CALL_US}</Col>
             </Row>
           </Grid>

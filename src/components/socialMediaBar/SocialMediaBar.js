@@ -33,8 +33,8 @@ class SocialMedaibar extends Component {
                 Facebook
               </Col>
               <Col md={2} sm={4} xs={6}>
-                <img src={SnapChat} alt="facebook" /><br/>
-                Facebook
+                <img src={SnapChat} alt="snapchat" /><br/>
+                Snapchat
               </Col>
               <Col md={2} sm={4} xs={6}>
                 <img src={Instagram} alt="instagram" /><br/>
