@@ -8,7 +8,7 @@ class CallToActionBar extends Component {
       return (
         <Row className="cta-bar"> 
           <Grid>
-            <Row>
+            <Row className="text-xs-center">
             <Col md={8}>{APP_CONTACT_PHONE}</Col>
             <Col md={3}>
               {APP_CTA_CALL_US}</Col>

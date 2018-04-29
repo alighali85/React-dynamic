@@ -16,6 +16,12 @@ body {
   margin-left: 0px;
 }
 
+.text-xs-center {
+  @media ( max-width: 768px ) {
+    text-align: center
+  }
+}
+
 a {
   color: black;
   &:hover {
