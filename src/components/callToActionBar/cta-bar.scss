@@ -5,6 +5,26 @@
   display: flex;
   min-height: 186px;
   align-items: center;
+  .glyphicon-earphone {
+    margin: -14px 14px;
+    padding: 7px;
+    border: 2px solid white;
+    border-radius: 5px;
+    @media ( max-width: 768px ) {
+      margin: -7px 14px;
+    }
+    @media ( max-width: 345px ) {
+      display: none;
+    }
+  }
+}
+
+.cta-bar-inner-container {
+ direction: ltr;
+}
+
+.app-cta-phone-number {
+  margin-right: 14px;
 }
 
 .vertical-row {
