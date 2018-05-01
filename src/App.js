@@ -16,6 +16,8 @@ class App extends Component {
         <CallToActionBar />
         <SocialMediaBar />
         <AppJumbtron />
+        <AppJumbtron />
+        <AppJumbtron />
         <AppFooter />
       </div>
     )
