@@ -4,6 +4,7 @@ import CarouselSlider from './components/carouselSlider/CarouselSlider.js';
 import SocialMediaBar from './components/socialMediaBar/SocialMediaBar.js';
 import CallToActionBar from './components/callToActionBar/CallToActionBar.js';
 import NavTabs from './components/navTabs/NavTabs';
+import AppFooter from './components/appFooter/AppFooter'
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <CarouselSlider />
         <CallToActionBar />
         <SocialMediaBar />
+        <AppFooter />
       </div>
     );
   }
