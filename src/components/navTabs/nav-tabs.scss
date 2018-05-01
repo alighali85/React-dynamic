@@ -1,9 +1,18 @@
 .nav-tabs-container {
   position: absolute;
-  left: 3px;
+  height: 86px;;
+  left: 0px;
+  top: 0px 
 }
 
-.nav {
+.app-navbar-tabs-list {
+  display: flex;
+    height: 86px;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    align-items: center;
+    flex-direction: row-reverse;
   li {
     a {
       color: white !important;
