@@ -1,3 +1,22 @@
 .navbar .container {
   position: relative;
 }
+
+.app-navbar {
+  height: 89px;
+  background: #800285;
+}
+
+.app-logo-container {
+  display: flex;
+  height: 86px;
+  align-items: center;
+  h2 {
+    font-size: 36px;
+    color: white;
+  }
+  img {
+    margin: 14px;
+    width: 42px;
+  }
+}

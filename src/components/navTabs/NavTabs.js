@@ -6,7 +6,7 @@ class NavTabs extends Component {
   render () {
     return (
       <div className='nav-tabs-container hidden-xs'>
-        <Nav bsStyle='pills' onSelect={(e) => this.handleSelect(e)} xs-hidden>
+        <Nav bsStyle='pills' className='app-navbar-tabs-list' xs-hidden>
           <NavItem eventKey={1} href='/home'>
             اتصل بنا
           </NavItem>
