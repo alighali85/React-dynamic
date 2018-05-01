@@ -7,11 +7,15 @@ class CallToActionBar extends Component {
   render () {
     return (
       <Row className='cta-bar'>
-        <Grid>
+        <Grid className='cta-bar-inner-container'>
           <Row className='text-xs-center'>
-            <Col md={9}>{APP_CONTACT_PHONE}</Col>
-            <Col md={3}>
-              {APP_CTA_CALL_US}</Col>
+            <Col md={8} sm={6} className='text-right'>
+              <div className='app-cta-phone-number'>{APP_CONTACT_PHONE}</div>
+            </Col>
+            <Col md={4} sm={6}>
+              <span className='glyphicon glyphicon-earphone' />
+              <span className='ap-cta-call-us'>{APP_CTA_CALL_US} :</span>
+            </Col>
           </Row>
         </Grid>
       </Row>

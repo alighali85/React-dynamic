@@ -2,7 +2,7 @@ export const APP_NAME = 'Al-Bassera'
 export const APP_NAME_ARABIC = 'البصيرة'
 
 export const APP_CONTACT_EMAIL = 'Al-Bassera'
-export const APP_CONTACT_PHONE = '021 444 543 099'
+export const APP_CONTACT_PHONE = '021-444-543-099'
 
 export const APP_CTA_CALL_US = 'اتصل بنا الآن'
 export const APP_CTA_SOCILA_MEDIA = 'تواصل معنا عبر '
