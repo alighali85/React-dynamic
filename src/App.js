@@ -9,7 +9,7 @@ import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import CardImage from './assest/img/card-header-1.jpg'
 
 const Youtube = () => (
-  <iframe width='100%' height='315' src='https://www.youtube.com/embed/tgbNymZ7vqY' />
+  <iframe width='100%' height='315' frameBorder='0' title='youtube' src='https://www.youtube.com/embed/tgbNymZ7vqY' />
 )
 
 const Articles = () => (
