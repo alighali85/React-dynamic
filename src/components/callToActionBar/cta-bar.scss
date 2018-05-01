@@ -1,13 +1,15 @@
 .cta-bar {
-  height: 186px;
   font-size: 34px;
   color: white;
   background-image: url('../../assest/img/row-background.jpg');
+  display: flex;
+  min-height: 186px;
+  align-items: center;
 }
 
 .vertical-row {
-width: 14px;
-background: white;
-float: left;
-height: 100px
+  width: 14px;
+  background: white;
+  float: left;
+  height: 100px
 }
