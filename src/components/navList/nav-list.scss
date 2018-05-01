@@ -1,0 +1,11 @@
+.footer-nav-list {
+  .list-group-item {
+    background: none;
+    color: white;
+    border: none;
+    &:first-of-type {
+      font-size: 21px;
+    }
+  }
+
+}
