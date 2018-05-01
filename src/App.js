@@ -3,15 +3,18 @@ import AppNavBar from './components/appNavBar/AppNavBar.js';
 import CarouselSlider from './components/carouselSlider/CarouselSlider.js';
 import SocialMediaBar from './components/socialMediaBar/SocialMediaBar.js';
 import CallToActionBar from './components/callToActionBar/CallToActionBar.js';
+import NavTabs from './components/navTabs/NavTabs';
+import AppFooter from './components/appFooter/AppFooter'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppNavBar />
+        <AppNavBar children={ <NavTabs /> }/>
         <CarouselSlider />
         <CallToActionBar />
         <SocialMediaBar />
+        <AppFooter />
       </div>
     );
   }
