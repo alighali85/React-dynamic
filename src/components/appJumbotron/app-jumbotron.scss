@@ -1,0 +1,14 @@
+.jumbotron {
+  img {
+    margin-bottom: 14px;
+    max-width: 182px;
+  }
+  button {
+    background: #4B0082;
+    border: none;
+    padding: 14px 48px;
+    &:hover {
+      background: #9A12B3;
+    }
+  }
+}
