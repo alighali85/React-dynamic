@@ -1,8 +1,16 @@
 .item {
-  background-image: url('../../assest/img/slider-1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  &:first-of-type {
+    background-image: url('../../assest/img/slider-1.jpg');
+  }
+  &:nth-of-type(2) {
+    background-image: url('../../assest/img/slider-1.png');
+  }
+  &:nth-of-type(3) {
+    background-image: url('../../assest/img/slider-1.png');
+  }
 }
 
 .carousel-control {

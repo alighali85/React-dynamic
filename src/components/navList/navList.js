@@ -4,12 +4,17 @@ import './nav-list.scss'
 
 class NavList extends Component {
   render () {
-    return (
-      <ListGroup className='footer-nav-list text-center'>
-        <ListGroupItem>القسم </ListGroupItem>
-        <ListGroupItem>موضوع ١ </ListGroupItem>
-        <ListGroupItem>موضوع ٢ </ListGroupItem>
-      </ListGroup>
+    const {listSource} = this.props
+    return (<div>
+      { listSource.map(item =>
+        <ListGroup className='footer-nav-list text-center'>
+          <ListGroupItem>{item.item1}</ListGroupItem>
+          <ListGroupItem>{item.item2}</ListGroupItem>
+          <ListGroupItem>{item.item3}</ListGroupItem>
+        </ListGroup>
+      )}
+    </div>
+
     )
   }
 }

@@ -13,4 +13,4 @@ export const APP_CTA_FACEBOOK = 'فيس بوك'
 export const APP_CTA_INSTAGRAM = 'انستاغرام'
 export const APP_CTA_TWITTER = 'اتويتر'
 
-export const COPYRIGHT = 'تطبيق البصيرة لصاحبة السيد ٢٠١٨ جميع الحقوق محفوظة'
+export const COPYRIGHT = 'تطبيق البصيرة لصاحبة الروحاني أبو وليد ٢٠١٨ جميع الحقوق محفوظة'
