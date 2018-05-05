@@ -11,23 +11,22 @@ const list1 = [
     item2: 'خلطات الزوجية',
     item3: 'علاج الربط'
   }
-
 ]
+
 const list2 = [
   {
     item1: 'علاج العقم عن طريق الأعشاب',
     item2: 'حجاب القبول',
     item3: 'خلطات الزوجية'
   }
-
 ]
+
 const list3 = [
   {
     item1: 'خواتم سليمانية',
     item2: 'عرق السواحل',
     item3: 'بخور روحاني'
   }
-
 ]
 
 class AppFooter extends Component {
