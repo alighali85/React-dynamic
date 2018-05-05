@@ -5,22 +5,19 @@ import './nav-tabs.scss'
 class NavTabs extends Component {
   render () {
     return (
-      <div className='nav-tabs-container hidden-xs'>
-        <Nav bsStyle='pills' className='app-navbar-tabs-list' xs-hidden>
+      <div className='nav-tabs-container hidden-xs hidden-sm'>
+        <Nav bsStyle='pills' className='app-navbar-tabs-list' xs-hidden >
           <NavItem eventKey={1} href='/home'>
-            اتصل بنا
+          جلب الحبيب
           </NavItem>
           <NavItem eventKey={1} href='/home'>
-            القسم ١
+          علاج العقم عن طريق الأعشاب
           </NavItem>
           <NavItem eventKey={1} href='/home'>
-            القسم ٢
+          خلطات الزوجية
           </NavItem>
           <NavItem eventKey={2} title='Item'>
-            الأخبار
-          </NavItem>
-          <NavItem eventKey={3}>
-           بث مباشر
+          أحجار روحانية
           </NavItem>
         </Nav>
       </div>
