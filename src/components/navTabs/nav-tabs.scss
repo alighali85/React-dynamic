@@ -2,51 +2,74 @@
   position: absolute;
   height: 86px;;
   left: 0px;
-  top: 0px 
+  top: 0px;
+  @media (max-width: 1024px) {
+    position: fixed;
+    background: #5A2158;
+    height: 400px;
+    z-index: 90;
+    left: 0px;
+    top: 0px;
+    flex-direction: column;
+    display: flex;
+  }
 }
 
 .app-navbar-tabs-list {
-  display: flex;
-    height: 86px;
+    display: flex;
+    height: 100%;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     align-items: center;
-    flex-direction: row-reverse;
+    flex-direction: row;
   li {
+    height: 100%;
+    margin-left: 2px;
+    display: flex !important;
+    align-items: center;
+    &:hover {
+      margin-bottom: -7px;
+      background: #5A2158 !important;
+    }
     a {
       color: white !important;
       font-size: 21px;
       &:hover {
-        color: #5A2158 !important;
-        background: white !important;
+        background: #5A2158 !important;
       }
     }
     &.active {
       color: #5A2158 !important;
-      background: white !important;
+    }
+  }
+  @media( max-width: 1024px) {
+    margin-top: 86px;
+    width: 240px;
+    text-align: right;
+    flex-direction: column;
+    li {
+      width: 100%;
     }
   }
 }
-
 li.active {
   color: #5A2158 !important;
-  background: white !important;
 }
 
 .nav-tab-detalis {
   position: fixed;
-  height:200px ;
   padding: 14px;
   background: rgba(90, 33, 88, 0.8);
-  width: 100vw;
+  width: 100vw ;
   z-index: 9;
-  -webkit-transition: all 1s ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
   top: 86px;
   right: 0px;
   &.hideList {
     top: -100px;
+    max-width: 0;
     opacity: 0;
     z-index: -99;
   }

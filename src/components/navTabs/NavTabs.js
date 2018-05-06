@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Nav, NavItem, Grid } from 'react-bootstrap'
 import './nav-tabs.scss'
 import {navTabsContent} from './content'
 
@@ -40,8 +40,8 @@ class NavTabs extends Component {
           <div>{item.title}</div>
         </div>
       )
-    }
-    )
+    })
+
     return (
       <div className='nav-tabs-container' onMouseLeave={this.inActiveMenue}
       >
@@ -59,7 +59,9 @@ class NavTabs extends Component {
           }
         </Nav>
         <div className={`${this.state.showMenu ? 'showList' : 'hideList'} nav-tab-detalis hidden-sm hidden-xs`} >
-          {subcontent}
+          <Grid>
+            {subcontent}
+          </Grid>
         </div>
       </div>
     )
