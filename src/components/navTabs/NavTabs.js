@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Nav, NavItem, Grid } from 'react-bootstrap'
 import './nav-tabs.scss'
-import {navTabsContent} from './content'
+import { navTabsContent } from './content'
+import { BREAK_POINTS } from '../../assest/constants/BreakPoints'
 
 class NavTabs extends Component {
   constructor (props) {
     super(props)
     this.state = {
       showMenu: false,
+      showMenuMobile: false,
       activeKey: 0,
       subTbas: navTabsContent[0].content
     }
 
     this.activeMenue = (e) => {
       const {id} = e.target
-      this.setState({
-        subTbas: navTabsContent[id].content,
-        showMenu: true
-      })
+      const screenSize = window.outerWidth
+      if (screenSize > BREAK_POINTS.tablet) {
+        this.setState({
+          subTbas: navTabsContent[id].content,
+          showMenu: true
+        })
+      }
     }
 
     this.inActiveMenue = (e) => {
@@ -40,8 +45,8 @@ class NavTabs extends Component {
           <div>{item.title}</div>
         </div>
       )
-    }
-    )
+    })
+
     return (
       <div className='nav-tabs-container' onMouseLeave={this.inActiveMenue}
       >
@@ -58,8 +63,14 @@ class NavTabs extends Component {
           )
           }
         </Nav>
-        <div className={`${this.state.showMenu ? 'showList' : 'hideList'} nav-tab-detalis hidden-sm hidden-xs`} >
-          {subcontent}
+        <div className={
+          `${this.state.showMenu ? 'showList' : 'hideList'}
+           ${this.state.showMenuMobile ? 'showListMobile' : 'hideListMobile'} 
+           nav-tab-detalis hidden-sm hidden-xs`
+        } >
+          <Grid>
+            {subcontent}
+          </Grid>
         </div>
       </div>
     )
