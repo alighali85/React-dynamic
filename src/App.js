@@ -90,12 +90,14 @@ const Articles = () => (
 class App extends Component {
   render () {
     return (
-      <div className='App'>
+      <div className='App block'>
         <AppNavBar children={<NavTabs />} />
         <CarouselSlider />
         <CallToActionBar />
         <SocialMediaBar />
-        <AppJumbtron children={<Articles />} source={JumbtronContent1} />
+        <AppJumbtron source={JumbtronContent1} >
+          <Articles />
+        </AppJumbtron>
         <AppJumbtron children={<Youtube />} source={JumbtronContent2} />
         <AppJumbtron children={<ArticleImage />} source={JumbtronContent3} />
         <AppJumbtron source={JumbtronContent4} />

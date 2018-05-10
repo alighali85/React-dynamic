@@ -1,17 +1,23 @@
 .nav-tabs-container {
   position: absolute;
+  transition: all 300ms ease-in-out;
   height: 86px;;
   left: 0px;
   top: 0px;
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     position: fixed;
-    background: #5A2158;
-    height: 400px;
-    z-index: 90;
-    left: -400px;
+    background: #f8f9fa;
+    height: 100vh;
+    z-index: 9;
     top: 0px;
     flex-direction: column;
     display: flex;
+    &.hide-left {
+      left: -300px;
+    }
+    &.show-menu {
+      left: 0px;
+    }
   }
 }
 
@@ -44,13 +50,20 @@
       color: #5A2158 !important;
     }
   }
-  @media( max-width: 1024px) {
+  @media( max-width: 768px) {
     margin-top: 86px;
     width: 240px;
     text-align: right;
     flex-direction: column;
     li {
       width: 100%;
+      display: block;
+      height: 14px;
+      margin: 14px 0px;
+      border-right: 4px solid #5A2158;
+      a {
+        color: #5A2158 !important;
+      }
     }
   }
 }
@@ -104,4 +117,33 @@ li.active {
     background: white;
     cursor: pointer;
   }
+}
+
+.menu-icon {
+  width: 28px;
+  top: 30px;
+  float: right;
+  position: absolute;
+  left: 28px;
+}
+
+.menu-close-icon {
+  width: 28px;
+  top: 28px;
+  float: right;
+  position: absolute;
+  right: 14px;
+}
+
+.btn-contactUs {
+  background: #5A2158;
+  color: white;
+  position: relative;
+  left: 21px;
+}
+
+.menu-footer-copyright {
+  width: 100%;
+  margin: 28px -28px 0px 14px;
+  text-align: center;
 }
