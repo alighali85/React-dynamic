@@ -1,44 +1,77 @@
 import React, { Component } from 'react'
 import './login.scss'
 import { Grid, Form, FormGroup, Col, FormControl, Button, ControlLabel, Checkbox } from 'react-bootstrap'
+import FontAwesome from 'react-fontawesome'
+import { requestSigin } from '../auth/auth'
 
 class Login extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+        email: '',
+        password: ''
+    }
+  }
+
+  handelInput = (e) => {
+    const { name, value } = e.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handelLogin = (e) => {
+    e.preventDefault()
+    console.log( 'handel login >> ')
+    const {email, password} = this.state
+    requestSigin(email, password)
+  }
+
+
   render () {
     return (
       <div className='login-page-wrapper'>
         <Grid>
           <Col md={6} mdOffset={3}>
-            <Form horizontal>
-              <FormGroup controlId='formHorizontalEmail'>
-                <Col componentClass={ControlLabel} sm={2}>
-            Email
-                </Col>
-                <Col sm={10}>
-                  <FormControl type='email' placeholder='Email' />
+            <Form horizontal className='admin-login-form' onSubmit={this.handelLogin}>
+              <h2>
+                <FontAwesome name='user-lock' size='2x' className='user-lock' />
+                تسجيل الدخول
+              </h2>
+              <br />
+              <FormGroup controlId='formHorizontalEmail '>
+                <Col sm={12} xs={12}>
+                  <FormControl 
+                  type='email' 
+                  name='email' 
+                  placeholder='الإيميل' 
+                  onChange={(e) => this.handelInput(e)} 
+                  value={this.state.email}
+                />
                 </Col>
               </FormGroup>
 
               <FormGroup controlId='formHorizontalPassword'>
-                <Col componentClass={ControlLabel} sm={2}>
-            Password
-                </Col>
-                <Col sm={10}>
-                  <FormControl type='password' placeholder='Password' />
-                </Col>
-              </FormGroup>
-
-              <FormGroup>
-                <Col smOffset={2} sm={10}>
-                  <Checkbox>Remember me</Checkbox>
+                <Col sm={12} xs={12}>
+                  <FormControl 
+                  type='password' 
+                  name='password' 
+                  placeholder='كلمة المرور' 
+                  onChange={(e) => this.handelInput(e)} 
+                  value={this.state.password}
+                />
                 </Col>
               </FormGroup>
 
               <FormGroup>
-                <Col smOffset={2} sm={10}>
-                  <Button type='submit'>Sign in</Button>
+                <Col sm={12} xs={12}>
+                  <Button type='submit' className='btn-login'>
+                    <FontAwesome name='rocket' size='2x' className='rocker-spin' />
+                  تسحيل الدخول</Button>
                 </Col>
               </FormGroup>
             </Form>
+
           </Col>
         </Grid>
       </div>
