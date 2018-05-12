@@ -1,0 +1,28 @@
+
+.admin-nab-bar {
+  height: 84px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background: lightgray;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  box-shadow: 1px 2px 7px grey;
+  .inline-info {
+    display: inline-block;
+    margin: 0px 7px;
+  }
+  .logout-button {
+    margin: 14px;
+    direction: ltr;
+    float: left;
+  }
+  .user-button-icon {
+    margin-left: 7px;
+  }
+  .user-icon {
+    width: 48px;
+    margin: 7px;
+  }
+}

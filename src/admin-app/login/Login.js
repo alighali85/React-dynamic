@@ -24,7 +24,12 @@ class Login extends Component {
     e.preventDefault()
     console.log( 'handel login >> ')
     const {email, password} = this.state
-    requestSigin(email, password)
+    
+    const signin = requestSigin(email, password)
+    console.log('sigin'+ signin)
+    if (signin){
+      console.log('ther user is signed! Success '+ signin)
+    }
   }
 
 
