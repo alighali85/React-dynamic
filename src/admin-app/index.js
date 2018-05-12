@@ -10,14 +10,34 @@ export class AdminApp extends Component {
       isLoggedIn: false
     }
   }
-
+  /**
+ * Admin App Components:
+ * 1- navigation bar:
+ *    1- user name
+ *    2- user photo
+ *    3-time
+ *    4- signout Button
+ *    5-last logged in time
+ *
+ *
+ */
   componentWillMount () {
-    this.setState.authUser = checkLocalToken()
+    this.setState({
+      isLoggedIn: checkLocalToken()
+    })
+    console.log('state loggin state' + this.state.isLoggedIn)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      isLoggedIn: checkLocalToken()
+    })
   }
 
   render () {
     return (
       <div>
+        <h2>admin app</h2>
         { this.state.isLoggedIn ? <Home /> : <Login /> }
       </div>
     )
