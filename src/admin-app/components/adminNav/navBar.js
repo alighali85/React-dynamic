@@ -34,20 +34,20 @@ export default class NavBar extends React.Component {
           <Grid>
 
             <Col xs={4} md={6} className='right-menu'>
-            <Button
-              className='logout-button'
-              bsStyle="success"
-              onClick={this.logout} >
-              Logout
+              <Button
+                className='logout-button'
+                bsStyle="success"
+                onClick={this.logout} 
+              >
+              تسجيل الخروج
               <FontAwesome name='user' size='1x' className='user-button-icon' />
-            </Button>
-
+              </Button>
             </Col>
+
             <Col xs={8} md={6} className='left-menu'>
               <Image src={userIcon} circle className='user-icon'/>
               <h4 className='inline-info'> أهلا يا {userInfos.name}</h4>
-              <h4 className='inline-info'> أخر زيارة لك في {userInfos.lastVisit} </h4>
-
+              <h4 className='inline-info'> أخر زيارة لك في {userInfos.lastVisit}</h4>
             </Col>
 
           </Grid>
