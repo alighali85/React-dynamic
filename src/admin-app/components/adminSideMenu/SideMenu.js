@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import './side-menu.scss'
 
 class SideMenu extends Component {
-  constructor (props, ...rest) {
-    super(props, ...rest)
-    this.state = {}
+  constructor (props) {
+    super(props)
+    this.state = {
+      chile: ''
+    }
   }
 
   render () {
     return (
       <div class='admin-side-menu' >
-      Admin
+        {this.props.children}
       </div>
     )
   }

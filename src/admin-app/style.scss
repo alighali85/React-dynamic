@@ -1,0 +1,11 @@
+.admin-app-home {
+  display: flex;
+  flex-direction: row-reverse;
+  .content-area {
+    flex-grow: 1;
+    padding: 96px 28px;
+  }
+  .navigation-area {
+    padding: 14px;
+  }
+}

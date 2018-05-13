@@ -20,7 +20,7 @@ ReactDOM.render(
   <BrowserRouter>
     <div>
       <Route exact path='/' component={App} />
-      <Route exact path='/admin-app' component={AdminApp} />
+      <Route path='/admin-app' component={AdminApp} />
     </div>
   </BrowserRouter>,
   document.getElementById('root')

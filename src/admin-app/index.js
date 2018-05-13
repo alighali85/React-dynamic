@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { checkLocalToken } from './auth/auth.js'
 import Home from './Home'
 import Login from './login/Login'
+import { BrowserRouter } from 'react-router-dom'
 
 export class AdminApp extends Component {
   constructor (props) {
