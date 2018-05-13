@@ -1,0 +1,53 @@
+.login-page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: #24C6DC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  .admin-login-form {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    position: relative;
+    padding: 14px 48px;
+    border-radius: 5px;
+    top: 50%;
+    margin-top: 50%;
+    text-align: center;
+    .btn-login {
+      padding: 7px 14px;
+      border-radius: 26px;
+      width: 192px;
+      display: flex;
+      align-items: center;      
+      .rocker-spin {
+        color: #24C6DC;
+        margin-left: 14px;
+        border-left: 1px solid;
+    padding-left: 14px;
+
+      }
+    }
+  }
+
+  .fa {
+    color: #24C6DC;
+  }
+
+  .user-lock {
+    margin-left: 14px;
+  }
+
+  .form-group {
+    display: flex;
+    padding: 7px 0px;
+  }
+  
+  .checkbox {
+    padding-right: 56px;
+    margin-right: -28px;
+  }
+
+}
+
