@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { checkLocalToken } from './auth/auth.js'
 import Home from './Home'
 import Login from './login/Login'
-import { BrowserRouter } from 'react-router-dom'
+import { getCategories } from './auth/firebase'
 
 export class AdminApp extends Component {
   constructor (props) {
@@ -27,6 +27,7 @@ export class AdminApp extends Component {
       isLoggedIn: checkLocalToken()
     })
     console.log('state loggin state' + this.state.isLoggedIn)
+    getDBinfos()
   }
 
   componentWillReceiveProps (nextProps) {

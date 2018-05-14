@@ -7,6 +7,7 @@ import NavTabs from './components/navTabs/NavTabs'
 import AppFooter from './components/appFooter/AppFooter'
 import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import CardImage from './assest/img/card-header-1.jpg'
+import * as firebase from 'firebase'
 
 const Youtube = () => (
   <iframe width='100%' height='315' frameBorder='0' title='youtube' src='https://www.youtube.com/embed/G5TBWxjnaIE?rel=0&amp;controls=0' />
@@ -88,6 +89,18 @@ const Articles = () => (
 )
 
 class App extends Component {
+  componentWillMount () {
+    const config = {
+      apiKey: 'AIzaSyC7_ZlYpn-_T1RnCfSfTj_uoVpdm54Chtc',
+      authDomain: 'albassera-44a86.firebaseapp.com',
+      databaseURL: 'https://albassera-44a86.firebaseio.com',
+      projectId: 'albassera-44a86',
+      storageBucket: 'albassera-44a86.appspot.com',
+      messagingSenderId: '729501309659'
+    }
+    firebase.initializeApp(config)
+  }
+
   render () {
     return (
       <div className='App block'>
