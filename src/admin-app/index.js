@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { checkLocalToken } from './auth/auth.js'
 import Home from './Home'
 import Login from './login/Login'
-import { getCategories } from './auth/firebase'
 
 export class AdminApp extends Component {
   constructor (props) {
@@ -11,23 +10,11 @@ export class AdminApp extends Component {
       isLoggedIn: false
     }
   }
-  /**
- * Admin App Components:
- * 1- navigation bar:
- *    1- user name
- *    2- user photo
- *    3-time
- *    4- signout Button
- *    5-last logged in time
- *
- *
- */
+
   componentWillMount () {
     this.setState({
       isLoggedIn: checkLocalToken()
     })
-    console.log('state loggin state' + this.state.isLoggedIn)
-    getDBinfos()
   }
 
   componentWillReceiveProps (nextProps) {
