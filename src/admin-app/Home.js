@@ -2,27 +2,36 @@ import React, { Component } from 'react'
 import NavBar from './components/adminNav/navBar'
 import SideMenu from './components/adminSideMenu/SideMenu'
 import userIcon from '../../src/admin-app/assets/images/user-icon.svg'
-import { Image } from 'react-bootstrap'
-import { Route } from 'react-router-dom'
+import { Image, Breadcrumb, Grid, Col } from 'react-bootstrap'
+import { Route, Link } from 'react-router-dom'
 import AdminWelcome from './components/adminWelcome/AdminWelcome'
 import Categories from './components/categories/Categories'
 import './style.scss'
+import ROUTES from './constants/routes'
 
 class Home extends Component {
   render () {
     return (
       <div className='admin-app-home'>
+
         <div className='navigation-area'>
           <SideMenu>
-            <h2>
-              here iss some text
-            </h2>
             <MenuListWithIcos />
           </SideMenu>
         </div>
+
         <div className='content-area'>
-          <Route exact path='/admin-app/home' component={AdminWelcome} />
-          <Route exact path='/admin-app/Categories' component={Categories} />
+          <Grid>
+            <Col md={10} mdOffset={1}>
+              <Breadcrumb>
+                <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
+                <Breadcrumb.Item href='#'>Library</Breadcrumb.Item>
+                <Breadcrumb.Item active>Data</Breadcrumb.Item>
+              </Breadcrumb>
+              <Route exact path='/admin-app' component={AdminWelcome} />
+              <Route exact path='/admin-app/Categories' component={Categories} />
+            </Col>
+          </Grid>
         </div>
 
         <NavBar />
@@ -31,29 +40,21 @@ class Home extends Component {
   }
 }
 
-const MenuListData = [
-  {
-    key: 0,
-    tilte: 'Categories',
-    iconSource: '',
-    name: 'الأقسام',
-    link: './cartegories/add',
-    active: true
-  },
-  {
-    key: 1,
-    tilte: '',
-    iconSource: '',
-    name: 'المستخدمين',
-    link: '',
-    active: true
-  }
-]
+/* Required Parts :
+1- homepage
+2- main parts
+3- pages
+4- pictuers library
+5- videos
+6- add setting : contains the ap variables (name, title, url, whatsapp nummber, email, facebook, twitter, youtube)
+7- userse
+8- analytics
+*/
 const MenuListWithIcos = () => <ul>
-  {MenuListData.map((item, i) => <li
-    key={item.key}>
-    <Image src={userIcon} circle className='user-icon' />
-    {item.name}
+  {ROUTES.map((item, i) => <li key={item.key}>
+    <Link to={item.link}>
+      <Image src={userIcon} circle className='user-icon' /> {item.name}
+    </Link>
   </li>
   )}
 </ul>
