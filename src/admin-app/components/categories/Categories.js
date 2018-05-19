@@ -157,4 +157,5 @@ class Categories extends Component {
   }
 }
 
+
 export default Categories

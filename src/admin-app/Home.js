@@ -9,11 +9,12 @@ import Categories from './components/categories/Categories'
 import './style.scss'
 import ROUTES from './constants/routes'
 
+
 class Home extends Component {
   render () {
     return (
       <div className='admin-app-home'>
-
+      
         <div className='navigation-area'>
           <SideMenu>
             <MenuListWithIcos />
@@ -32,6 +33,7 @@ class Home extends Component {
               <Route exact path='/admin-app/Categories' component={Categories} />
             </Col>
           </Grid>
+
         </div>
 
         <NavBar />
@@ -39,6 +41,7 @@ class Home extends Component {
     )
   }
 }
+
 
 /* Required Parts :
 1- homepage
@@ -55,6 +58,7 @@ const MenuListWithIcos = () => <ul>
     <Link to={item.link}>
       <Image src={userIcon} circle className='user-icon' /> {item.name}
     </Link>
+
   </li>
   )}
 </ul>
