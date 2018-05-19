@@ -26,7 +26,6 @@ export class AdminApp extends Component {
     this.setState({
       isLoggedIn: checkLocalToken()
     })
-    console.log('state loggin state' + this.state.isLoggedIn)
   }
 
   componentWillReceiveProps (nextProps) {

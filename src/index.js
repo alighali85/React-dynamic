@@ -6,7 +6,7 @@ import './app-theme/index.scss'
 import { BrowserRouter, Route } from 'react-router-dom'
 import * as firebase from 'firebase'
 
-const config = {
+const adminAppdatabaseConfig = {
   apiKey: 'AIzaSyC7_ZlYpn-_T1RnCfSfTj_uoVpdm54Chtc',
   authDomain: 'albassera-44a86.firebaseapp.com',
   databaseURL: 'https://albassera-44a86.firebaseio.com',
@@ -14,7 +14,8 @@ const config = {
   storageBucket: 'albassera-44a86.appspot.com',
   messagingSenderId: '729501309659'
 }
-firebase.initializeApp(config)
+
+firebase.initializeApp(adminAppdatabaseConfig)
 
 ReactDOM.render(
   <BrowserRouter>

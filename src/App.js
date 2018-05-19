@@ -7,6 +7,7 @@ import NavTabs from './components/navTabs/NavTabs'
 import AppFooter from './components/appFooter/AppFooter'
 import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import CardImage from './assest/img/card-header-1.jpg'
+import { getDatafromServer } from './admin-app/auth/firebase'
 
 const Youtube = () => (
   <iframe width='100%' height='315' frameBorder='0' title='youtube' src='https://www.youtube.com/embed/G5TBWxjnaIE?rel=0&amp;controls=0' />
@@ -88,6 +89,17 @@ const Articles = () => (
 )
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+
+    }
+  }
+
+  componentWillMount () {
+    getDatafromServer()
+  }
+
   render () {
     return (
       <div className='App block'>
