@@ -1,0 +1,34 @@
+.photos-library {
+  .badge {
+    background-color: green;
+    border-radius: 16px;
+    font-size: 19px;
+    padding-top: 8px;
+  }
+  .photo-thumpnail {
+    width: 20%;
+    height: 200px;
+    margin: 14px;
+    background-size: cover;
+    border: 1px double lightgray;
+    border-style: double;
+    border-radius: 5px;
+    overflow: hidden;
+    float: left;
+    .overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      justify-items: center;
+      height: 100%;
+    }
+    &:hover .overlay {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background: rgba($color: #000000, $alpha: 0.7)
+    }
+  }
+}

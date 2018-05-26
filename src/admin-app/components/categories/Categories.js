@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './categories.scss'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 import DeleteIcon from '../../assets/images/delete-button.svg'
 import EditIcon from '../../assets/images/edit.svg'
 import PagesIcon from '../../assets/images/pages.svg'
@@ -10,7 +10,8 @@ import AddCategory from './AddCategory'
 import EditCategory from './EditCategory'
 import ConfirmWindow from '../confirmWindow/ConfirmWindow'
 import TitleWithIcon from '../elements/TitleWithIcon'
-import ButtonWithIcon from '../elements/ButtonWithIcon';
+import ButtonWithIcon from '../elements/ButtonWithIcon'
+import Loader from '../elements/Loader'
 
 class Categories extends Component {
   constructor (props) {
@@ -21,7 +22,8 @@ class Categories extends Component {
       addCategoryMode: false,
       editCategoryMode: false,
       holdCatId: null,
-      categoryToEdit: null
+      categoryToEdit: null,
+      loading: true
     }
   }
 
@@ -90,13 +92,14 @@ class Categories extends Component {
         })
       })
       this.setState({
-        cat: categories
+        cat: categories,
+        loading: false
       })
     })
   }
 
   render () {
-    const { cat, showConfirm, addCategoryMode, editCategoryMode, categoryToEdit } = this.state
+    const { cat, showConfirm, addCategoryMode, editCategoryMode, categoryToEdit, loading } = this.state
     return (
       <div className='admin-categories'>
 
@@ -112,7 +115,7 @@ class Categories extends Component {
           ButtonStyle='success'
           float='left'
         />
-
+        {loading && <Loader iconSize='2x'/>}
         {cat.map((item, i) => <ListGroup>
           <ListGroupItem header={item.categoryName - i} >
             <img className='list-user-icon' src={DeleteIcon} alt='delete' 

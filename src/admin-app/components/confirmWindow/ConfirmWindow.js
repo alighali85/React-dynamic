@@ -23,10 +23,10 @@ class ConfirmWindow extends Component {
   }
 
   render () {
-    const { show, onConfirm, onDismiss, title, text, confirmation } = this.props
+    const { show, onConfirm, onDismiss, title, text, confirmation, size } = this.props
     return (
       <div>
-        <Modal show={show} onConfirm={onConfirm} onHide={onDismiss}>
+        <Modal show={show} onConfirm={onConfirm} onHide={onDismiss} bsSize={size}>
           <Modal.Header closeButton>
             <Modal.Title><Glyphicon glyph='exclamation-sign' />{title}</Modal.Title>
           </Modal.Header>

@@ -4,7 +4,7 @@ import App from './App'
 import AdminApp from './admin-app/index.js'
 import './app-theme/index.scss'
 import { BrowserRouter, Route } from 'react-router-dom'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 
 const adminAppdatabaseConfig = {
   apiKey: 'AIzaSyC7_ZlYpn-_T1RnCfSfTj_uoVpdm54Chtc',

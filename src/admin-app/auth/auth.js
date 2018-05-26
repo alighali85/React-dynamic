@@ -1,4 +1,4 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 // check if the token is existing
 
 export function checkLocalToken () {

@@ -16,7 +16,7 @@ iconStyle = {
     marginRight: -14+'px'
 }
   render () {
-    const { ButtonStyle, name, onClick, iconName, iconSize, iconStyle, text, disabled, float } = this.props
+    const { ButtonStyle, name, onClick, iconName, iconSize, iconStyle, text, disabled, float, type } = this.props
     return (
       <div className='button-with-icon'>
         <Button
@@ -25,6 +25,7 @@ iconStyle = {
           onClick={onClick}
           disabled={disabled}
           style={{float: float}}
+          type={type}
         >
           <FontAwesome
             name={iconName}
@@ -48,7 +49,8 @@ ButtonWithIcon.propTypes = {
   iconStyle: PropTypes.string,
   text: PropTypes.string,
   disabled: PropTypes.bool,
-  float: PropTypes.string
+  float: PropTypes.string,
+  type: PropTypes.string
 }
 
 ButtonWithIcon.defaultProps = {
@@ -60,7 +62,8 @@ ButtonWithIcon.defaultProps = {
   iconStyle: '',
   text: 'click',
   disabled: false,
-  float: ''
+  float: '',
+  type: ''
 }
 
 export default ButtonWithIcon

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Col, FormGroup, FormControl, Button } from 'react-bootstrap'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 
 class EditCategory extends Component {
 
@@ -32,15 +32,14 @@ class EditCategory extends Component {
     })
   }
   
-  handleUpdateCategory = () => {
-    console.log('handle update item ' + this.state.holdCatId)
-      const { categoryKey, categoryName, categoryTitle, showCategory  } = this.state
-      firebase.database().ref('Categories/' + categoryKey).update({
-        categoryName: categoryName,
-        categoryTitle: categoryTitle,
-        showCategory: showCategory
-      })
-    console.log('will be redirect to categories')
+  handleUpdateCategory = (e) => {
+    e.preventDefault()
+    const { categoryKey, categoryName, categoryTitle, showCategory  } = this.state
+    firebase.database().ref('Categories/' + categoryKey).update({
+      categoryName: categoryName,
+      categoryTitle: categoryTitle,
+      showCategory: showCategory
+    })
     setTimeout(() => {
       this.props.onFormSent()
     }, 1000);

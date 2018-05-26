@@ -1,13 +1,16 @@
+// global
 import React, { Component } from 'react'
 import NavBar from './components/adminNav/navBar'
 import SideMenu from './components/adminSideMenu/SideMenu'
-import userIcon from '../../src/admin-app/assets/images/user-icon.svg'
-import { Image, Breadcrumb, Grid, Col } from 'react-bootstrap'
+import { Breadcrumb, Grid, Col } from 'react-bootstrap'
 import { Route, Link } from 'react-router-dom'
 import AdminWelcome from './components/adminWelcome/AdminWelcome'
 import Categories from './components/categories/Categories'
+import Pages from './components/pages/Pages'
 import './style.scss'
 import ROUTES from './constants/routes'
+import FontAwesome from 'react-fontawesome'
+import PhotosLibrary from './components/photosLibraray/PhotosLibrary'
 
 
 class Home extends Component {
@@ -31,6 +34,8 @@ class Home extends Component {
               </Breadcrumb>
               <Route exact path='/admin-app' component={AdminWelcome} />
               <Route exact path='/admin-app/Categories' component={Categories} />
+              <Route exact path='/admin-app/pages' component={Pages} />
+              <Route exact path='/admin-app/pictuers' component={PhotosLibrary} />
             </Col>
           </Grid>
 
@@ -56,7 +61,8 @@ class Home extends Component {
 const MenuListWithIcos = () => <ul>
   {ROUTES.map((item, i) => <li key={item.key}>
     <Link to={item.link}>
-      <Image src={userIcon} circle className='user-icon' /> {item.name}
+      <FontAwesome name={item.iconSource} size='2x' />
+      <h4 style={{display: 'inline', marginRight: '14px'}}>{item.name} </h4>
     </Link>
 
   </li>

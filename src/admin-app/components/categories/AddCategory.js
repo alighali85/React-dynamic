@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Col, FormGroup, FormControl, Button } from 'react-bootstrap'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 
 class AddCategory extends Component {
 

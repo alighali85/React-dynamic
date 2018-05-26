@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './login.scss'
-import { Grid, Form, FormGroup, Col, FormControl, Button, ControlLabel, Checkbox } from 'react-bootstrap'
+import { Grid, Form, FormGroup, Col, FormControl, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
 import { requestSigin } from '../auth/auth'
 
