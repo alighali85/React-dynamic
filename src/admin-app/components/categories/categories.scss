@@ -7,6 +7,7 @@
   }
   .list-group-item {
     height: 48px;
+    text-align: right;
     cursor: pointer;
     &:hover {
       background: #f9f9f9;
@@ -33,6 +34,11 @@
       display: inline-block;
     }
   }
-
+  .badge {
+    background-color: #5cb85c;
+    border-radius: 16px;
+    font-size: 14px;
+    padding-top: 8px;
+  }
 
 }

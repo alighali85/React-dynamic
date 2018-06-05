@@ -2,12 +2,22 @@
   height: 400px;
   width: 1000;
   direction: rtl;
+
+  .badge {
+    background-color: #5cb85c;
+    border-radius: 16px;
+    font-size: 14px;
+    padding-top: 8px;
+  }
+
   .list-group {
     padding: 0px;
   }
+
   .list-group-item {
     height: 48px;
     cursor: pointer;
+
     &:hover {
       background: #f9f9f9;
       img:not(.list-icon) {
@@ -59,3 +69,5 @@
   // position: relative;
   transform: scale(0.5)
 }
+
+

@@ -3,11 +3,11 @@ import { ProgressBar } from 'react-bootstrap'
 import firebase from 'firebase/app'
 import { CSSTransition,TransitionGroup } from 'react-transition-group'
 import { Alert } from 'react-bootstrap'
-import './add-photo.scss'
+import './add-video.scss'
 import FontAwesome from 'react-fontawesome'
 
 
-class AddPhoto extends Component {
+class AddVideo extends Component {
 
   constructor(props) { 
     super(props)
@@ -20,20 +20,19 @@ class AddPhoto extends Component {
     }
   }
   
+  
 updaetProgress = (val) => {
   this.setState({
     uploadPercantage : val
   })
 }
 
-
-// stroe image url to firebase
+// stroe image url to direbase
 storeImage = (downloadURL) => {
-  this.props.uploadedFile(downloadURL)
   console.log('store image to firebase > ' + downloadURL)
-  const photosLibraryRf = firebase.database().ref().child('photosLibrary')
-  var photoKey = photosLibraryRf.push().key
-  photosLibraryRf.child(photoKey).update({
+  const videosLibraryRf = firebase.database().ref().child('videosLibrary')
+  var videoKey = videosLibraryRf.push().key
+  videosLibraryRf.child(videoKey).update({
     name: 'file.name',
     imageUrl: downloadURL
     },
@@ -86,7 +85,7 @@ handleFileupload = (e) => {
     }
 
   render () {
-    const { uploadCompleted, uploadPercantage, fileUrl, uploadedNumber } = this.state
+    const {uploadCompleted, uploadPercantage, fileUrl, uploadedNumber } = this.state
     const now = uploadPercantage
     const imageStyle = {
       display: fileUrl ? 'block' : 'none',
@@ -95,9 +94,9 @@ handleFileupload = (e) => {
       height: '400px',
       backgroundSize: 'cover'
     }
-    const Image = <div classname='uploaded-photo' style={imageStyle}></div>
+    const Image = <div classname='uploaded-video' style={imageStyle}></div>
     return (
-      <div classname='add-photo'>
+      <div classname='add-video'>
         <ProgressBar id='fileUploadProgress' now={now} label={`${now}%`} striped active/>
          {Image}
          <label className='upload-file-wrapper'>
@@ -123,4 +122,4 @@ handleFileupload = (e) => {
   }
 }
 
-export default AddPhoto
+export default AddVideo

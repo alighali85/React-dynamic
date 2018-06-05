@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './pages.scss'
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import { ListGroup, ListGroupItem, Badge } from 'react-bootstrap'
 import firebase from 'firebase/app'
 import DeleteIcon from '../../assets/images/delete-button.svg'
 import EditIcon from '../../assets/images/edit.svg'
@@ -72,7 +72,8 @@ class Pages extends Component {
     })
   }
 
-  exitEditMode = (e) => {
+  exitEditMode = () => {
+    console.log('close window')
     this.setState({
       addPageMode: false,
       editPageMode: false
@@ -81,7 +82,7 @@ class Pages extends Component {
 
   componentDidMount () {
     const adminAppdatabase = firebase.database()
-    const pagesData = adminAppdatabase.ref().child('Pages')
+    const pagesData = adminAppdatabase.ref('Pages').orderByChild('timestamp')
     pagesData.on('value', (snap) => {
       var pages = []
       snap.forEach((cat) => {
@@ -92,7 +93,7 @@ class Pages extends Component {
       })
 
       this.setState({
-        pages: pages,
+        pages: pages.reverse(),
         loading: false,
         nextPageId: (pages.length + 1)
       })
@@ -105,7 +106,7 @@ class Pages extends Component {
     return (
       <div className='admin-pages'>
 
-        <TitleWithIcon title='إدارة الصفحات' icon='newspaper' />you have in general {this.state.nextPageId}
+        <TitleWithIcon title='إدارة الصفحات' icon='newspaper' />لديك <Badge>{nextPageId} صفحة</Badge>
 
         <TransitionGroup className="todo-list">
           {
@@ -162,13 +163,13 @@ class Pages extends Component {
           {
             (addPageMode && !editPageMode) && 
             <CSSTransition key={1} timeout={500} classNames="fade">
-              <AddPage pageId={nextPageId} onFormSent={this.ExitAddPageMode} />
+              <AddPage pageId={nextPageId} onFormSent={this.exitEditMode} />
             </CSSTransition>
           }
           {
             (!addPageMode && editPageMode) &&  
             <CSSTransition key={2} timeout={500} classNames="fade">
-              <EditPage pagekey={pageToEdit} onFormSent={this.ExitEditPageMode} />
+              <EditPage pagekey={pageToEdit} onFormSent={this.exitEditMode} />
             </CSSTransition>
           }
         </TransitionGroup>

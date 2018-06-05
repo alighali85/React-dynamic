@@ -23,7 +23,8 @@ class Categories extends Component {
       editCategoryMode: false,
       holdCatId: null,
       categoryToEdit: null,
-      loading: true
+      loading: true,
+      nextCategoryId: null
     }
   }
 
@@ -59,7 +60,7 @@ class Categories extends Component {
     })
   }
 
-  ExitAddCategoryMode = () => {
+  exitAddCategoryMode = () => {
     this.setState({
       addCategoryMode: false
     })
@@ -74,13 +75,13 @@ class Categories extends Component {
     })
   }
 
-  ExitEditCategoryMode = () => {
+  exitEditCategoryMode = () => {
     this.setState({
       editCategoryMode: false
     })
   }
 
-  componentWillMount () {
+  componentDidMount () {
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Categories')
     categoriesData.on('value', (snap) => {
@@ -93,13 +94,14 @@ class Categories extends Component {
       })
       this.setState({
         cat: categories,
-        loading: false
+        loading: false,
+        nextCategoryId: categories.length + 1
       })
     })
   }
 
   render () {
-    const { cat, showConfirm, addCategoryMode, editCategoryMode, categoryToEdit, loading } = this.state
+    const { cat, showConfirm, addCategoryMode, editCategoryMode, categoryToEdit, loading, nextCategoryId } = this.state
     return (
       <div className='admin-categories'>
 
@@ -116,8 +118,8 @@ class Categories extends Component {
           float='left'
         />
         {loading && <Loader iconSize='2x'/>}
-        {cat.map((item, i) => <ListGroup>
-          <ListGroupItem header={item.categoryName - i} >
+        {cat.map((item, i) => <ListGroup key={i}>
+          <ListGroupItem header={item.name - i} >
             <img className='list-user-icon' src={DeleteIcon} alt='delete' 
             name={item.key} 
             onClick={(e)=> this.handleDeleterequest(e)} />
@@ -127,7 +129,7 @@ class Categories extends Component {
             onClick={this.editCategoryMode}/>
 
             <img className='list-user-icon' src={PagesIcon} alt='Pages' />
-            <img className='list-icon' src={ListDots} alt='dots' />{item.categoryName} </ListGroupItem>
+            <img className='list-icon' src={ListDots} alt='dots' />{item.name} </ListGroupItem>
           </ListGroup>
           )}
 
@@ -141,18 +143,20 @@ class Categories extends Component {
             
         <ConfirmWindow 
           show={addCategoryMode}
-          onDismiss={this.ExitAddCategoryMode}
+          onDismiss={this.exitAddCategoryMode}
           title='إضافة قسم رئيسي'
           text='جميع الحقول مطلوبة '>
-          <AddCategory onFormSent={this.ExitAddCategoryMode} />
+          <AddCategory onFormSent={this.exitAddCategoryMode} nextCategoryId={nextCategoryId}/>
         </ConfirmWindow>
         
         <ConfirmWindow 
           show={editCategoryMode}
-          onDismiss={this.ExitEditCategoryMode}
+          onDismiss={this.exitEditCategoryMode}
           title='تعديل قسم رئيسي'
           text='جميع الحقول مطلوبة '>
-          <EditCategory Categorykey={categoryToEdit} onFormSent={this.ExitAddCategoryMode} />
+          <EditCategory Categorykey={categoryToEdit} 
+          onFormSent={this.exitAddCategoryMode} 
+          />
         </ConfirmWindow>
 
       </div>

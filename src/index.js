@@ -20,8 +20,8 @@ firebase.initializeApp(adminAppdatabaseConfig)
 ReactDOM.render(
   <BrowserRouter>
     <div>
-      <Route exact path='/' component={App} />
       <Route path='/admin-app' component={AdminApp} />
+      <Route path='/' component={App} />
     </div>
   </BrowserRouter>,
   document.getElementById('root')

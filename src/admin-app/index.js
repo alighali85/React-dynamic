@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { checkLocalToken } from './auth/auth.js'
-import Home from './Home'
+import HomeB from './HomeB'
 import Login from './login/Login'
-import { BrowserRouter } from 'react-router-dom'
 
 export class AdminApp extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: true
     }
   }
   /**
@@ -22,7 +21,7 @@ export class AdminApp extends Component {
  *
  *
  */
-  componentWillMount () {
+  componentDidMount () {
     this.setState({
       isLoggedIn: checkLocalToken()
     })
@@ -37,8 +36,7 @@ export class AdminApp extends Component {
   render () {
     return (
       <div>
-        <h2>admin app</h2>
-        { this.state.isLoggedIn ? <Home /> : <Login /> }
+        { this.state.isLoggedIn ? <HomeB /> : <Login /> }
       </div>
     )
   }

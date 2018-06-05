@@ -1,5 +1,5 @@
 import React from 'react'
-import './navBar.scss'
+import './nav-bar.scss'
 import { Button, Grid, Col, Image } from 'react-bootstrap'
 import { signUserOut } from '../../auth/auth'
 import FontAwesome from 'react-fontawesome'
@@ -30,7 +30,7 @@ export default class NavBar extends React.Component {
       window.location.href = '/admin-app' 
     } else {
       return (
-        <div className='admin-nab-bar'>
+        <div className='admin__nav-bar--inner'>
           <Grid>
 
             <Col xs={4} md={6} className='right-menu'>

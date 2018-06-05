@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Form, Col, FormGroup, FormControl,ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap'
+import { Form, Col, FormGroup, FormControl,ButtonToolbar, ToggleButtonGroup, ToggleButton, Alert } from 'react-bootstrap'
 import firebase from 'firebase/app'
 import CKEditor from 'react-ckeditor-component'
 import ButtonWithIcon from '../elements/ButtonWithIcon'
 import './add-page.scss'
 import TitleWithIcon from '../elements/TitleWithIcon'
+import FontAwesome from 'react-fontawesome'
+import { getDataFromDb } from '../../api/firebaseInstances'
 
 
 class AddPage extends Component {
@@ -17,17 +19,22 @@ class AddPage extends Component {
       showPage: '',
       pageId: this.props.pageId,
       allowSend: false,
-      pageContent: {}
+      pageContent: {},
+      sucessAlert: false,
+      pageCategory: null,
+      categoriesList: [],
     }
   }
 
-  componentDidMount = () => {
-    
+  componentDidMount () {
+    const categoriesList = getDataFromDb('Categories')
+    this.setState({
+      categoriesList: categoriesList,
+    })
   }
-  
 
   handleSubmit = (e) => {
-    const { pageName, pageTitle, showPage, pageContent,pageId } = this.state
+    const { pageName, pageTitle, showPage, pageContent, pageId, pageCategory } = this.state
     e.preventDefault()
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Pages')
@@ -36,7 +43,8 @@ class AddPage extends Component {
       pageTitle: pageTitle,
       showpage: showPage,
       pageContent: pageContent,
-      pageId: pageId || 'there is no id provided fro props'
+      pageId: pageId || 'there is no id provided for props',
+      pageCategory: pageCategory
     }, function(error) {
       if (error) {
         console.log('// The write failed...')
@@ -45,10 +53,17 @@ class AddPage extends Component {
       //TO DO:  Do something when the request comes back .... 
     } 
   })
-  console.log('will be redirect to categories')
+  console.log('will be redirect to pages')
+  this.setState({
+    sucessAlert: true
+  })
   setTimeout(() => {
+    this.setState({
+      sucessAlert: true
+    })
     this.props.onFormSent()
-  }, 1000);
+  }, 2000);
+ 
   
   }
 
@@ -67,11 +82,16 @@ class AddPage extends Component {
     })
   }
 
-  render () {    
+  render () {
+    const { pageContent, sucessAlert, categoriesList } = this.state
     return (
       <div className="add-page">
       <TitleWithIcon title='إضافة صفحة جديدة' icon='plus-circle' subTitle=''/>
-
+      { sucessAlert && <Alert bsStyle="success">
+      <FontAwesome name='check-circle' size='2x'/> {'  '}
+      <strong>تم بنجاح</strong>
+      
+      </Alert> }
         <hr />
         <Form horizontal onSubmit={this.handleSubmit}>
           <FormGroup controlId='formHorizontalEmail'>
@@ -87,19 +107,26 @@ class AddPage extends Component {
             </Col>
             <Col sm={2}>اسم العرض العرض </Col>
           </FormGroup>
+
           <ButtonToolbar>
             <ToggleButtonGroup type="radio"  name="showPage" defaultValue={0} >
               <ToggleButton onClick={this.handleInput} value={1}>عرض في الصفحه الرئيسي</ToggleButton>
               <ToggleButton onClick={this.handleInput} value={0}>عدم العرض في الصفحة الرئيسية</ToggleButton>
             </ToggleButtonGroup>
           </ButtonToolbar>
-            <br/>
-            <br/>
+
+          <ButtonToolbar>
+            <ToggleButtonGroup type="radio"  name="pageCategory" defaultValue={0} >
+            {categoriesList.map(cat => <ToggleButton onClick={this.handleInput} value={cat.key}>{cat.name}</ToggleButton>)}
+            </ToggleButtonGroup>
+          </ButtonToolbar>
+          <br/>
+          <br/>
 
           <CKEditor 
             name='content'
             activeClass='p10' 
-            content={this.state.pageContent} 
+            content={pageContent} 
             events={{
               'change': this.handleCKInput
             }}
@@ -109,7 +136,7 @@ class AddPage extends Component {
             <Col smOffset={6} sm={6}>
             <ButtonWithIcon
               text='إضافة صفحة'
-              iconName='magic'
+              iconName='plus-circle'
               ButtonStyle='success'
               float='left'
               type='submit'

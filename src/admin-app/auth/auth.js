@@ -14,7 +14,6 @@ export function signUserOut () {
 }
 
 export function requestSigin (email, password) {
-  console.log('try to log in ' + email + ' ' + password)
   const auth = firebase.auth()
   const promise = auth.signInWithEmailAndPassword(email, password)
   promise.then(res => res)

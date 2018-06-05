@@ -7,9 +7,9 @@ class EditCategory extends Component {
   constructor(props) { 
     super(props)
     this.state= {
-      categoryName: '',
-      categoryTitle: '',
-      showCategory: '',
+      name: '',
+      title: '',
+      active: '',
       categoryKey: this.props.Categorykey,
       allowSend: false
     }
@@ -20,12 +20,11 @@ class EditCategory extends Component {
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref('Categories').child(this.state.categoryKey)
     categoriesData.on('value', (snap) => {
-      const { categoryName, categoryTitle, showCategory } = snap.val()
-      console.log( snap.val() )
+      const { name, title, active } = snap.val()
       this.setState({
-        categoryName: categoryName,
-        categoryTitle: categoryTitle,
-        showCategory: showCategory,
+        name: name,
+        title: title,
+        active: active,
         newCategoryInfo: null,
         allowSend: true
       })
@@ -34,11 +33,11 @@ class EditCategory extends Component {
   
   handleUpdateCategory = (e) => {
     e.preventDefault()
-    const { categoryKey, categoryName, categoryTitle, showCategory  } = this.state
+    const { categoryKey, name, title, active  } = this.state
     firebase.database().ref('Categories/' + categoryKey).update({
-      categoryName: categoryName,
-      categoryTitle: categoryTitle,
-      showCategory: showCategory
+      name: name,
+      title: title,
+      active: active
     })
     setTimeout(() => {
       this.props.onFormSent()
@@ -54,28 +53,28 @@ class EditCategory extends Component {
   }
   render () {
 
-    const { categoryName, categoryTitle, showCategory } = this.state
+    const { name, title, active } = this.state
     return (
       <div >
         <Form horizontal onSubmit={this.handleUpdateCategory}>
 
           <FormGroup controlId='formHorizontalEmail'>
             <Col sm={10}>
-              <FormControl type='text' value={categoryName} name='categoryName' placeholder='ادهل اسم للقسم' onChange={this.handleInput}/>
+              <FormControl type='text' value={name} name='name' placeholder='ادهل اسم للقسم' onChange={this.handleInput}/>
             </Col>
             <Col sm={2}>اسم القسم</Col>
           </FormGroup>
 
           <FormGroup controlId='formHorizontalEmail'>
             <Col sm={10}>
-              <FormControl name='categoryTitle' type='text' value={categoryTitle} placeholder='' onChange={this.handleInput}/>
+              <FormControl name='title' type='text' value={title} placeholder='' onChange={this.handleInput}/>
             </Col>
             <Col sm={2}>عنوان العرض </Col>
           </FormGroup>
 
           <FormGroup controlId='formControlsSelect'>
             <Col sm={10}>
-              <FormControl name='showCategory' componentClass='select' value={showCategory} placeholder='select' onChange={this.handleInput}>
+              <FormControl name='active' componentClass='select' value={active} placeholder='select' onChange={this.handleInput}>
                 <option value='0'>عرض في الأقسام</option>
                 <option value='1'>عدم العرض</option>
               </FormControl>

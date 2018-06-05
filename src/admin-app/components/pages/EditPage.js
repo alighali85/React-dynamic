@@ -11,7 +11,7 @@ class EditPage extends Component {
     this.state= {
       pageName: '',
       pageTitle: '',
-      showpage: '',
+      showpage: 0,
       pageKey: this.props.pagekey,
       allowSend: false
     }
@@ -89,7 +89,7 @@ class EditPage extends Component {
 
           <FormGroup controlId='formControlsSelect'>
             <Col sm={10}>
-              <FormControl name='showPage' componentClass='select' value={showPage} placeholder='select' onChange={this.handleInput}>
+              <FormControl name='showPage' componentClass='select' defaultValue={showPage} placeholder='select' onChange={this.handleInput}>
                 <option value='0'>عرض في الأقسام</option>
                 <option value='1'>عدم العرض</option>
               </FormControl>

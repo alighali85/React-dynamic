@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import TitleWithIcon from '../elements/TitleWithIcon'
-import {Image, Badge} from 'react-bootstrap'
-import './photos-library.scss'
-import AddPhoto from './addPhoto'
+import { Badge } from 'react-bootstrap'
+import './videos-library.scss'
+import AddVideo from './addVideo'
 import ButtonWithIcon from '../elements/ButtonWithIcon'
 import Loader from '../elements/Loader'
 import { CSSTransition,TransitionGroup } from 'react-transition-group'
@@ -10,122 +10,122 @@ import ConfirmWindow from '../confirmWindow/ConfirmWindow'
 import firebase from 'firebase/app'
 
 
-class PhotosLibrary extends Component {
+class VideosLibrary extends Component {
 constructor(props) { 
   super(props)
   this.state = {
     showPopUpWindow: false,
-    addPhotoMode: false,
-    photosList: [],
+    addVideosMode: false,
+    videosList: [],
     loading: false,
     showDeleteConfirm: false,
-    photoIdToDelete: null,
-    showPhotoPreview : false,
-    previewPhotoId: null,
+    videosIdToDelete: null,
+    showVideosPreview : false,
+    previewVideosId: null,
   }
 }
 
 onDismiss = () => {
   this.setState({
     showPopUpWindow: false,
-    addPhotoMode: false,
+    addVideosMode: false,
     loading: false
   })
 }
 
-addNewPhotoWindow = () => {
+addNewVideosWindow = () => {
   this.setState({
     showPopUpWindow: true,
-    addPhotoMode: true
+    addVideosMode: true
   })
 }
 
-openPreviewPhoto = (id) => {
-console.log('preview photo')
+openPreviewVideos = (id) => {
+console.log('preview Videos')
 this.setState({
-  showPhotoPreview: true,
-  previewPhotoId: id
+  showVideosPreview: true,
+  previewVideosId: id
 })
 }
 
 exitPreviewMode = () => {
   this.setState({
-    showPhotoPreview: false,
-    previewPhotoId: null
+    showVideosPreview: false,
+    previewVideosId: null
   })
 }
 
 copyImageUrlToclipboard(url) {
-   
     document.execCommand("copy", url);
 }
 
 handleDeleteItemRequest (id) {
   this.setState({
     showDeleteConfirm: true,
-    photoIdToDelete: id
+    videosIdToDelete: id
   })
 }
 
-deletePhoto = () => {
-  const { photoIdToDelete } = this.state
-  firebase.database().ref('photosLibrary').child(photoIdToDelete).remove()
+deletevideos = () => {
+  const { VideosIdToDelete } = this.state
+  firebase.database().ref('VideossLibrary').child(VideosIdToDelete).remove()
   this.setState({
     showDeleteConfirm: false,
-    photoIdToDelete: null
+    videosIdToDelete: null
   })
 }
 
 dismissConfirmation = () => {
   this.setState({
     showDeleteConfirm: false,
-    photoIdToDelete: null
+    videosIdToDelete: null
   })
 }
 
 componentDidMount = () => {
-  this.getPhohtsFromServer()
+  this.getVideosFromServer()
 }
 
-getPhohtsFromServer = () => {
-  const photosLibraryRef = firebase.database().ref('photosLibrary').orderByChild('timestamp')
-  photosLibraryRef.on('value', (snap) => {
-    var photos = []
-    snap.forEach((photo) => {
-      photos.push({
-        key: photo.key,
-        ...photo.val()
+getVideosFromServer = () => {
+  console.log('get videos from server')
+  const videossLibraryRef = firebase.database().ref('videosLibrary').orderByChild('timestamp')
+  videossLibraryRef.on('value', (snap) => {
+    var videoss = []
+    snap.forEach((videos) => {
+      videoss.push({
+        key: videos.key,
+        ...videos.val()
       })
     })
     this.setState({
-      photosList: photos.reverse(),
+      videosList: videoss.reverse(),
       loading: false,
     })
-    console.log(photos.length)
+    console.log(videoss.length)
     })
   }
 
   render () {
-    const { showPopUpWindow, loading, addPhotoMode, photosList, showDeleteConfirm, showPhotoPreview,
-      previewPhotoId
-    } = this.state
-    photosList.map(photo => <Image src={photo} thumbnail />)
+    const { showPopUpWindow, loading, addVideosMode, 
+      videosList, showDeleteConfirm, showVideosPreview,
+      previewVideosId } = this.state
+
     return (
-      <div className='photos-library'>
-      <TitleWithIcon title='إدارة الصفحات' icon='image' />
-      لديك <Badge>{photosList.length} صورة</Badge>
+      <div className='videos-library'>
+      <TitleWithIcon title='إدارة الفديو' icon='video' />
+      لديك <Badge>{videosList.length} فديو</Badge>
 
       <TransitionGroup className="todo-list">
         {
           (showPopUpWindow) ?
           <CSSTransition key={1} classNames="fade">
-          <div/>
+            <div/>
           </CSSTransition>
           : (!showPopUpWindow) ?
           <CSSTransition key={2} classNames="fade">
             <ButtonWithIcon
-              onClick={this.addNewPhotoWindow}
-              text='إضافة صورة'
+              onClick={this.addNewVideosWindow}
+              text='إضافة فديو'
               iconName='magic'
               ButtonStyle='success'
               float='left'
@@ -135,21 +135,21 @@ getPhohtsFromServer = () => {
        </TransitionGroup>
        
       {loading && <Loader iconSize='2x'/>}
-        <div className='photos-wrapper'>
+        <div className='videos-library'>
           <TransitionGroup className="todo-list">
-            {photosList.map((photo, i) =>  <CSSTransition key={i} classNames="fade">
-              <div className="photo-thumpnail" style={{backgroundImage: `url(${photo.imageUrl})`}}>
+            {videosList.map((video, i) =>  <CSSTransition key={i} classNames="fade">
+              <div className="vidoe-thumpnail" style={{backgroundImage: `url(${video.imageUrl})`}}>
                 <div className="overlay">
                   <ButtonWithIcon
-                  onClick={() => this.openPreviewPhoto(photo.imageUrl)}
-                  text='مشاهدة صورة'
+                  onClick={() => this.openPreviewVideos(video.imageUrl)}
+                  text='مشاهدة الفديو'
                   iconName='magic'
                   ButtonStyle='info'
                   float='left'
                   />
                   <ButtonWithIcon
-                    onClick={() => this.handleDeleteItemRequest(photo.key)}
-                    text='إزالة صورة'
+                    onClick={() => this.handleDeleteItemRequest(video.key)}
+                    text='إزالة فديو'
                     iconName='trash'
                     ButtonStyle='danger'
                     float='left'
@@ -161,32 +161,32 @@ getPhohtsFromServer = () => {
           </TransitionGroup>
         </div>
         <ConfirmWindow
-          show={addPhotoMode}
+          show={addVideosMode}
           onDismiss={this.onDismiss}
-          title='إضافة صورة '
+          title='إضافة فديو '
           >
-          <AddPhoto />
+          <AddVideo />
         </ConfirmWindow>
 
         <ConfirmWindow confirmation
           show={showDeleteConfirm}
-          onConfirm={this.deletePhoto}
+          onConfirm={this.deleteVideos}
           onDismiss={this.dismissConfirmation}
-          title='حذف صورة '
-          text='حذف صورة .. لايمكنك الإستعادة بعد الحذف'
+          title='حذف فديو '
+          text='حذف فديو .. لايمكنك الإستعادة بعد الحذف'
         />
         <ConfirmWindow confirmation
           size='large'
-          show={showPhotoPreview}
-          onConfirm={()=> {this.copyImageUrlToclipboard(previewPhotoId)}}
+          show={showVideosPreview}
+          onConfirm={()=> {this.copyImageUrlToclipboard(previewVideosId)}}
           onDismiss={this.exitPreviewMode}
-          title='معاينة صورة '
+          title='معاينة فديو '
         >
-        <img src={previewPhotoId} alt='preview' style={{width: '100%', height: '100%'}}/>
+        <img src={previewVideosId} alt='preview' style={{width: '100%', height: '100%'}}/>
         </ConfirmWindow>
       </div>
     )
   }
 }
 
-export default PhotosLibrary
+export default VideosLibrary

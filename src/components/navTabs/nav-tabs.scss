@@ -20,6 +20,18 @@
     }
   }
 }
+.navBar-container__item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding: 28px;
+  font-size: 16px;
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
 
 .app-navbar-tabs-list {
     display: flex;
@@ -40,8 +52,8 @@
       opacity: 0.8;
     }
     a {
-      color: white !important;
       font-size: 18px;
+      color: white !important;
       &:hover {
         background: #5A2158 !important;
       }
@@ -102,7 +114,6 @@ li.active {
   align-items: center;
   padding: 14px 28px;
   border: 1px solid white;
-  color: white;
   float: right;
   border-radius: 5px;
   margin: 14px;
