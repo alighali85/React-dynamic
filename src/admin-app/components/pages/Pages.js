@@ -139,12 +139,12 @@ class Pages extends Component {
           { pages.map((item, i) =>
             <CSSTransition key={i} timeout={i*1000} classNames="fade">
               <ListGroup>
-                <ListGroupItem header={item.pageName - i} >
-                {item.pageId}
+                <ListGroupItem header={item.name - i} >
+                {item.id}
                 <img className='list-user-icon' src={DeleteIcon} alt='delete' name={item.key} onClick={(e)=> this.handleDeleterequest(e)} />
                 <img className='list-user-icon' src={EditIcon} alt='edit' name={item.key} onClick={this.editPageMode}/>
                 <img className='list-user-icon' src={PagesIcon} alt='Pages' />
-                <img className='list-icon' src={ListDots} alt='dots' />{item.pageName} </ListGroupItem>
+                <img className='list-icon' src={ListDots} alt='dots' />{item.name} </ListGroupItem>
               </ListGroup>
             </CSSTransition>
             )}

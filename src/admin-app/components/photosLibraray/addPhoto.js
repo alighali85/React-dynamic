@@ -81,9 +81,8 @@ handleFileupload = (e) => {
         console.log('File available at', downloadURL);
         storeImage(downloadURL)
       });
+    })
   }
-)
-    }
 
   render () {
     const { uploadCompleted, uploadPercantage, fileUrl, uploadedNumber } = this.state
@@ -95,7 +94,7 @@ handleFileupload = (e) => {
       height: '400px',
       backgroundSize: 'cover'
     }
-    const Image = <div classname='uploaded-photo' style={imageStyle}></div>
+    const Image = <div className='uploaded-photo' style={imageStyle}></div>
     return (
       <div classname='add-photo'>
         <ProgressBar id='fileUploadProgress' now={now} label={`${now}%`} striped active/>

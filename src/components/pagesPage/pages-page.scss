@@ -1,0 +1,33 @@
+.pages-page {
+
+  .panel-heading {
+    
+  }
+  &__header {
+
+    .pages-page__image {
+      width: 120px;
+      margin-top: -33px;
+      border-radius: 5px;
+      margin-left: 28px;
+      position: absolute;
+    }
+
+    .pages-page__title {
+      font-size: 21px;
+      color: #7f0682;
+      padding-right: 120px;
+    }
+
+  }
+  &__panel {
+    height: 300px;
+    margin: 28px 0px;
+  }
+  
+  &__text {
+    font-size: 18px;
+  }
+  
+
+}

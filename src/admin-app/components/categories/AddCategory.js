@@ -46,7 +46,6 @@ class AddCategory extends Component {
       //TO DO:  Do something when the request comes back .... 
     } 
     })
-
   } 
   else {
     alert('الرجاء ملئ جميع الحقول')
@@ -65,9 +64,8 @@ class AddCategory extends Component {
       [name]: value
     })
   }
-  render () {
 
-    
+  render () {
     return (
       <div >
         <hr />
@@ -100,7 +98,7 @@ class AddCategory extends Component {
 
             <FormGroup>
               <Col smOffset={6} sm={6}>
-                <Button type='submit'>أضافة قسم</Button>
+                <Button type='submit'>إضافة قسم</Button>
               </Col>
             </FormGroup>
         </Form>

@@ -7,6 +7,7 @@ import './add-page.scss'
 import TitleWithIcon from '../elements/TitleWithIcon'
 import FontAwesome from 'react-fontawesome'
 import { getDataFromDb } from '../../api/firebaseInstances'
+import AddPhoto from '../photosLibraray/addPhoto'
 
 
 class AddPage extends Component {
@@ -17,6 +18,7 @@ class AddPage extends Component {
       pageName: '',
       pageTitle: '',
       showPage: '',
+      pageImage: '',
       pageId: this.props.pageId,
       allowSend: false,
       pageContent: {},
@@ -24,6 +26,13 @@ class AddPage extends Component {
       pageCategory: null,
       categoriesList: [],
     }
+  }
+
+  handleFielUploaded = (url) => {
+    console.log(url+ 'category image')
+    this.setState({
+      pageImage: url
+    })
   }
 
   componentDidMount () {
@@ -34,17 +43,18 @@ class AddPage extends Component {
   }
 
   handleSubmit = (e) => {
-    const { pageName, pageTitle, showPage, pageContent, pageId, pageCategory } = this.state
+    const { pageName, pageTitle, showPage, pageContent, pageId, pageImage, pageCategory } = this.state
     e.preventDefault()
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Pages')
     categoriesData.push({
-      pageName: pageName,
-      pageTitle: pageTitle,
+      name: pageName,
+      title: pageTitle,
       showpage: showPage,
-      pageContent: pageContent,
+      content: pageContent,
+      image: pageImage,
       pageId: pageId || 'there is no id provided for props',
-      pageCategory: pageCategory
+      category: pageCategory
     }, function(error) {
       if (error) {
         console.log('// The write failed...')
@@ -63,13 +73,11 @@ class AddPage extends Component {
     })
     this.props.onFormSent()
   }, 2000);
- 
   
   }
 
   handleInput = (e) => {
     const { name, value } = e.target
-    console.log(name + '     '+ value  )
     this.setState({
       [name]: value
     })
@@ -101,6 +109,8 @@ class AddPage extends Component {
             <Col sm={2}>اسم الصفحه</Col>
           </FormGroup>
 
+          <AddPhoto uploadedFile={(url) => this.handleFielUploaded(url)} />
+
           <FormGroup controlId='formHorizontalEmail'>
             <Col sm={10}>
               <FormControl name='pageTitle' type='text' placeholder='' onChange={this.handleInput}/>
@@ -122,6 +132,7 @@ class AddPage extends Component {
           </ButtonToolbar>
           <br/>
           <br/>
+
 
           <CKEditor 
             name='content'

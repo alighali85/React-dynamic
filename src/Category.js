@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { getDataFromDb } from './api/firebaseInstances'
 import firebase from 'firebase'
+import CategoryPage from './components/categoryPage/CategoryPage'
+import PagesPage from './components/pagesPage/PagesPage';
 
 export class Category extends Component {
   constructor (props) {
@@ -19,6 +21,17 @@ export class Category extends Component {
     const {id} = this.props.match.params
     console.log('category id '+ id)
     this.loadCategories(id)
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    const currentLocation = this.props.match.url
+    const nextLocation = nextProps.match.url
+    const { id } = nextProps.match.params
+
+    if(currentLocation !== nextLocation) {
+      console.log('C W R P')
+      this.loadCategories(id)  
+    }
   }
 
    //get actegories
@@ -54,7 +67,7 @@ export class Category extends Component {
       })
     //filter pages and return category pages
     pages.forEach(page => {
-      if (page.pageCategory == (key) ) {
+      if (page.category == (key) ) {
         matchedPages.push(page )
       }
     })
@@ -65,31 +78,19 @@ export class Category extends Component {
   })
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    const currentLocation = this.props.match.url
-    const nextLocation = nextProps.match.url
-    const { id } = nextProps.match.params
-
-    if(currentLocation !== nextLocation) {
-      console.log('C W R P')
-      this.loadCategories(id)  
-    }
-  }
-
+  
   render () {
-    const { matchedCategory, matchedPages } = this.state    
-    const { pages } = this.state
+    const { matchedCategory, matchedPages } = this.state
+    console.log(matchedPages)
+    const renderPages = (matchedPages) => matchedPages.map(page => (<h2>{page.pageName}here is the page</h2>) )
     return (
-      <div>
-      <br/>
-      <h2> Matched category: {matchedCategory.name}</h2>
-        <br />
-        <h2> here is the category page</h2>
-        <h3>pages:</h3>
-        <ul>
-          {matchedPages.map(page => <li key={page.pageName}>{page.pageName}
-          </li>)}
-        </ul>
+      <div classname='category-container'>
+        <CategoryPage 
+        backgroundImage={matchedCategory.image}
+        title={matchedCategory.name}
+        />
+        {renderPages}
+        {matchedPages.map(page => <PagesPage title={page.name} link={'http://www.google.com'} text={page.title} image={page.image}/>)}
       </div>
     )
   }
