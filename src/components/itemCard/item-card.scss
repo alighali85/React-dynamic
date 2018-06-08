@@ -1,0 +1,13 @@
+.item-card {
+  width: 240px;
+  height: 300px;
+  display: flex;
+  &__header {
+    background: rgba(0,0,0,0.8) !important;
+    color: white
+  }
+  &__title {
+    color: white;
+    font-size: 18px;
+  }
+}

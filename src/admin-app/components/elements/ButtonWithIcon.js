@@ -4,6 +4,32 @@ import FontAwesome from 'react-fontawesome'
 import PropTypes from 'prop-types'
 import './button-with-icon.scss'
 
+const propTypes = {
+  ButtonStyle: PropTypes.string,
+  name: PropTypes.string,
+  onClick: PropTypes.fun,
+  iconName: PropTypes.string,
+  iconSize: PropTypes.string,
+  iconStyle: PropTypes.string,
+  text: PropTypes.string,
+  disabled: PropTypes.bool,
+  float: PropTypes.string,
+  type: PropTypes.string
+}
+
+const defaultProps = {
+  ButtonStyle: 'primary',
+  name: 'button',
+  onClick: () => {},
+  iconName: 'adjust',
+  iconSize: '1',
+  iconStyle: '',
+  text: 'click',
+  disabled: false,
+  float: '',
+  type: ''
+}
+
 class ButtonWithIcon extends Component {
   constructor (props, ...rest) {
     super(props, ...rest)
@@ -34,36 +60,14 @@ iconStyle = {
             style={this.iconStyle}
           />
           {text}
+          {this.props.children}
         </Button>
       </div>
     )
   }
 }
 
-ButtonWithIcon.propTypes = {
-  ButtonStyle: PropTypes.string,
-  name: PropTypes.string,
-  onClick: PropTypes.fun,
-  iconName: PropTypes.string,
-  iconSize: PropTypes.string,
-  iconStyle: PropTypes.string,
-  text: PropTypes.string,
-  disabled: PropTypes.bool,
-  float: PropTypes.string,
-  type: PropTypes.string
-}
-
-ButtonWithIcon.defaultProps = {
-  ButtonStyle: 'primary',
-  name: 'button',
-  onClick: () => {},
-  iconName: 'adjust',
-  iconSize: '1',
-  iconStyle: '',
-  text: 'click',
-  disabled: false,
-  float: '',
-  type: ''
-}
+ButtonWithIcon.propTYpes= propTypes
+ButtonWithIcon.defaultProps = defaultProps
 
 export default ButtonWithIcon

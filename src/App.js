@@ -43,8 +43,8 @@ class App extends Component {
           <Col md={8} lg={8}>
 
             <Switch>
-              <Route path='/category/:id' component={Category} />
-              <Route path='/category/:id/page/:id' component={Page} />
+              <Route path='/category/:id' component={Category} exact />
+              <Route path='/category/:id/page/:id' component={Page} exact />
             </Switch>
 
           </Col>

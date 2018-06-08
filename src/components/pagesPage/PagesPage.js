@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Panel } from 'react-bootstrap'
 import './pages-page.scss'
+import ButtonWithIcon from '../../admin-app/components/elements/ButtonWithIcon'
 
 const propTypes = {
   title: PropTypes.string,
@@ -31,7 +33,15 @@ export default class PagesPage extends React.Component {
             <h3 className='pages-page__title'>{title}</h3>
           </Panel.Heading>
           <Panel.Body className='pages-page__text'>{text}</Panel.Body>
-          <button>{link}</button>
+          <Link to={link} >
+            <ButtonWithIcon
+              iconName='angle-double-right'
+              name='المزيد'
+              text='المزيد'
+              disabled={false}
+              float='right'
+            />
+          </Link>
         </Panel>
       </div>
     )

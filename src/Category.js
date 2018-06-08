@@ -14,6 +14,7 @@ export class Category extends Component {
       matchedPages: [],
       categoryKey: null,
       pages: [],
+      location: this.props.match.url
     }
   }
 
@@ -22,8 +23,9 @@ export class Category extends Component {
     console.log('category id '+ id)
     this.loadCategories(id)
   }
-
+  
   componentWillReceiveProps = (nextProps) => {
+    console.log('this . props match>  ' + this.props.match)
     const currentLocation = this.props.match.url
     const nextLocation = nextProps.match.url
     const { id } = nextProps.match.params
@@ -78,9 +80,8 @@ export class Category extends Component {
   })
   }
 
-  
   render () {
-    const { matchedCategory, matchedPages } = this.state
+    const { matchedCategory, matchedPages, location } = this.state
     console.log(matchedPages)
     const renderPages = (matchedPages) => matchedPages.map(page => (<h2>{page.pageName}here is the page</h2>) )
     return (
@@ -90,7 +91,7 @@ export class Category extends Component {
         title={matchedCategory.name}
         />
         {renderPages}
-        {matchedPages.map(page => <PagesPage title={page.name} link={'http://www.google.com'} text={page.title} image={page.image}/>)}
+        {matchedPages.map(page => <PagesPage title={page.name} link={`${location}/page/${page.pageId}`} text={page.title} image={page.image}/>)}
       </div>
     )
   }
