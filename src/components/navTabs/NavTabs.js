@@ -6,6 +6,7 @@ import menuIcon from '../../assest/img/menu.svg'
 import closeMenuIcon from '../../assest/img/icons/menu-close.svg'
 import firebase from 'firebase'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 class NavTabs extends Component {
   constructor (props) {
@@ -96,4 +97,4 @@ class NavTabs extends Component {
   }
 }
 
-export default NavTabs
+export default withRouter(NavTabs)

@@ -12,8 +12,8 @@ const propTypes = {
 
 const defaultProps = {
   title: 'title',
-  image: 'image link',
-  text: 'card text',
+  image: null,
+  text: null,
   link: 'card default link'
 }
 
@@ -24,16 +24,18 @@ export default class ItemCard extends React.Component {
   }
 
   render () {
-    const { title, image, link, text } = this.props
+    const { title, image, text, onClick } = this.props
     return (
       <div className='item-card'>
-        <Panel className='item-card__panel' style={{backgroundImage: `url(${image})`}}>
+        <Panel
+          className='item-card__panel'
+          style={{backgroundImage: `url(${image})`}}
+          onClick={onClick}
+        >
           <Panel.Heading className='item-card__header'>
             <h3 className='item-card__title'>{title}</h3>
           </Panel.Heading>
-          <Panel.Body
-            onClick={() => { this.props.history.push(link) }}
-            className='item-card__text'>{text}</Panel.Body>
+          <Panel.Body className='item-card__text'>{text}{this.props.children}</Panel.Body>
         </Panel>
       </div>
     )

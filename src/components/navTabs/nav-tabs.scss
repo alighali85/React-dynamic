@@ -21,15 +21,22 @@
   }
 }
 .navBar-container__item {
-  height: 100%;
+  width: 100%;
+  min-width: 168px;
   display: flex;
   align-items: center;
+  justify-content: center;
   align-content: center;
   padding: 28px;
   font-size: 16px;
   color: white;
+  @media(max-width: 768px) {
+    color: #5A2158;
+    padding: 14px;
+  }
   &:hover {
     color: white;
+    background: #5A2158;
   }
 }
 
@@ -37,6 +44,7 @@
     display: flex;
     height: 100%;
     padding-left: 0;
+    padding-right: 0;
     margin-bottom: 0;
     list-style: none;
     align-items: center;

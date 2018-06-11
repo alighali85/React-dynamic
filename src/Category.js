@@ -2,7 +2,10 @@ import React, {Component} from 'react'
 import { getDataFromDb } from './api/firebaseInstances'
 import firebase from 'firebase'
 import CategoryPage from './components/categoryPage/CategoryPage'
-import PagesPage from './components/pagesPage/PagesPage';
+import PagesPage from './components/pagesPage/PagesPage'
+import { withRouter } from 'react-router'
+import './styles/category.scss'
+
 
 export class Category extends Component {
   constructor (props) {
@@ -20,7 +23,6 @@ export class Category extends Component {
 
   componentDidMount = () => {
     const {id} = this.props.match.params
-    console.log('category id '+ id)
     this.loadCategories(id)
   }
   
@@ -31,7 +33,6 @@ export class Category extends Component {
     const { id } = nextProps.match.params
 
     if(currentLocation !== nextLocation) {
-      console.log('C W R P')
       this.loadCategories(id)  
     }
   }
@@ -50,7 +51,6 @@ export class Category extends Component {
     })
 
     this.setState(newSt)
-    console.log(newSt['matchedCategory'])
     this.loadPages(newSt['categoryKey'])
   }
   
@@ -82,18 +82,24 @@ export class Category extends Component {
 
   render () {
     const { matchedCategory, matchedPages, location } = this.state
-    console.log(matchedPages)
     const renderPages = (matchedPages) => matchedPages.map(page => (<h2>{page.pageName}here is the page</h2>) )
     return (
-      <div classname='category-container'>
+      <div className='category-container'>
         <CategoryPage 
         backgroundImage={matchedCategory.image}
         title={matchedCategory.name}
         />
         {renderPages}
-        {matchedPages.map(page => <PagesPage title={page.name} link={`${location}/page/${page.pageId}`} text={page.title} image={page.image}/>)}
+        {matchedPages.map(page => <PagesPage 
+          title={page.name} 
+          link={`page/${page.pageId}`} 
+          text={page.title} 
+          image={page.image}
+          parentId={matchedCategory.id}
+          />)
+        }
       </div>
     )
   }
 }
-export default Category
+export default withRouter(Category)

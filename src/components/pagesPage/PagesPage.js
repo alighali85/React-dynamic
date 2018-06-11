@@ -24,7 +24,7 @@ export default class PagesPage extends React.Component {
   }
 
   render () {
-    const { title, text, link, image } = this.props
+    const { title, text, link, image, parentId } = this.props
     return (
       <div className='pages-page'>
         <Panel className='pages-page__panel'>
@@ -33,13 +33,18 @@ export default class PagesPage extends React.Component {
             <h3 className='pages-page__title'>{title}</h3>
           </Panel.Heading>
           <Panel.Body className='pages-page__text'>{text}</Panel.Body>
-          <Link to={link} >
+          <Link to={{
+            pathname: link,
+            state: {
+              categoryId: parentId
+            }
+          }} >
             <ButtonWithIcon
+              className='page-button'
               iconName='angle-double-right'
               name='المزيد'
               text='المزيد'
               disabled={false}
-              float='right'
             />
           </Link>
         </Panel>

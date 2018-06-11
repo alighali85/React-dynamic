@@ -42,9 +42,9 @@ iconStyle = {
     marginRight: -14+'px'
 }
   render () {
-    const { ButtonStyle, name, onClick, iconName, iconSize, iconStyle, text, disabled, float, type } = this.props
+    const { ButtonStyle, name, onClick, iconName, iconSize, iconStyle, text, disabled, float, type, className } = this.props
     return (
-      <div className='button-with-icon'>
+      <div className={`button-with-icon ${className}`}>
         <Button
           bsStyle={ButtonStyle}
           name={name}
