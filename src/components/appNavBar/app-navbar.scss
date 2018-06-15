@@ -5,6 +5,9 @@
 .app-navbar {
   height: 89px;
   background: #800285;
+  position: fixed;
+  z-index: 9;
+  top: 0px;
 }
 
 .app-logo-container {

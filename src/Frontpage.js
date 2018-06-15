@@ -1,8 +1,8 @@
 import React from 'react'
 import CarouselSlider from './components/carouselSlider/CarouselSlider.js'
 import SocialMediaBar from './components/socialMediaBar/SocialMediaBar.js'
-import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import CallToActionBar from './components/callToActionBar/CallToActionBar.js'
+import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import CardImage from './assest/img/card-header-1.jpg'
 
 const Youtube = () => (

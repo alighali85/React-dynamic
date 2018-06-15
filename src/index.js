@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import AdminApp from './admin-app/index.js'
 import './app-theme/index.scss'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import firebase from 'firebase/app'
 
 const adminAppdatabaseConfig = {
@@ -19,10 +19,10 @@ firebase.initializeApp(adminAppdatabaseConfig)
 
 ReactDOM.render(
   <BrowserRouter>
-    <div>
+    <Switch>
       <Route path='/admin-app' component={AdminApp} />
       <Route path='/' component={App} />
-    </div>
+    </Switch>
   </BrowserRouter>,
   document.getElementById('root')
 )

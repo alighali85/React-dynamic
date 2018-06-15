@@ -52,14 +52,24 @@ class Page extends React.Component {
 
   getRelatedpages = (pages) => {
     const allPagesNotLastOne = pages.filter((page,i) => {
-      const allPagesCount = (pages.length) - RELATED_PAGES_NUMBER
-      return (page.pageId < pages.length) && (page.pageId >= allPagesCount)
-    })
+    const allPagesCount = (pages.length) - RELATED_PAGES_NUMBER
+    return (page.pageId < pages.length) && (page.pageId >= allPagesCount)
 
-    allPagesNotLastOne.forEach(page => {
-    })
+  })
+    let relatedPages = allPagesNotLastOne.slice(3)
+    // let i
+    // for (i = 0 ; i < 3 ; i++) {
+    //   const randomNumber = Math.floor( Math.random() * allPagesNotLastOne.length) + 1 
+    //   relatedPages.push(allPagesNotLastOne[randomNumber])
+    // }
+  //   allPagesNotLastOne.forEach(page => {
+  //   const randomNumber = Math.floor( Math.random() * allPagesNotLastOne.length) + 1 
+  //   if ( relatedPages.length <= RELATED_PAGES_NUMBER && page.pageId == randomNumber ) {
+  //     relatedPages.push(page)
+  //   }
+  // })
     this.setState({
-      relatedPages: allPagesNotLastOne
+      relatedPages: relatedPages
     })
   }
 
@@ -72,7 +82,7 @@ class Page extends React.Component {
   }
 
   render () {
-    const { page, pageContent,relatedPages } = this.state
+    const { page, pageContent, relatedPages } = this.state
     const categoryId = (this.props.location.state ? this.props.location.state.categoryId : 1 )
     return (
       <div className='page-details'>

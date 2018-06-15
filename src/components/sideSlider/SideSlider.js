@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Panel, Carousel } from 'react-bootstrap'
 import './side-slider.scss'
+import FontAwesome from 'react-fontawesome'
 
 const propTypes = {
   source: PropTypes.array,
@@ -12,23 +13,23 @@ const propTypes = {
 
 const defaultProps = {
   controls: true,
-  interval: 500,
+  interval: '500',
   headline: 'اتصل بنا عبر',
   source: [
     {
-      title: '',
-      text: '',
-      image: null
+      title: 'واتس أب',
+      text: '0966379892',
+      icon: 'whatsapp'
     },
     {
-      title: '',
-      text: '',
-      image: null
+      title: 'الموبايل',
+      text: '0966379892',
+      icon: 'mobile-alt'
     },
     {
-      title: '',
-      text: '',
-      image: null
+      title: 'فيس بوك',
+      text: '/albasserah',
+      icon: 'apple'
     }
   ]
 }
@@ -40,16 +41,17 @@ export default class SideSlider extends React.Component {
   }
 
   render () {
-    const { source, interval, controls } = this.props
+    const { source, interval, controls, indicators } = this.props
     return (
       <div className='side-slider'>
         <Panel>
-          <Carousel interval={interval} controls={controls}>
+          <Carousel indicators={indicators} interval={interval} controls={controls}>
             { source.map((item, i) => <Carousel.Item>
-              <img width={900} height={500} alt='900x500' src={item.image} />
+              <br />
               <Carousel.Caption>
                 <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                <FontAwesome name={item.icon} size='4x' /><br />
+                <h4>{item.text}</h4>
               </Carousel.Caption>
             </Carousel.Item>)}
           </Carousel>

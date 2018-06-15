@@ -4,4 +4,8 @@
 
 .carousel-inner>.item {
   height: 200px;
+  background: rgba(47, 2, 49, 0.8);
+  .carousel-caption { 
+    top: 0;
+  }
 }

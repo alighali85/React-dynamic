@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Timeline } from 'react-twitter-widgets'
+import './twitter-timeline.scss'
 
 const propTypes = {}
 
@@ -32,4 +33,4 @@ export default class TwitterTimeline extends React.Component {
 }
 
 TwitterTimeline.propTypes = propTypes
- TwitterTimeline.defaultProps = defaultProps
+TwitterTimeline.defaultProps = defaultProps

@@ -17,7 +17,8 @@ class AddPage extends Component {
     this.state= {
       pageName: '',
       pageTitle: '',
-      showPage: '',
+      showInFrontPage: 0,
+      pageInSlide: '',
       pageImage: '',
       pageId: this.props.pageId,
       allowSend: false,
@@ -43,14 +44,15 @@ class AddPage extends Component {
   }
 
   handleSubmit = (e) => {
-    const { pageName, pageTitle, showPage, pageContent, pageId, pageImage, pageCategory } = this.state
+    const { pageName, pageTitle, showInFrontPage, pageContent, pageId, pageImage, pageCategory, pageInSlide } = this.state
     e.preventDefault()
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Pages')
     categoriesData.push({
       name: pageName,
       title: pageTitle,
-      showpage: showPage,
+      showInFrontPage: showInFrontPage,
+      pageInSlide: pageInSlide,
       content: pageContent,
       image: pageImage,
       pageId: pageId || 'there is no id provided for props',
@@ -108,33 +110,60 @@ class AddPage extends Component {
             </Col>
             <Col sm={2}>اسم الصفحه</Col>
           </FormGroup>
+          <hr/>
 
-          <AddPhoto uploadedFile={(url) => this.handleFielUploaded(url)} />
+          <FormGroup controlId='pagePhoto'>
+            <Col sm={9}>
+              <AddPhoto uploadedFile={(url) => this.handleFielUploaded(url)} />
+            </Col>
+            <Col sm={3}>اختر صورة رئيسية </Col>
+            </FormGroup>
+          <hr/>
 
           <FormGroup controlId='formHorizontalEmail'>
             <Col sm={10}>
               <FormControl name='pageTitle' type='text' placeholder='' onChange={this.handleInput}/>
             </Col>
-            <Col sm={2}>اسم العرض العرض </Col>
+            <Col sm={2}>ملخص عن الصفحة </Col>
           </FormGroup>
+          <hr/>
 
           <ButtonToolbar>
-            <ToggleButtonGroup type="radio"  name="showPage" defaultValue={0} >
-              <ToggleButton onClick={this.handleInput} value={1}>عرض في الصفحه الرئيسي</ToggleButton>
-              <ToggleButton onClick={this.handleInput} value={0}>عدم العرض في الصفحة الرئيسية</ToggleButton>
-            </ToggleButtonGroup>
+            <Col sm={3}>خيارات العرض في الصفحة الرئيسية </Col>
+            <Col sm={9}>
+              <ToggleButtonGroup type="radio" name="showInFrontPage" defaultValue={0} >
+                <ToggleButton onClick={this.handleInput} value={1}>عرض في الصفحه الرئيسي</ToggleButton>
+                <ToggleButton onClick={this.handleInput} value={0}>عدم العرض في الصفحة الرئيسية</ToggleButton>
+              </ToggleButtonGroup>
+            </Col>
           </ButtonToolbar>
+          <hr/>
 
           <ButtonToolbar>
-            <ToggleButtonGroup type="radio"  name="pageCategory" defaultValue={0} >
-            {categoriesList.map(cat => <ToggleButton onClick={this.handleInput} value={cat.key}>{cat.name}</ToggleButton>)}
-            </ToggleButtonGroup>
+            <Col sm={3}>خيارات العرض في السلايد </Col>
+            <Col sm={9}>
+              <ToggleButtonGroup type="radio" name="pageInSlide" defaultValue={0} >
+                <ToggleButton onClick={this.handleInput} value={1}>عرض في السلايد</ToggleButton>
+                <ToggleButton onClick={this.handleInput} value={0}>عدم العرض في السلايد</ToggleButton>
+              </ToggleButtonGroup>
+            </Col>
+          </ButtonToolbar>
+          <hr/>
+
+          <ButtonToolbar>
+            <Col sm={3}>خيارات العرض في السلايد </Col>
+            <Col sm={9}>
+              <ToggleButtonGroup type="radio" name="pageCategory" defaultValue={0} >
+              {categoriesList.map(cat => <ToggleButton onClick={this.handleInput} value={cat.key}>{cat.name}</ToggleButton>)}
+              </ToggleButtonGroup>
+            </Col>
           </ButtonToolbar>
           <br/>
           <br/>
 
 
           <CKEditor 
+            scriptUrl='https://cdn.ckeditor.com/4.9.2/full-all/ckeditor.js'
             name='content'
             activeClass='p10' 
             content={pageContent} 
