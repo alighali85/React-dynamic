@@ -6504,9 +6504,9 @@ react-bootstrap@^0.32.1:
     uncontrollable "^4.1.0"
     warning "^3.0.0"
 
-react-breakpoints@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/react-breakpoints/-/react-breakpoints-2.0.5.tgz#187a9578e9a5c45a22208a085b4d1f24f28bf76a"
+react-breakpoints@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-breakpoints/-/react-breakpoints-3.0.0.tgz#b57d18dc7ad73a7c00c1949e689360af9cac6759"
   dependencies:
     create-react-context "0.2.1"
     hoist-non-react-statics "2.5.0"

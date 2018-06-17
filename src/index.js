@@ -5,6 +5,7 @@ import AdminApp from './admin-app/index.js'
 import './app-theme/index.scss'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import firebase from 'firebase/app'
+import ReactBreakpoints from 'react-breakpoints'
 
 const adminAppdatabaseConfig = {
   apiKey: 'AIzaSyC7_ZlYpn-_T1RnCfSfTj_uoVpdm54Chtc',
@@ -17,12 +18,24 @@ const adminAppdatabaseConfig = {
 
 firebase.initializeApp(adminAppdatabaseConfig)
 
+const breakpoints = {
+  mobile: 320,
+  mobileLandscape: 480,
+  tablet: 768,
+  tabletLandscape: 1024,
+  desktop: 1200,
+  desktopLarge: 1500,
+  desktopWide: 1920
+}
+
 ReactDOM.render(
   <BrowserRouter>
-    <Switch>
-      <Route path='/admin-app' component={AdminApp} />
-      <Route path='/' component={App} />
-    </Switch>
+    <ReactBreakpoints breakpoints={breakpoints}>
+      <Switch>
+        <Route path='/admin-app' component={AdminApp} />
+        <Route path='/' component={App} />
+      </Switch>
+    </ReactBreakpoints>
   </BrowserRouter>,
   document.getElementById('root')
 )

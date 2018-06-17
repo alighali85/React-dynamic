@@ -14,6 +14,8 @@ export const APP_CTA_FACEBOOK = 'فيس بوك'
 export const APP_CTA_INSTAGRAM = 'انستاغرام'
 export const APP_CTA_TWITTER = 'اتويتر'
 
-export const RELATED_PAGES_NUMBER = 15
+export const RELATED_PAGES_NUMBER = 3
+
+export const NAVBAR_FIXED_TABS_NUMBER = 3
 
 export const COPYRIGHT = 'تطبيق البصيرة لصاحبه الروحاني أبو وليد ٢٠١٨ جميع الحقوق محفوظة'

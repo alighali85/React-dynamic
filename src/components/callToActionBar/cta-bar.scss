@@ -1,10 +1,20 @@
 .cta-bar {
-  font-size: 34px;
+  font-size: 28px;
   color: white;
   background-image: url('../../assest/img/row-background.jpg');
   display: flex;
   min-height: 86px;
   align-items: center;
+  @media(max-width: 768px) {
+    font-size: 21px;
+    .glyphicon-earphone {
+      top: 4px;
+      margin: -14px 14px;
+      padding: 4px;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
+  }
   .glyphicon-earphone {
     margin: -14px 14px;
     top: 10px;

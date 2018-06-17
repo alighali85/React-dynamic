@@ -44,7 +44,7 @@
     "raf": "3.4.0",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
-    "react-breakpoints": "^2.0.5",
+    "react-breakpoints": "^3.0.0",
     "react-ckeditor-component": "^1.0.7",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
