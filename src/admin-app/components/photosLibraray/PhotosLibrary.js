@@ -112,7 +112,7 @@ getPhohtsFromServer = () => {
     photosList.map(photo => <Image src={photo} thumbnail />)
     return (
       <div className='photos-library'>
-      <TitleWithIcon title='إدارة الصفحات' icon='image' />
+      <TitleWithIcon title='مكتبة الصور' icon='image' />
       لديك <Badge>{photosList.length} صورة</Badge>
 
       <TransitionGroup className="todo-list">

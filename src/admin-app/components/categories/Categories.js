@@ -28,6 +28,26 @@ class Categories extends Component {
     }
   }
 
+  componentDidMount () {
+    window.scrollTo(0, 0);
+    const adminAppdatabase = firebase.database()
+    const categoriesData = adminAppdatabase.ref().child('Categories')
+    categoriesData.on('value', (snap) => {
+      var categories = []
+      snap.forEach((cat) => {
+        categories.push({
+          key: cat.key,
+          ...cat.val()
+        })
+      })
+      this.setState({
+        cat: categories,
+        loading: false,
+        nextCategoryId: categories.length + 1
+      })
+    })
+  }
+
   // Control Delet Category 
   handleDeleterequest = (e) => {
     const { name } = e.target
@@ -78,25 +98,6 @@ class Categories extends Component {
   exitEditCategoryMode = () => {
     this.setState({
       editCategoryMode: false
-    })
-  }
-
-  componentDidMount () {
-    const adminAppdatabase = firebase.database()
-    const categoriesData = adminAppdatabase.ref().child('Categories')
-    categoriesData.on('value', (snap) => {
-      var categories = []
-      snap.forEach((cat) => {
-        categories.push({
-          key: cat.key,
-          ...cat.val()
-        })
-      })
-      this.setState({
-        cat: categories,
-        loading: false,
-        nextCategoryId: categories.length + 1
-      })
     })
   }
 
@@ -155,7 +156,7 @@ class Categories extends Component {
           title='تعديل قسم رئيسي'
           text='جميع الحقول مطلوبة '>
           <EditCategory Categorykey={categoryToEdit} 
-          onFormSent={this.exitAddCategoryMode} 
+          onFormSent={this.exitEditCategoryMode} 
           />
         </ConfirmWindow>
 

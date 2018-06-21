@@ -1,12 +1,13 @@
 .cta-bar {
-  font-size: 28px;
+  font-size: 21px;
   color: white;
   background-image: url('../../assest/img/row-background.jpg');
   display: flex;
-  min-height: 86px;
+  min-height: 68px;
   align-items: center;
   @media(max-width: 768px) {
-    font-size: 21px;
+    font-size: 18px;
+    margin-top: 9px;
     .glyphicon-earphone {
       top: 4px;
       margin: -14px 14px;
@@ -17,7 +18,7 @@
   }
   .glyphicon-earphone {
     margin: -14px 14px;
-    top: 10px;
+    top: 4px;
     padding: 7px;
     border: 2px solid white;
     border-radius: 5px;
@@ -32,6 +33,15 @@
 
 .cta-bar-inner-container {
  direction: ltr;
+ @media(max-width: 768px) {
+   .row {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+   }
+ }
+
 }
 
 .app-cta-phone-number {

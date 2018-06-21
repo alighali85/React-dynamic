@@ -1,3 +1,18 @@
 .related-pages {
   display: flex
 }
+
+.page-details {
+  padding-top: 7px;
+  margin-top: 14px;
+  &__title {
+    border-right: 8px solid gray;
+    padding: 24px 14px 14px 0px;
+    background: #f5f5f5;
+    min-height: 68px;
+  }
+  img {
+    max-width: 100%;
+    height: auto !important;
+  }
+}

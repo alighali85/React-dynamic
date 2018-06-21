@@ -33,7 +33,7 @@ const ROUTES = [
     key: 2,
     tilte: '',
     iconSource: 'newspaper',
-    name: 'إداؤة الصغحات',
+    name: 'إدارة الصفحات',
     link: ADMIN_APP_PAGES,
     active: true,
     component: ADMIN_APP_PAGES

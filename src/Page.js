@@ -21,6 +21,7 @@ class Page extends React.Component {
   componentDidMount () {
     console.groupCollapsed('component Did Mount')
     console.groupEnd()
+    window.scrollTo(0, 0);
     const { id } = this.props.match.params
     this.getPageDetails(id)
   }
@@ -28,6 +29,7 @@ class Page extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { id } = nextProps.match.params
     this.getPageDetails(id)
+    window.scrollTo(0, 0);
    console.groupCollapsed('component Will Receive Props')
    console.log(nextProps)
    console.log(this.props)
@@ -86,8 +88,8 @@ class Page extends React.Component {
     const categoryId = (this.props.location.state ? this.props.location.state.categoryId : 1 )
     return (
       <div className='page-details'>
-        <h2>{page}</h2><br />
-        <div id='pageContent2' dangerouslySetInnerHTML={{ __html: pageContent }} />
+        <h2 className='page-details__title'>{page}</h2><br />
+        <div id='pageContent' dangerouslySetInnerHTML={{ __html: pageContent }} />
         <br />
         <br />
         <div className='related-pages'>

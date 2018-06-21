@@ -13,7 +13,7 @@ class AddCategory extends Component {
       title: null,
       description: null,
       image: null,
-      active: '',
+      showOnFrontpage: '1',
       allowSend: false
     }
   }
@@ -26,18 +26,18 @@ class AddCategory extends Component {
   }
 
   handleSubmit = (e) => {
-    const { id, name, title, description, image, active } = this.state
+    const { id, name, title, description, image, showOnFrontpage } = this.state
     e.preventDefault()
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Categories')
-    if(id && name && title && image && active) {
+    if(id && name && title && image ) {
       categoriesData.push({
       id: id + 1,
       name: name,
       title: title,
       description: description,
       image: image,
-      active: active,
+      showOnFrontpage: showOnFrontpage,
     }, function(error) {
       if (error) {
         console.log('// The write failed...')
@@ -88,12 +88,13 @@ class AddCategory extends Component {
 
             <FormGroup controlId='formControlsSelect'>
               <Col sm={10}>
-                <FormControl name='active' componentClass='select' placeholder='select' onChange={this.handleInput}>
-                  <option value='0'>عرض في الأقسام</option>
-                  <option value='1'>عدم العرض</option>
+                <FormControl name='showOnFrontpage' defaultValue='1' componentClass='select' placeholder='select' onChange={this.handleInput}>
+                  <option value='0'>اختر من هنا</option>
+                  <option value='1'>عرض في الصفحة الرئيسية</option>
+                  <option value='0'>عدم العرض في الصفحة الرئيسية</option>
                 </FormControl>
               </Col>
-              <Col sm={2}>خيارات العرض </Col>
+              <Col sm={2}> خيارات العرض في الصفحة الرئيسية </Col>
             </FormGroup>
 
             <FormGroup>

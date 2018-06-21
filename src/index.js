@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import AdminApp from './admin-app/index.js'
 import './app-theme/index.scss'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import firebase from 'firebase/app'
@@ -31,10 +30,7 @@ const breakpoints = {
 ReactDOM.render(
   <BrowserRouter>
     <ReactBreakpoints breakpoints={breakpoints}>
-      <Switch>
-        <Route path='/admin-app' component={AdminApp} />
-        <Route path='/' component={App} />
-      </Switch>
+      <App/>
     </ReactBreakpoints>
   </BrowserRouter>,
   document.getElementById('root')

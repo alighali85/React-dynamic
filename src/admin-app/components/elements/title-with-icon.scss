@@ -1,0 +1,9 @@
+.title-with-icon { 
+  &__title {
+    text-align: right;
+    border-right: 14px solid darkmagenta;
+    padding: 14px 28px;
+    color: darkmagenta;
+    background: #f2f2f2;
+  }
+}

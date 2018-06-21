@@ -20,7 +20,6 @@ $light: #f8f9fa;
 $dark: #282a3c;
 
 .admin__app-homepage {
-
   //main home page wrapper 
   display: flex;
   padding-right: 0 !important;
@@ -73,6 +72,8 @@ $dark: #282a3c;
     }
     .content {
       text-align: center;
+      height: 90vh;
+      overflow: scroll;
       padding: 14px;
     }
   }

@@ -3,47 +3,22 @@ import { Row, Col, Grid } from 'react-bootstrap'
 import './app-footer.scss'
 import SocialMedaibarSmall from '../socialMediaBar/SocialMediaBarSmall'
 import CopyRight from '../copyRight/CopyRight.js'
-import NavList from '../../components/navList/navList.js'
-
-const list1 = [
-  {
-    item1: 'فك السحر',
-    item2: 'خلطات الزوجية',
-    item3: 'علاج الربط'
-  }
-]
-
-const list2 = [
-  {
-    item1: 'علاج العقم عن طريق الأعشاب',
-    item2: 'حجاب القبول',
-    item3: 'خلطات الزوجية'
-  }
-]
-
-const list3 = [
-  {
-    item1: 'خواتم سليمانية',
-    item2: 'عرق السواحل',
-    item3: 'بخور روحاني'
-  }
-]
+import { Link } from 'react-router-dom'
 
 class AppFooter extends Component {
+  componentDidMount () {
+  }
+
   render () {
+    const { source } = this.props
     return (
       <Row className='app-footer'>
         <Grid>
-          <Row>
-            <Col md={4} sm={4} xs={12}>
-              <NavList listSource={list1} />
+          <Row className='app-footer__row'>
+            {source.map(item => <Col md={4} sm={4} xs={12} className='app-footer__item'>
+              <Link to={`/category/page/${item.pageId}`}>{item.name}</Link>
             </Col>
-            <Col md={4} sm={4} xs={12}>
-              <NavList listSource={list2} />
-            </Col>
-            <Col md={4} sm={4} xs={12}>
-              <NavList listSource={list3} />
-            </Col>
+            )}
           </Row>
           <Row className='show-grid'>
             <SocialMedaibarSmall />

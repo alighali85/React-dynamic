@@ -112,7 +112,7 @@ getVideosFromServer = () => {
 
     return (
       <div className='videos-library'>
-      <TitleWithIcon title='إدارة الفديو' icon='video' />
+      <TitleWithIcon title='مكتبة الفديو' icon='video' />
       لديك <Badge>{videosList.length} فديو</Badge>
 
       <TransitionGroup className="todo-list">

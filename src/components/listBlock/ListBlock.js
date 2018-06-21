@@ -43,7 +43,6 @@ export default class ListBlock extends Component {
       style={{backgroundImage: `url(${item.image})`}}
     >
       <div className='list-block__list-item__headline'>{item.name}</div>
-
     </ListGroupItem>
     </Link>
     )

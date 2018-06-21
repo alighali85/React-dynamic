@@ -39,8 +39,9 @@ class NavTabs extends Component {
           })
         })
         const categoriesNumber = categories.length
-        const navTabFixedTabs = categories.slice(categoriesNumber - NAVBAR_FIXED_TABS_NUMBER, categoriesNumber.length)
-        const navMenuTabs = categories.slice(0, categoriesNumber - NAVBAR_FIXED_TABS_NUMBER)
+        categories = categories.reverse()
+        const navTabFixedTabs = categories.slice(categoriesNumber - NAVBAR_FIXED_TABS_NUMBER, categoriesNumber.length).reverse()
+        const navMenuTabs = categories.slice(0, categoriesNumber - NAVBAR_FIXED_TABS_NUMBER).reverse()
         this.setState({
           categories: categories,
           fixedTabs: navTabFixedTabs,

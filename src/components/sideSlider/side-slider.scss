@@ -1,11 +1,28 @@
-.carousel-inner {
-  height: 200px;
-}
 
-.carousel-inner>.item {
-  height: 200px;
-  background: rgba(47, 2, 49, 0.8);
-  .carousel-caption { 
-    top: 0;
+.side-slider {
+  &__title {
+    color: #800285;
+  }
+  .panel {
+    .slide {
+      border-radius: 5px;
+      overflow: hidden;
+      .carousel-control {
+      background-image: none !important;
+      color: #800285 !important;
+    }
+    }
+  }
+
+  .carousel-inner {
+    height: 200px;
+  }
+
+  .carousel-inner>.item {
+    height: 200px;
+    border-radius: 5px;
+    .carousel-caption { 
+      top: 0;
+    }
   }
 }

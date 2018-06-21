@@ -1,3 +1,9 @@
 .app-block {
   padding-top: 80px;
+  &__container {
+    @media(max-width: 768px) {
+      padding-right: 0px !important;
+      padding-left: 0px !important;
+    }
+  }
 }

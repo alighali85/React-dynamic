@@ -18,6 +18,7 @@ class AddPage extends Component {
       pageName: '',
       pageTitle: '',
       showInFrontPage: 0,
+      showOnfooter: '0',
       pageInSlide: '',
       pageImage: '',
       pageId: this.props.pageId,
@@ -44,7 +45,18 @@ class AddPage extends Component {
   }
 
   handleSubmit = (e) => {
-    const { pageName, pageTitle, showInFrontPage, pageContent, pageId, pageImage, pageCategory, pageInSlide } = this.state
+    const { 
+      pageName, 
+      pageTitle, 
+      showInFrontPage, 
+      pageContent, 
+      pageId, 
+      pageImage, 
+      pageCategory, 
+      pageInSlide, 
+      showOnfooter
+     } = this.state
+
     e.preventDefault()
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Pages')
@@ -52,6 +64,7 @@ class AddPage extends Component {
       name: pageName,
       title: pageTitle,
       showInFrontPage: showInFrontPage,
+      showOnfooter: showOnfooter,
       pageInSlide: pageInSlide,
       content: pageContent,
       image: pageImage,
@@ -151,7 +164,18 @@ class AddPage extends Component {
           <hr/>
 
           <ButtonToolbar>
-            <Col sm={3}>خيارات العرض في السلايد </Col>
+            <Col sm={3}>عرض في الفوتر</Col>
+            <Col sm={9}>
+              <ToggleButtonGroup type="radio" name="showOnfooter" defaultValue={0} >
+                <ToggleButton onClick={this.handleInput} value={1}>عرض في الفوتر</ToggleButton>
+                <ToggleButton onClick={this.handleInput} value={0}>عدم العرض في الفوتر</ToggleButton>
+              </ToggleButtonGroup>
+            </Col>
+          </ButtonToolbar>
+          <hr/>
+
+          <ButtonToolbar>
+            <Col sm={3}>اختر قسم</Col>
             <Col sm={9}>
               <ToggleButtonGroup type="radio" name="pageCategory" defaultValue={0} >
               {categoriesList.map(cat => <ToggleButton onClick={this.handleInput} value={cat.key}>{cat.name}</ToggleButton>)}
