@@ -16,17 +16,9 @@ import CallToActionBar from './components/callToActionBar/CallToActionBar.js'
 import ScrollToTop from 'react-scroll-up'
 import './styles/app.scss'
 import AdminApp from './admin-app/index.js'
-import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
-
-
-const JumbtronContent4 = [
-  {
-    title: 'المزيد في الروحانيات',
-    content: 'ولكنها مجهولة لعدم عقلية الحيوان ولا يشترط الإنسان أن يكون متابعا نوعا معينا من العبادة أو يسلك سلوك غير مشروع فكل هذه الأساليب تنمى الروحانية حسب ما يسلك الإنسان . أن يكون عابدا فاتكون روحانيته شفافة وطاهرة أو يكون غير ذلك في سلوكه وقد ذكرنا أن الإنسان بطبيعته روحاني ولكن شخص تظهر علية هذه الروحانية وشخص لا تظهر عليه و من الممكن إن ينمى أي شخص روحانيته بتدريبات معينة وإذا تقرب الإنسان إلى العبادة فسوف تعلق روحانيته بروحانية الملائكة كما ذكرنا في أول الأمر أما إذا بعد عن ذلك فسوف يسير معه الشيطان ويشعره بأنه هو الذي يمن عليه بكل هذا العلم ويوجهه إلى الخير حتى يصدقه وبعد ذلك يوجهه إلى الشرور والمعاصي حتى يكفر ولا يستطيع الإنسان آن يرجع عما هو فيه لأنه يشبع رغبته بكل شئ موجود حوله *',
-    button: 'المزيد',
-    image: ''
-  }
-]
+// import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
+import { getDataFromDb } from './api/firebaseInstances'
+// import Categories from './admin-app/components/categories/Categories'
 
 class App extends Component {
   constructor (props) {
@@ -34,18 +26,24 @@ class App extends Component {
     this.state = {
       currentId: 0,
       pages: [],
+      frontpagePages: [],
       sliderPages: [],
       footerPages: [],
-      loading: false
+      loading: false,
+      frontpageCategories: [],
+      categories: [],
+      newpages: []
     }
   }
 
   componentDidMount() {
     this.loadPages()
+    this.loadCategories()
     window.scrollTo(0, 0);
   }
 
   loadPages = (key) => {
+    console.log('load pages >>')
     const adminAppdatabase = firebase.database()
     const pagesData = adminAppdatabase.ref().child('Pages')
     let newSt = this.state
@@ -53,6 +51,7 @@ class App extends Component {
     let matchedPages = []
     let footerPages = []
     let sliderPages = []
+    let frontpagePages = []
     //get all pages 
     pagesData.on('value', (snap) => {
       snap.forEach((cat) => {
@@ -60,7 +59,7 @@ class App extends Component {
       })
     //filter pages and return category pages and footer
     pages.forEach(page => {
-      if (page.category == (key) ) {
+      if (page.category === (key) ) {
         matchedPages.push(page )
       } 
       if (page.showOnfooter === '1') {
@@ -69,52 +68,76 @@ class App extends Component {
       if (page.pageInSlide === '1') {
         sliderPages.push(page)
       }
+      if (page.showInFrontPage === '1') {
+        frontpagePages.push(page)
+      }
     })
     //save data to state
     newSt['pages'] = pages
     newSt['sliderPages'] = sliderPages
     newSt['footerPages'] = footerPages
-    console.log(footerPages)
-    console.log('footer Pages')
+    newSt['frontpagePages'] = frontpagePages
+    console.log('new state ', newSt)
     this.setState(newSt)      
     })
   }
 
   loadCategories = (key) => {
-    const adminAppdatabase = firebase.database()
-    const categoriesData = adminAppdatabase.ref().child('Categories')
-    let newSt = this.state
-    var categories = []
-    let frontPageCategories = []
-    //get all pages 
-    categoriesData.on('value', (snap) => {
-      snap.forEach((cat) => {
-        categories.push({ key: cat.key, ...cat.val() })
+    const adminDB = firebase.database()
+    const categoriesDB = adminDB.ref().child('Categories')
+    let newState = this.state
+    let cats = []
+    let fpCats = [] 
+    categoriesDB.on('value', snap => {
+      snap.forEach( cat => {
+        const { showOnFrontpage } = cat.val()
+        if ( showOnFrontpage === '1') {
+          fpCats.push({key: cat.key, ...cat.val()})
+        }
+        cats.push({key: cat.key, ...cat.val()})
       })
-    //filter pages and return category pages and footer
-    categories.forEach(categorie => {
-      // if (categorie.show == (key) ) {
-      //   matchedPages.push(page )
-      // } 
-      // if (page.showOnfooter === '1') {
-      //   footerPages.push(page)
-      // }
-      // if (page.pageInSlide === '1') {
-      //   sliderPages.push(page)
-      // }
+      newState['categories'] = cats
+      newState['frontpageCategories'] = fpCats
+      this.setState(newState)
+      this.setupFrontpage(fpCats)
     })
-    //save data to state
-    newSt['categories'] = categories
-    console.log('frontpage Categories')
-    this.setState(newSt)      
+}
+
+setupFrontpage = (cats) => { 
+  let newState = this.state
+  let fpCategoires = cats
+  let pages = []
+  let frontpagePages =[]
+
+  const adminAppdatabase = firebase.database()
+  const pagesData = adminAppdatabase.ref().child('Pages')
+  
+  pagesData.on('value', (snap) => {
+    snap.forEach((cat) => {
+      pages.push({ key: cat.key, ...cat.val() })
     })
-  }
+  //filter pages and return category pages and footer
+    pages.forEach(page => { 
+      if (page.showInFrontPage === '1') {
+        frontpagePages.push(page)
+      }
+    })
+    const catWithPages = fpCategoires.map( cat => {
+      let catKey = cat.key 
+      let pages = []
+      frontpagePages.forEach(page => {
+        if (page.category == catKey) {
+          pages.push(page)
+        }
+      })
+      cat = Object.assign({pages: pages}, cat)
+      return cat
+    })
+      newState['frontpageCategories'] = catWithPages
+      this.setState(newState)
+  })
+}
 
-  componentWillUpdate (nextProps, nextState) {
-  }
-
-  componentDidUpdate (prevProps, prevState) {
-  }
 
   componentWillReceiveProps (nextProps) {
     window.scrollTo(0, 0);
@@ -126,28 +149,29 @@ class App extends Component {
     }
   }
 
-  renderCategory = () => {
-    console.log('here is the render categories function')
-  }
-
   render () {
-    const { pages, sliderPages, footerPages } = this.state
+    const { pages, sliderPages, footerPages, frontpageCategories, newpages } = this.state
+    console.log(this.state)
     const { pathname } = this.props.location
     const recentPages = pages.slice((pages.length) - 3)
 
-
     if ( pathname.indexOf('admin-app') > -1 ) {
       return <AdminApp/>
-    } else {
-
-    return (
+    } 
+    else {
+      return (
       <div className='app-block'>
         <AppNavBar children={<NavTabs />} />
         <CallToActionBar />
         {pathname === '/' && <CarouselSlider source={sliderPages}/>}
         <Grid className='app-block__container'>
           <Col md={8} lg={8}>
-            {pathname === '/' && <AppJumbtron source={JumbtronContent4} />}
+            {pathname === '/' && frontpageCategories.map(cat => <div>
+              <h2>{cat.name}</h2>
+              <div>
+              {cat.pages && cat.pages.map(page=> <h4>{page.name}</h4>)}
+              </div>
+              </div>) }
             <Switch>
               <Route path='/category/:id' component={Category} exact />
               <Route path='/category/page/:id' component={Page} exact />
@@ -170,7 +194,7 @@ class App extends Component {
           </div>
         </ScrollToTop>
       </div>
-    )
+      )
     }
   }
 }
