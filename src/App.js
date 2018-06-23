@@ -16,7 +16,7 @@ import CallToActionBar from './components/callToActionBar/CallToActionBar.js'
 import ScrollToTop from 'react-scroll-up'
 import './styles/app.scss'
 import AdminApp from './admin-app/index.js'
-// import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
+import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import { getDataFromDb } from './api/firebaseInstances'
 // import Categories from './admin-app/components/categories/Categories'
 
@@ -163,14 +163,11 @@ setupFrontpage = (cats) => {
         <AppNavBar children={<NavTabs />} />
         <CallToActionBar />
         {pathname === '/' && <CarouselSlider source={sliderPages}/>}
-        <Grid className='app-block__container'>
-          <Col md={8} lg={8}>
-            {pathname === '/' && frontpageCategories.map(cat => <div>
-              <h2>{cat.name}</h2>
-              <div>
-              {cat.pages && cat.pages.map(page=> <h4>{page.name}</h4>)}
-              </div>
-              </div>) }
+        <Grid className='app-block__container' fluid>
+          <Col md={8} lg={8} className='app-block__container-main'>
+            {pathname === '/' &&
+              frontpageCategories.map(cat => <AppJumbtron title={cat.name} content={cat.pages}/>)
+            }
             <Switch>
               <Route path='/category/:id' component={Category} exact />
               <Route path='/category/page/:id' component={Page} exact />

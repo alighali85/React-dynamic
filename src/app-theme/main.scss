@@ -2,8 +2,9 @@ body {
   font-family: 'Tajawal', sans-serif;
 }
 
-.container {
+.container, .container-fluid {
   position: relative;
+  max-width: 1700px;
   direction: rtl;
   align-items: center;
 }

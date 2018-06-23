@@ -77,7 +77,7 @@ class NavTabs extends Component {
       className='navBar-container__item'
       to={`/category/${tab.id}`}
       id={i}
-      key={tab.key}
+      key={i}
       >
       {tab.name}
       </Link>)

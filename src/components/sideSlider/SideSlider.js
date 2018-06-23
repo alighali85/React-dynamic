@@ -46,7 +46,7 @@ export default class SideSlider extends React.Component {
       <div className='side-slider'>
         <Panel>
           <Carousel indicators={indicators} interval={interval} controls={controls}>
-            { source.map((item, i) => <Carousel.Item>
+            { source.map((item, i) => <Carousel.Item key={i}>
               <br />
               <Carousel.Caption>
                 <h3 className='side-slider__title'>{item.title}</h3>
