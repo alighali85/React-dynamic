@@ -43,7 +43,6 @@ class App extends Component {
   }
 
   loadPages = (key) => {
-    console.log('load pages >>')
     const adminAppdatabase = firebase.database()
     const pagesData = adminAppdatabase.ref().child('Pages')
     let newSt = this.state
@@ -77,7 +76,6 @@ class App extends Component {
     newSt['sliderPages'] = sliderPages
     newSt['footerPages'] = footerPages
     newSt['frontpagePages'] = frontpagePages
-    console.log('new state ', newSt)
     this.setState(newSt)      
     })
   }
@@ -99,8 +97,8 @@ class App extends Component {
       newState['categories'] = cats
       newState['frontpageCategories'] = fpCats
       this.setState(newState)
-      this.setupFrontpage(fpCats)
     })
+    this.setupFrontpage(fpCats)
 }
 
 setupFrontpage = (cats) => { 
@@ -134,6 +132,7 @@ setupFrontpage = (cats) => {
       return cat
     })
       newState['frontpageCategories'] = catWithPages
+      console.log(newState)
       this.setState(newState)
   })
 }
