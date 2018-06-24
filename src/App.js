@@ -142,6 +142,7 @@ setupFrontpage = (cats) => {
     window.scrollTo(0, 0);
     if (this.props.match.url !== nextProps.match.url) {
       this.loadPages()
+      this.loadCategories()
       this.setState({
         currentId: nextProps.match.url
       })
