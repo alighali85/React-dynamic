@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Panel } from 'react-bootstrap'
 import './item-card.scss'
 
 const propTypes = {
@@ -24,19 +23,15 @@ export default class ItemCard extends React.Component {
   }
 
   render () {
-    const { title, image, text, onClick } = this.props
+    const { title, onClick } = this.props
     return (
       <div className='item-card'>
-        <Panel
-          className='item-card__panel'
-          style={{backgroundImage: `url(${image})`}}
+        <div
+          className='item-card__item'
           onClick={onClick}
         >
-          <Panel.Heading className='item-card__header'>
-            <h3 className='item-card__title'>{title}</h3>
-          </Panel.Heading>
-          <Panel.Body className='item-card__text'>{text}{this.props.children}</Panel.Body>
-        </Panel>
+          <h3 className='item-card__title'>{title}</h3>
+        </div>
       </div>
     )
   }

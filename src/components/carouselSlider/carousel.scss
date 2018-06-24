@@ -10,9 +10,9 @@
   }
 
 .item {
-  background-size: cover;
+  background-size: cover !important;
   min-height: 400px;
-  background-position: center;
+  background-position: center !important;
   background-repeat: no-repeat;
   &:first-of-type {
     background-image: url('../../assest/img/slider-1.jpg');
