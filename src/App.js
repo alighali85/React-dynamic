@@ -52,7 +52,7 @@ class App extends Component {
     let sliderPages = []
     let frontpagePages = []
     //get all pages 
-    pagesData.on('value', (snap) => {
+    pagesData.once('value', (snap) => {
       snap.forEach((cat) => {
         pages.push({ key: cat.key, ...cat.val() })
       })
@@ -86,7 +86,7 @@ class App extends Component {
     let newState = this.state
     let cats = []
     let fpCats = [] 
-    categoriesDB.on('value', snap => {
+    categoriesDB.once('value', snap => {
       snap.forEach( cat => {
         const { showOnFrontpage } = cat.val()
         if ( showOnFrontpage === '1') {
@@ -110,7 +110,7 @@ setupFrontpage = (cats) => {
   const adminAppdatabase = firebase.database()
   const pagesData = adminAppdatabase.ref().child('Pages')
   
-  pagesData.on('value', (snap) => {
+  pagesData.once('value', (snap) => {
     snap.forEach((cat) => {
       pages.push({ key: cat.key, ...cat.val() })
     })
@@ -132,7 +132,6 @@ setupFrontpage = (cats) => {
       return cat
     })
       newState['frontpageCategories'] = catWithPages
-      console.log(newState)
       this.setState(newState)
   })
 }
@@ -150,8 +149,7 @@ setupFrontpage = (cats) => {
   }
 
   render () {
-    const { pages, sliderPages, footerPages, frontpageCategories, newpages } = this.state
-    console.log(this.state)
+    const { pages, sliderPages, footerPages, frontpageCategories } = this.state
     const { pathname } = this.props.location
     const recentPages = pages.slice((pages.length) - 3)
 

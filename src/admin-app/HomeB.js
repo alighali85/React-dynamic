@@ -17,15 +17,6 @@ class HomeB extends Component {
     return (
       <Grid fluid className='admin__app-homepage'>
 
-        <div className='admin__app-homepage--side-menu'>
-          <div className='header'>
-          موقع البصيرة
-          </div>
-          <div className='body'>
-            <ListtWithIcons listSource={ROUTES} />
-          </div>
-        </div>
-
         <div className='admin__app-homepage--body'>
           <div className='nav-bar'>
             <NavBar />
@@ -41,6 +32,14 @@ class HomeB extends Component {
             </Grid>
           </div>
 
+        </div>
+        <div className='admin__app-homepage--side-menu'>
+          <div className='header'>
+        موقع البصيرة
+          </div>
+          <div className='body'>
+            <ListtWithIcons listSource={ROUTES} />
+          </div>
         </div>
 
       </Grid>

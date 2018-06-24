@@ -60,7 +60,7 @@ export class Category extends Component {
     var pages = []
     let matchedPages = []
     //get all pages 
-    pagesData.on('value', (snap) => {
+    pagesData.once('value', (snap) => {
       snap.forEach((cat) => {
         pages.push({
           key: cat.key,

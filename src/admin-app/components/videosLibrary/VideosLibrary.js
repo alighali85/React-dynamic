@@ -8,7 +8,7 @@ import Loader from '../elements/Loader'
 import { CSSTransition,TransitionGroup } from 'react-transition-group'
 import ConfirmWindow from '../confirmWindow/ConfirmWindow'
 import firebase from 'firebase/app'
-
+import ReactPlayer from 'react-player'
 
 class VideosLibrary extends Component {
 constructor(props) { 
@@ -55,11 +55,12 @@ exitPreviewMode = () => {
   })
 }
 
-copyImageUrlToclipboard(url) {
+copyImageUrlToclipboard = (url) => {
     document.execCommand("copy", url);
 }
 
-handleDeleteItemRequest (id) {
+handleDeleteItemRequest = (id) => {
+  console.log('handle delete request for ', id)
   this.setState({
     showDeleteConfirm: true,
     videosIdToDelete: id
@@ -67,8 +68,9 @@ handleDeleteItemRequest (id) {
 }
 
 deletevideos = () => {
-  const { VideosIdToDelete } = this.state
-  firebase.database().ref('VideossLibrary').child(VideosIdToDelete).remove()
+  const { videosIdToDelete } = this.state
+  console.log('delete key = ', videosIdToDelete)
+  firebase.database().ref('videosLibrary').child(videosIdToDelete).remove()
   this.setState({
     showDeleteConfirm: false,
     videosIdToDelete: null
@@ -101,7 +103,6 @@ getVideosFromServer = () => {
       videosList: videoss.reverse(),
       loading: false,
     })
-    console.log(videoss.length)
     })
   }
 
@@ -137,15 +138,16 @@ getVideosFromServer = () => {
       {loading && <Loader iconSize='2x'/>}
         <div className='videos-library'>
           <TransitionGroup className="todo-list">
-            {videosList.map((video, i) =>  <CSSTransition key={i} classNames="fade">
+            {videosList.map((video, i) => <CSSTransition key={i} classNames="fade">
               <div className="vidoe-thumpnail" style={{backgroundImage: `url(${video.imageUrl})`}}>
+                <ReactPlayer style={{position: 'absolute'}} height='100%' width='100%' url={video.imageUrl} />
                 <div className="overlay">
                   <ButtonWithIcon
-                  onClick={() => this.openPreviewVideos(video.imageUrl)}
-                  text='مشاهدة الفديو'
-                  iconName='magic'
-                  ButtonStyle='info'
-                  float='left'
+                    onClick={() => this.openPreviewVideos(video.imageUrl)}
+                    text='مشاهدة الفديو'
+                    iconName='magic'
+                    ButtonStyle='info'
+                    float='left'
                   />
                   <ButtonWithIcon
                     onClick={() => this.handleDeleteItemRequest(video.key)}
@@ -155,6 +157,7 @@ getVideosFromServer = () => {
                     float='left'
                   />
                 </div>
+                <h4>{video.name}</h4>
               </div>
             </CSSTransition>
             )}
@@ -163,26 +166,28 @@ getVideosFromServer = () => {
         <ConfirmWindow
           show={addVideosMode}
           onDismiss={this.onDismiss}
-          title='إضافة فديو '
+          title='إضافة فديو'
           >
           <AddVideo />
         </ConfirmWindow>
 
         <ConfirmWindow confirmation
           show={showDeleteConfirm}
-          onConfirm={this.deleteVideos}
+          onConfirm={this.deletevideos}
           onDismiss={this.dismissConfirmation}
-          title='حذف فديو '
+          title='حذف فديو'
           text='حذف فديو .. لايمكنك الإستعادة بعد الحذف'
         />
         <ConfirmWindow confirmation
           size='large'
           show={showVideosPreview}
-          onConfirm={()=> {this.copyImageUrlToclipboard(previewVideosId)}}
+          onConfirm={() => {this.copyImageUrlToclipboard(previewVideosId)}}
           onDismiss={this.exitPreviewMode}
           title='معاينة فديو '
         >
-        <img src={previewVideosId} alt='preview' style={{width: '100%', height: '100%'}}/>
+        <ReactPlayer url={previewVideosId} playing controls/>
+        انسخ الرابط للإستعمال
+        <p>{previewVideosId}</p>
         </ConfirmWindow>
       </div>
     )

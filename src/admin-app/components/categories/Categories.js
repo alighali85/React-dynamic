@@ -32,7 +32,7 @@ class Categories extends Component {
     window.scrollTo(0, 0);
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Categories')
-    categoriesData.on('value', (snap) => {
+    categoriesData.once('value', (snap) => {
       var categories = []
       snap.forEach((cat) => {
         categories.push({

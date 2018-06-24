@@ -73,7 +73,6 @@ class Pages extends Component {
   }
 
   exitEditMode = () => {
-    console.log('close window')
     this.setState({
       addPageMode: false,
       editPageMode: false
@@ -97,7 +96,6 @@ class Pages extends Component {
         loading: false,
         nextPageId: (pages.length + 1)
       })
-      console.log(pages.length)
     })
   }
 
@@ -111,7 +109,7 @@ class Pages extends Component {
         <TransitionGroup className="todo-list">
           {
             (addPageMode || editPageMode) ?
-            <CSSTransition key={1} classNames="fade">
+            <CSSTransition key={1} classNames="fade" timeout={500}>
               <ButtonWithIcon
                 onClick={ this.exitEditMode }
                 text='إلفاء'
@@ -121,7 +119,7 @@ class Pages extends Component {
               />
             </CSSTransition>
             : (!addPageMode && !editPageMode) ?
-            <CSSTransition key={2} classNames="fade">
+            <CSSTransition key={2} classNames="fade" timeout={500}>
               <ButtonWithIcon
                 onClick={this.addPageMode}
                 text='إضافة صفحة'
@@ -137,7 +135,7 @@ class Pages extends Component {
 
         { (!addPageMode && !editPageMode) && <TransitionGroup className="todo-list">
           { pages.map((item, i) =>
-            <CSSTransition key={i} timeout={i*1000} classNames="fade">
+            <CSSTransition key={i} timeout={i*1000} classNames="fade" >
               <ListGroup>
                 <ListGroupItem header={item.name - i} >
                 {item.id}
@@ -162,7 +160,7 @@ class Pages extends Component {
         <TransitionGroup className="todo-list">
           {
             (addPageMode && !editPageMode) && 
-            <CSSTransition key={1} timeout={500} classNames="fade">
+            <CSSTransition key={1} timeout={500} classNames="fade" >
               <AddPage pageId={nextPageId} onFormSent={this.exitEditMode} />
             </CSSTransition>
           }

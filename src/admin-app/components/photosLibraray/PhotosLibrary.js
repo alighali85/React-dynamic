@@ -25,6 +25,10 @@ constructor(props) {
   }
 }
 
+componentDidMount = () => {
+  this.getPhohtsFromServer()
+}
+
 onDismiss = () => {
   this.setState({
     showPopUpWindow: false,
@@ -83,10 +87,6 @@ dismissConfirmation = () => {
   })
 }
 
-componentDidMount = () => {
-  this.getPhohtsFromServer()
-}
-
 getPhohtsFromServer = () => {
   const photosLibraryRef = firebase.database().ref('photosLibrary').orderByChild('timestamp')
   photosLibraryRef.on('value', (snap) => {
@@ -101,7 +101,6 @@ getPhohtsFromServer = () => {
       photosList: photos.reverse(),
       loading: false,
     })
-    console.log(photos.length)
     })
   }
 
@@ -118,11 +117,11 @@ getPhohtsFromServer = () => {
       <TransitionGroup className="todo-list">
         {
           (showPopUpWindow) ?
-          <CSSTransition key={1} classNames="fade">
+          <CSSTransition key={1} classNames="fade" timeout={500} >
           <div/>
           </CSSTransition>
           : (!showPopUpWindow) ?
-          <CSSTransition key={2} classNames="fade">
+          <CSSTransition key={2} classNames="fade" timeout={500}  >
             <ButtonWithIcon
               onClick={this.addNewPhotoWindow}
               text='إضافة صورة'
@@ -137,7 +136,7 @@ getPhohtsFromServer = () => {
       {loading && <Loader iconSize='2x'/>}
         <div className='photos-wrapper'>
           <TransitionGroup className="todo-list">
-            {photosList.map((photo, i) =>  <CSSTransition key={i} classNames="fade">
+            {photosList.map((photo, i) =>  <CSSTransition key={i} classNames="fade" timeout={500}>
               <div className="photo-thumpnail" style={{backgroundImage: `url(${photo.imageUrl})`}}>
                 <div className="overlay">
                   <ButtonWithIcon

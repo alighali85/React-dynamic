@@ -22,12 +22,12 @@ const defaultProps = {
   name: 'button',
   onClick: () => {},
   iconName: 'adjust',
-  iconSize: '1',
+  iconSize: 'lg',
   iconStyle: '',
   text: 'click',
   disabled: false,
   float: '',
-  type: ''
+  type: 'button'
 }
 
 class ButtonWithIcon extends Component {

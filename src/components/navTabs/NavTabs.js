@@ -29,7 +29,7 @@ class NavTabs extends Component {
   getDataFromDb = () => { 
     const adminAppdatabase = firebase.database()
       const categoriesData = adminAppdatabase.ref().child('Categories')
-      categoriesData.on('value', (snap) => {
+      categoriesData.once('value', (snap) => {
         var categories = []
         snap.forEach((cat) => {
           categories.push({

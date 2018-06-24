@@ -40,7 +40,7 @@ export default class NavBar extends React.Component {
                 onClick={this.logout} 
               >
               تسجيل الخروج
-              <FontAwesome name='user' size='1x' className='user-button-icon' />
+              <FontAwesome name='user' className='user-button-icon' />
               </Button>
             </Col>
 

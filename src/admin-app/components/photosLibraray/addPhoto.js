@@ -29,7 +29,7 @@ updaetProgress = (val) => {
 
 // stroe image url to firebase
 storeImage = (downloadURL) => {
-  this.props.uploadedFile(downloadURL)
+  // this.props.uploadedFile(downloadURL)
   console.log('store image to firebase > ' + downloadURL)
   const photosLibraryRf = firebase.database().ref().child('photosLibrary')
   var photoKey = photosLibraryRf.push().key
@@ -96,7 +96,7 @@ handleFileupload = (e) => {
     }
     const Image = <div className='uploaded-photo' style={imageStyle}></div>
     return (
-      <div classname='add-photo'>
+      <div className='add-photo'>
         <ProgressBar id='fileUploadProgress' now={now} label={`${now}%`} striped active/>
          {Image}
          <label className='upload-file-wrapper'>

@@ -178,7 +178,7 @@ class AddPage extends Component {
             <Col sm={3}>اختر قسم</Col>
             <Col sm={9}>
               <ToggleButtonGroup type="radio" name="pageCategory" defaultValue={0} >
-              {categoriesList.map(cat => <ToggleButton onClick={this.handleInput} value={cat.key}>{cat.name}</ToggleButton>)}
+              {categoriesList.map(cat => <ToggleButton onClick={this.handleInput} key={cat.key} value={cat.key}>{cat.name}</ToggleButton>)}
               </ToggleButtonGroup>
             </Col>
           </ButtonToolbar>
