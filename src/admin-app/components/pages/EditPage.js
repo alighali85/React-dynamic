@@ -87,17 +87,14 @@ class EditPage extends Component {
       category: pageCategory
     })
     
-    console.log('will be redirect to Pages')
     setTimeout(() => {
       this.props.onFormSent()
     }, 1000);
     return false
   }
 
-
   handleInput = (e) => {
-
-    if (e.target !== undefined && e !== undefined){
+    if (e.target !== undefined && e !== undefined) {
       const { name, value } = e.target
       console.log('name  >>', e.target.name)
       console.log('value >>',  e.target.value)
@@ -111,6 +108,13 @@ class EditPage extends Component {
     const newContent = evt.editor.getData()
     this.setState({
       pageContent: newContent
+    })
+  }
+
+  handleFielUploaded = (url) => {
+    console.log(url+ 'category image')
+    this.setState({
+      pageImage: url
     })
   }
 
