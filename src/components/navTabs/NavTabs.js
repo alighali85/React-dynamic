@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, Grid, DropdownButton, MenuItem } from 'react-bootstrap'
+import { Nav, DropdownButton, MenuItem } from 'react-bootstrap'
 import './nav-tabs.scss'
 import { navTabsContent } from './content'
 import menuIcon from '../../assest/img/menu.svg'
@@ -8,7 +8,6 @@ import firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { NAVBAR_FIXED_TABS_NUMBER } from '../../assest/constants/AppMainContent'
-import { Media } from 'react-breakpoints'
 import { withBreakpoints } from 'react-breakpoints'
 
 class NavTabs extends Component {
@@ -38,10 +37,8 @@ class NavTabs extends Component {
             ...cat.val()
           })
         })
-        const categoriesNumber = categories.length
-        categories = categories.reverse()
-        const navTabFixedTabs = categories.slice(categoriesNumber - NAVBAR_FIXED_TABS_NUMBER, categoriesNumber.length).reverse()
-        const navMenuTabs = categories.slice(0, categoriesNumber - NAVBAR_FIXED_TABS_NUMBER).reverse()
+        const navTabFixedTabs = categories.slice(0, NAVBAR_FIXED_TABS_NUMBER)
+        const navMenuTabs = categories.slice(NAVBAR_FIXED_TABS_NUMBER)
         this.setState({
           categories: categories,
           fixedTabs: navTabFixedTabs,
