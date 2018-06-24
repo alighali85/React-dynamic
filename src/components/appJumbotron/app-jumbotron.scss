@@ -1,5 +1,14 @@
 .app-jumbotron {
-  max-width: 100%;
+  max-width: 100% !important;
+  .app-jumbotron__related-container {
+    display: flex;
+    @media(max-width: 768px) {
+      flex-direction: column; 
+    }
+    @media(max-width: 768px) {
+      flex-direction: column; 
+    }
+  }
 
   &__headline {
     border-bottom: 1px dotted gray;
@@ -7,6 +16,7 @@
     color: gray;
     font-size: 18px;
     padding-right: 14px;
+    margin-top: 7px;
   }
  .jumbotron {
    padding: 14px !important;
@@ -31,19 +41,35 @@
       max-height: 286px;
       margin-bottom: 14px;
     }
+    &-more-link {
+      font-weight: bold;
+      color: darkmagenta;
+      cursor: pointer;
+    }
   }
 
   &__related {
-    max-width: 33%;
+    max-width: 30%;
     margin: 14px;
     overflow: hidden;
-    display: inline-grid;
+    &-name {
+      font-size: 18px !important;
+    }
     &-title {
       font-size: 16px !important;
     }
     img {
       max-width: 100%;
       max-height: 286px;
+      border-radius: 5px;
+    }
+    &-more-link {
+      font-weight: bold;
+      color: darkmagenta;
+      cursor: pointer;
+    }
+    @media( max-width: 768px) {
+      max-width: 100%;
     }
   }
 

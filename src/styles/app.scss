@@ -1,7 +1,9 @@
 .app-block {
   .app-block__container-main {
     margin-top: 40px;
-
+    @media(max-width: 768px){
+      padding: 0px;
+    }
   }
 
   padding-top: 80px;
