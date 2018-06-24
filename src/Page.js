@@ -19,8 +19,6 @@ class Page extends React.Component {
   }
 
   componentDidMount () {
-    console.groupCollapsed('component Did Mount')
-    console.groupEnd()
     window.scrollTo(0, 0);
     const { id } = this.props.match.params
     this.getPageDetails(id)
@@ -30,54 +28,48 @@ class Page extends React.Component {
     const { id } = nextProps.match.params
     this.getPageDetails(id)
     window.scrollTo(0, 0);
-   console.groupCollapsed('component Will Receive Props')
-   console.log(nextProps)
-   console.log(this.props)
-   console.groupEnd()
   }
 
   getPageDetails = (id) => {
     const pages = getDataFromDb('Pages')
+    let page = {}
     pages.forEach(item => {
       if (item.pageId == id) {
-        this.setState({
+        page = {
           page: item.name,
           pageId: id,
           pageKey: item.key,
-          pageContent: item.content
-        })
+          pageContent: item.content,
+          categoryKey : item.category
+        }
+        page['relatedPages'] =  this.getRelatedpages(item.category, pages, id)
+        console.log('page',page)
+        this.setState(page)
       }
     })
-    this.getRelatedpages(pages)
   }
   
 
-  getRelatedpages = (pages) => {
-    const allPagesNotLastOne = pages.filter((page,i) => {
-    const allPagesCount = (pages.length) - RELATED_PAGES_NUMBER
-    return (page.pageId < pages.length) && (page.pageId >= allPagesCount)
-
-  })
-    let relatedPages = allPagesNotLastOne.slice(3)
-    // let i
-    // for (i = 0 ; i < 3 ; i++) {
-    //   const randomNumber = Math.floor( Math.random() * allPagesNotLastOne.length) + 1 
-    //   relatedPages.push(allPagesNotLastOne[randomNumber])
-    // }
-  //   allPagesNotLastOne.forEach(page => {
-  //   const randomNumber = Math.floor( Math.random() * allPagesNotLastOne.length) + 1 
-  //   if ( relatedPages.length <= RELATED_PAGES_NUMBER && page.pageId == randomNumber ) {
-  //     relatedPages.push(page)
-  //   }
-  // })
-    this.setState({
-      relatedPages: relatedPages
+  getRelatedpages = (category, pages, id) => {
+    pages = pages.filter(page => {
+      return (page.category === category && page.pageId !== id )
     })
+    let randomIndex = []
+    for(let i = 0 ; i < pages.length; i++) {
+      const num = Math.floor(Math.random() * Math.floor(i));
+      if (randomIndex.indexOf(num) <= -1) {
+        randomIndex.push(num)
+      }
+    }
+    let relatedPages = []
+    randomIndex.forEach(i => {
+      relatedPages.push(pages[i])
+    })
+   return relatedPages
   }
 
   goToPage = (link) => {
     this.props.history.push(`/category/page/${link}`)
-    console.log('pageId=  '+ link)
     this.setState({
       pageId:link
     })
@@ -93,6 +85,7 @@ class Page extends React.Component {
         <br />
         <br />
         <div className='related-pages'>
+        <h2 className='related-pages__headline'>مواضيع متعلقة</h2>
         {relatedPages.map(page => <Link 
           to={{
             pathname: `/category/page/${page.pageId}`,
@@ -101,7 +94,7 @@ class Page extends React.Component {
             }
           }}>
           <ItemCard 
-          title={page.title}
+          title={page.name}
           onClick={() => this.goToPage(page.pageId)}
           image={page.image}
           />
