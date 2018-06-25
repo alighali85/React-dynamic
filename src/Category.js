@@ -26,6 +26,10 @@ export class Category extends Component {
     this.loadCategories(id)
   }
   
+  shouldComponentUpdate(nextProps, nextState) {
+    return true
+  }
+  
   componentWillReceiveProps = (nextProps) => {
     console.log('this . props match>  ' + this.props.match)
     const currentLocation = this.props.match.url
@@ -39,19 +43,29 @@ export class Category extends Component {
 
    //get actegories
    loadCategories = (id) => {
-    const categoriesList = getDataFromDb('Categories')
-    let newSt = this.state
-    newSt['pageId'] = id
-
-    categoriesList.forEach(element => {
-      if ( element.id ==id ) {
-        newSt['categoryKey'] = element.key
-        newSt['matchedCategory'] = element
-      }
+    const adminAppdatabase = firebase.database()
+    const pagesData = adminAppdatabase.ref().child('Categories')
+    let categories = []
+    let matchedCategory =[]
+    //get all caegories 
+    pagesData.once('value', (snap) => {
+      snap.forEach((cat) => {
+        categories.push({
+          key: cat.key,
+          ...cat.val()
+        })
+      })
+      let newSt = this.state
+      categories.forEach(element => {
+        if ( element.id == id ) {
+          newSt['categoryKey'] = element.key
+          newSt['matchedCategory'] = element
+        }
+      })
+      newSt['pageId'] = id
+      this.setState(newSt)
+      this.loadPages(newSt['categoryKey'])
     })
-
-    this.setState(newSt)
-    this.loadPages(newSt['categoryKey'])
   }
   
   loadPages = (key) => {
@@ -81,7 +95,7 @@ export class Category extends Component {
   }
 
   render () {
-    const { matchedCategory, matchedPages, location } = this.state
+    const { matchedCategory, matchedPages } = this.state
     const renderPages = (matchedPages) => matchedPages.map(page => (<h2>{page.pageName}here is the page</h2>) )
     return (
       <div className='category-container'>
@@ -102,4 +116,5 @@ export class Category extends Component {
     )
   }
 }
-export default withRouter(Category)
+export default Category
+

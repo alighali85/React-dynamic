@@ -1,8 +1,8 @@
 import React from 'react'
-import { getDataFromDb } from './admin-app/api/firebaseInstances'
 import ItemCard from './components/itemCard/ItemCard'
 import './styles/page.scss'
-import { RELATED_PAGES_NUMBER } from './assest/constants/AppMainContent.js'
+import firebase from 'firebase'
+
 import { withRouter} from 'react-router'
 import {  Link } from 'react-router-dom'
 
@@ -31,22 +31,34 @@ class Page extends React.Component {
   }
 
   getPageDetails = (id) => {
-    const pages = getDataFromDb('Pages')
+    const adminAppdatabase = firebase.database()
+    const pagesData = adminAppdatabase.ref().child('Pages')
+    let pages = []
     let page = {}
-    pages.forEach(item => {
-      if (item.pageId == id) {
+    //get all pages 
+    pagesData.once('value', (snap) => {
+      snap.forEach((cat) => {
+        pages.push({
+          key: cat.key,
+          ...cat.val()
+        })
+      })
+      //filter pages and return category pages
+    pages.forEach(page => {
+      if (page.pageId == (id) ) {
         page = {
-          page: item.name,
+          page: page.name,
           pageId: id,
-          pageKey: item.key,
-          pageContent: item.content,
-          categoryKey : item.category
+          pageKey: page.key,
+          pageContent: page.content,
+          categoryKey : page.category
         }
-        page['relatedPages'] =  this.getRelatedpages(item.category, pages, id)
-        console.log('page',page)
+        page['relatedPages'] = this.getRelatedpages(page.categoryKey, pages, id)
         this.setState(page)
       }
     })
+  })
+
   }
   
 

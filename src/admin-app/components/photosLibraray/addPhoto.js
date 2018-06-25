@@ -5,6 +5,20 @@ import { CSSTransition,TransitionGroup } from 'react-transition-group'
 import { Alert } from 'react-bootstrap'
 import './add-photo.scss'
 import FontAwesome from 'react-fontawesome'
+import PropTypes from 'prop-types'
+
+
+const propTypes = {
+  uploadedFile: PropTypes.func
+}
+
+const defaultProps = {
+  uploadedFile: (url) => {
+    console.log('image uploaded!', url)
+  }
+}
+
+
 
 
 class AddPhoto extends Component {
@@ -29,7 +43,6 @@ updaetProgress = (val) => {
 
 // stroe image url to firebase
 storeImage = (downloadURL) => {
-  // this.props.uploadedFile(downloadURL)
   console.log('store image to firebase > ' + downloadURL)
   const photosLibraryRf = firebase.database().ref().child('photosLibrary')
   var photoKey = photosLibraryRf.push().key
@@ -46,6 +59,8 @@ storeImage = (downloadURL) => {
         uploadedNumber: uploadedNumber + 1
         })
       console.log('call back function after put data on firebase')
+      this.props.uploadedFile(downloadURL)
+
     })
 }
 
@@ -121,5 +136,8 @@ handleFileupload = (e) => {
     )
   }
 }
+
+AddPhoto.PropTypes = propTypes
+AddPhoto.defaultProps = defaultProps
 
 export default AddPhoto

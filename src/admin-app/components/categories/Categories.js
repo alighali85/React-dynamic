@@ -32,18 +32,20 @@ class Categories extends Component {
     window.scrollTo(0, 0);
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref().child('Categories')
-    categoriesData.once('value', (snap) => {
-      var categories = []
+    categoriesData.on('value', (snap) => {
+      let categories = []
       snap.forEach((cat) => {
         categories.push({
           key: cat.key,
           ...cat.val()
         })
       })
+      const lastPage = categories.slice(categories.length - 1)
+      const astCategoryId = lastPage[0].pageId
       this.setState({
-        cat: categories,
+        cat: categories.reverse(),
         loading: false,
-        nextCategoryId: categories.length + 1
+        nextCategoryId: astCategoryId
       })
     })
   }

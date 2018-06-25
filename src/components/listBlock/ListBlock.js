@@ -32,12 +32,12 @@ export default class ListBlock extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      source: this.props.source,
+      source: this.props.source
     }
   }
 
   render () {
-    const { title,source } = this.props
+    const { title, source } = this.props
     const renderList = source.map(item => <Link to={`/category/page/${item.pageId}`}> <ListGroupItem
       className='list-block__list-item'
       style={{backgroundImage: `url(${item.image})`}}

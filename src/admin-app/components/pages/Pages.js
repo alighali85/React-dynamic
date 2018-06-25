@@ -90,11 +90,13 @@ class Pages extends Component {
           ...cat.val()
         })
       })
-
+      const lastPage = pages.slice(pages.length - 1)
+      const lastPageId = lastPage[0].pageId
+      console.log('last page id', lastPageId)
       this.setState({
         pages: pages.reverse(),
         loading: false,
-        nextPageId: (pages.length + 1)
+        nextPageId: (lastPageId + 1)
       })
     })
   }

@@ -74,8 +74,10 @@ class EditPage extends Component {
       pageImage, 
       pageCategory, 
       pageInSlide, 
-      showOnfooter} = this.state
-    firebase.database().ref('Pages/' + pageKey).update({
+      showOnfooter
+    } = this.state
+
+      firebase.database().ref('Pages/' + pageKey).update({
       name: pageName,
       title: pageTitle,
       showInFrontPage: showInFrontPage,
@@ -96,8 +98,6 @@ class EditPage extends Component {
   handleInput = (e) => {
     if (e.target !== undefined && e !== undefined) {
       const { name, value } = e.target
-      console.log('name  >>', e.target.name)
-      console.log('value >>',  e.target.value)
         this.setState({
           [name]: value
         })
@@ -112,7 +112,6 @@ class EditPage extends Component {
   }
 
   handleFielUploaded = (url) => {
-    console.log(url+ 'category image')
     this.setState({
       pageImage: url
     })
