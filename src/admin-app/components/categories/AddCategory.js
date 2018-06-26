@@ -19,7 +19,6 @@ class AddCategory extends Component {
   }
 
   handleFielUploaded = (url) => {
-    console.log(url+ 'category image')
     this.setState({
       image: url
     })

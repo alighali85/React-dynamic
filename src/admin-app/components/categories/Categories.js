@@ -41,11 +41,11 @@ class Categories extends Component {
         })
       })
       const lastPage = categories.slice(categories.length - 1)
-      const astCategoryId = lastPage[0].pageId
+      const lastCategoryId = lastPage[0].id
       this.setState({
         cat: categories.reverse(),
         loading: false,
-        nextCategoryId: astCategoryId
+        nextCategoryId: lastCategoryId
       })
     })
   }
