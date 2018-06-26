@@ -5,7 +5,6 @@ import firebase from 'firebase/app'
 import DeleteIcon from '../../assets/images/delete-button.svg'
 import EditIcon from '../../assets/images/edit.svg'
 import PagesIcon from '../../assets/images/pages.svg'
-import ListDots from '../../assets/images/list-dots.svg'
 import AddPage from './AddPage'
 import EditPage from './EditPage'
 import ConfirmWindow from '../confirmWindow/ConfirmWindow'
@@ -13,6 +12,7 @@ import TitleWithIcon from '../elements/TitleWithIcon'
 import ButtonWithIcon from '../elements/ButtonWithIcon'
 import Loader from '../elements/Loader'
 import { CSSTransition,TransitionGroup } from 'react-transition-group'
+import FontAwesome from 'react-fontawesome'
 
 class Pages extends Component {
   constructor (props) {
@@ -144,7 +144,7 @@ class Pages extends Component {
                 <img className='list-user-icon' src={DeleteIcon} alt='delete' name={item.key} onClick={(e)=> this.handleDeleterequest(e)} />
                 <img className='list-user-icon' src={EditIcon} alt='edit' name={item.key} onClick={this.editPageMode}/>
                 <img className='list-user-icon' src={PagesIcon} alt='Pages' />
-                <img className='list-icon' src={ListDots} alt='dots' />{item.name} </ListGroupItem>
+                <FontAwesome name='file-alt' style={{color: 'lightgray',fontSize: '18px', marginLeft: '7px'}}/> {item.name} </ListGroupItem>
               </ListGroup>
             </CSSTransition>
             )}
