@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Col, FormGroup, FormControl, Button } from 'react-bootstrap'
 import firebase from 'firebase/app'
+import AddPhoto from '../photosLibraray/addPhoto'
+
 
 class EditCategory extends Component {
 
@@ -11,7 +13,8 @@ class EditCategory extends Component {
       title: '',
       showOnFrontpage: null,
       categoryKey: this.props.Categorykey,
-      allowSend: false
+      allowSend: false,
+      image: null
     }
   }
   
@@ -19,12 +22,13 @@ class EditCategory extends Component {
     const adminAppdatabase = firebase.database()
     const categoriesData = adminAppdatabase.ref('Categories').child(this.state.categoryKey)
     categoriesData.on('value', (snap) => {
-      const { name, title, showOnFrontpage } = snap.val()
+      const { name, title, showOnFrontpage, image } = snap.val()
       this.setState({
         name: name,
         title: title,
         showOnFrontpage: showOnFrontpage,
         newCategoryInfo: null,
+        image: image,
         allowSend: true
       })
     })
@@ -32,11 +36,12 @@ class EditCategory extends Component {
   
   handleUpdateCategory = (e) => {
     e.preventDefault()
-    const { categoryKey, name, title, showOnFrontpage  } = this.state
+    const { categoryKey, name, title, showOnFrontpage, image  } = this.state
     firebase.database().ref('Categories/' + categoryKey).update({
       name: name,
       title: title,
-      showOnFrontpage: showOnFrontpage
+      showOnFrontpage: showOnFrontpage,
+      image: image
     })
     setTimeout(() => {
       this.props.onFormSent()
@@ -49,6 +54,13 @@ class EditCategory extends Component {
       [name]: value
     })
   }
+
+  handleFielUploaded = (url) => {
+    this.setState({
+      image: url
+    })
+  }
+
   render () {
 
     const { name, title, showOnFrontpage } = this.state
@@ -68,6 +80,13 @@ class EditCategory extends Component {
               <FormControl name='title' type='text' value={title} placeholder='' onChange={this.handleInput}/>
             </Col>
             <Col sm={2}>عنوان العرض </Col>
+          </FormGroup>
+
+          <FormGroup controlId='pagePhoto'>
+          <Col sm={9}>
+            <AddPhoto uploadedFile={(url) => this.handleFielUploaded(url)} />
+          </Col>
+          <Col sm={3}>اختر صورة رئيسية </Col>
           </FormGroup>
 
           <FormGroup controlId='formControlsSelect'>
