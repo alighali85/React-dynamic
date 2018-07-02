@@ -19,10 +19,10 @@ export default class TwitterTimeline extends React.Component {
         <Timeline
           dataSource={{
             sourceType: 'profile',
-            screenName: 'Ali_H_Ghali'
+            screenName: 'albaserah_7'
           }}
           options={{
-            username: 'Ali_H_Ghali قفثقفغفثغث',
+            username: 'albaserah_7',
             height: '400'
           }}
           onLoad={() => console.log('Timeline is loaded!')}

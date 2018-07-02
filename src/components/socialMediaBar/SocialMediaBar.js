@@ -24,23 +24,23 @@ class SocialMedaibar extends Component {
             </Col>
             <Col md={2} sm={4} xs={6}>
               <img src={Youtube} alt='youtube' /><br />
-              Youtube
+              <a href='https://www.youtube.com/channel/UCJUF11GM2u81hIv80gs5J3g'>Youtube</a>
             </Col>
             <Col md={2} sm={4} xs={6}>
               <img src={Facebook} alt='facebook' /><br />
-                Facebook
+              <a href='https://www.facebook.com/albaserah.web.7'>Facebook</a>
             </Col>
             <Col md={2} sm={4} xs={6}>
-              <img src={SnapChat} alt='snapchat' /><br />
-                Snapchat
+                سوشل ميديا
             </Col>
             <Col md={2} sm={4} xs={6}>
               <img src={Instagram} alt='instagram' /><br />
-                Instagram
+              <a href='https://www.facebook.com/albaserah.web.7'>Instagram</a>
             </Col>
             <Col md={2} sm={4} xs={6}>
               <img src={Whatsapp} alt='Whatsapp' /><br />
-                Whatsapp
+              <a href='https://wa.me/905533347333'>Whatsapp</a>
+
             </Col>
           </Row>
         </Grid>

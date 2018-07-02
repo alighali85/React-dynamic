@@ -178,12 +178,12 @@ setupFrontpage = (cats) => {
               <SideSlider interval={10000} indicators={false} />
               <ListBlock source={recentPages} title='المضافة حديثا '/>
               <TwitterTimeline />
-              <SideSlider controls={false} interval={5000}/>
+              <SideSlider controls={false} interval={5000} indicators={false}/>
             </div>
           </Col>
         </Grid>
         <AppFooter source={footerPages}/>
-        <ScrollToTop showUnder={160} style={{left: '30px'}}>
+        <ScrollToTop showUnder={160} style={{left: '30px', width: '100px'}}>
           <div style={{fontSize: '3em', color: '#9A12B3'}}>
             <i class="fas fa-chevron-circle-up"></i>
           </div>
