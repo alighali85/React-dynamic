@@ -3,6 +3,9 @@
   &__title {
     color: #800285;
   }
+  &__text {
+    color: #800285 !important;
+  }
   .panel {
     .slide {
       border-radius: 5px;
@@ -12,6 +15,7 @@
       color: #800285 !important;
     }
     }
+
   }
 
   .carousel-inner {
