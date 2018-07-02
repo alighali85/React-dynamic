@@ -7,6 +7,9 @@
   }
   .carousel-caption {
     bottom: 50% !important;
+    h4 {
+      line-height: 1.5
+    }
   }
 
 .item {
@@ -23,6 +26,13 @@
   &:nth-of-type(3) {
     background-image: url('../../assest/img/slider-4.png');
   }
+  a {
+    color: white;
+    line-height: 1.5;
+
+  }
+
+
 }
 
 .carousel-control {
@@ -31,4 +41,8 @@
   }
 }
 
+}
+
+.carousel-caption {
+  cursor: pointer;
 }

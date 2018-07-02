@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { Carousel } from 'react-bootstrap'
-import SlideImageOne from '../../assest/img/slider-1.png'
-import SlideImageTwo from '../../assest/img/slider-1.jpg'
-import SlideImageThree from '../../assest/img/slider-2.jpg'
 import PropTypes from 'prop-types'
 import './carousel.scss'
+import { Link } from 'react-router-dom'
 
 const propTypes = {
   source: PropTypes.array
@@ -20,7 +18,7 @@ const defaultProps = {
     {
       title: 'الموبايل',
       text: '0966379892',
-      icon: 'mobile-alt'
+      icon: 'mobile'
     },
     {
       title: 'فيس بوك',
@@ -38,8 +36,10 @@ class CarouselSlider extends Component {
         {
           source.map(item => <Carousel.Item height={500} style={{backgroundImage: `url(${item.image})`, height: 500}}>
             <Carousel.Caption>
-              <h2>{item.name}</h2><br />
-              <h4>{item.title}</h4>
+              <Link to={`/category/page/${item.pageId}`}>
+                <h2>{item.name}</h2><br />
+                <h4>{item.title}</h4>
+              </Link>
             </Carousel.Caption>
           </Carousel.Item>
           )}
