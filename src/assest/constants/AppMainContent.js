@@ -36,13 +36,13 @@ export const CONTACT_SLIDE = {
       title: 'الموبايل',
       text: APP_CONTACT_PHONE,
       icon: 'fas fa-phone-volume',
-      link: 'https://www.facebook.com/albaserah.web.7'
+      link: `tel:${APP_CONTACT_PHONE}`
     },
     {
       title: 'فيس بوك',
       text: APP_CTA_FACEBOOK,
       icon: 'fab fa-facebook-square',
-      link: `tel:${APP_CONTACT_PHONE}`
+      link: 'https://www.facebook.com/albaserah.web.7'
     }
   ]
 }
