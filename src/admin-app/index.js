@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { checkLocalToken } from './auth/auth.js'
-import HomeB from './HomeB'
+import Home from './Home'
 import Login from './login/Login'
 
 export class AdminApp extends Component {
@@ -36,7 +36,7 @@ export class AdminApp extends Component {
   render () {
     return (
       <div>
-        { this.state.isLoggedIn ? <HomeB /> : <Login /> }
+        { this.state.isLoggedIn ? <Home /> : <Login /> }
       </div>
     )
   }

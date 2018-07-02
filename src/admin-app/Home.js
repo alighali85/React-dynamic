@@ -1,49 +1,49 @@
 // global
 import React, { Component } from 'react'
 import NavBar from './components/adminNav/navBar'
-import SideMenu from './components/adminSideMenu/SideMenu'
-import { Breadcrumb, Grid, Col } from 'react-bootstrap'
-import { Route, Link } from 'react-router-dom'
+import { Grid } from 'react-bootstrap'
+import { Route } from 'react-router-dom'
 import AdminWelcome from './components/adminWelcome/AdminWelcome'
 import Categories from './components/categories/Categories'
 import Pages from './components/pages/Pages'
-import './style.scss'
+import './styleB.scss'
 import ROUTES from './constants/routes'
-import FontAwesome from 'react-fontawesome'
 import PhotosLibrary from './components/photosLibraray/PhotosLibrary'
 import VideosLibrary from './components/videosLibrary/VideosLibrary'
+import ListtWithIcons from './components/elements/ListWithIcons'
 
 class Home extends Component {
   render () {
     return (
-      <div className='admin-app-home'>
+      <Grid fluid className='admin__app-homepage'>
 
-        <div className='navigation-area'>
-          <SideMenu>
-            <MenuListWithIcos />
-          </SideMenu>
-        </div>
+        <div className='admin__app-homepage--body'>
+          <div className='nav-bar'>
+            <NavBar />
+          </div>
 
-        <div className='content-area'>
-          <Grid>
-            <Col md={10} mdOffset={1}>
-              <Breadcrumb>
-                <Breadcrumb.Item href='#'>Home</Breadcrumb.Item>
-                <Breadcrumb.Item href='#'>Library</Breadcrumb.Item>
-                <Breadcrumb.Item active>Data</Breadcrumb.Item>
-              </Breadcrumb>
+          <div className='content'>
+            <Grid>
               <Route exact path='/admin-app' component={AdminWelcome} />
               <Route exact path='/admin-app/Categories' component={Categories} />
               <Route exact path='/admin-app/pages' component={Pages} />
               <Route exact path='/admin-app/pictuers' component={PhotosLibrary} />
               <Route exact path='/admin-app/videos' component={VideosLibrary} />
-            </Col>
-          </Grid>
+            </Grid>
+          </div>
 
         </div>
+        <div className='admin__app-homepage--side-menu'>
+          <div className='header'>
+        موقع البصيرة
+          </div>
+          <div className='body'>
+            <ListtWithIcons listSource={ROUTES} />
+          </div>
+        </div>
 
-        <NavBar />
-      </div>
+      </Grid>
+
     )
   }
 }
@@ -58,15 +58,5 @@ class Home extends Component {
 7- userse
 8- analytics
 */
-const MenuListWithIcos = () => <ul>
-  {ROUTES.map((item, i) => <li key={item.key}>
-    <Link to={item.link}>
-      <FontAwesome name={item.iconSource} size='2x' />
-      <h4 style={{display: 'inline', marginRight: '14px'}}>{item.name} </h4>
-    </Link>
-
-  </li>
-  )}
-</ul>
 
 export default Home
