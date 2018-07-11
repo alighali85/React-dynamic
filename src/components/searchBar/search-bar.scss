@@ -1,0 +1,29 @@
+.search-bar {
+  .panel {
+    padding: 14px;
+  }
+
+  .fa {
+    padding: 0px 14px ;
+  }
+
+  ul {
+    margin: 14px 0px;
+    max-height: 148px;
+    overflow: scroll;
+    li {
+      margin: 7px 0px;
+      a {
+        color: darkmagenta;
+
+      }
+    }
+  }
+
+  input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 7px;
+    border: 1px solid lightgray;
+  }
+}

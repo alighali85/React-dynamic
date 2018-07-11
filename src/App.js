@@ -19,6 +19,7 @@ import AdminApp from './admin-app/index.js'
 import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
 import { getDataFromDb } from './api/firebaseInstances'
 // import Categories from './admin-app/components/categories/Categories'
+import SearchBar from './components/searchBar/SearchBar'
 
 class App extends Component {
   constructor (props) {
@@ -173,13 +174,15 @@ setupFrontpage = (cats) => {
             </Switch>
           </Col>
           <Col md={4} lg={4}>
-            <div>
-              <br /><br />
-              <SideSlider interval={10000} indicators={false} />
-              <ListBlock source={recentPages} title='المضافة حديثا '/>
-              <TwitterTimeline />
-              <SideSlider controls={false} interval={5000} indicators={false}/>
-            </div>
+          <div>
+            <br /><br />
+            <SideSlider interval={10000} indicators={false} />
+            <SearchBar source={pages} />
+            <ListBlock source={recentPages} title='المضافة حديثا '/>
+            <TwitterTimeline />
+            <SideSlider controls={false} interval={5000} indicators={false}/>
+          </div>
+          
           </Col>
         </Grid>
         <AppFooter source={footerPages}/>
