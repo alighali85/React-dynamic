@@ -1,0 +1,19 @@
+.admin-welcome {
+  padding: 48px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.admin-app-panel {
+min-width: 400px;
+margin: 48px;
+min-height: 200px;
+  .admin-app-panel__body {
+    
+    background: #f5f5f5;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 28px;
+    border-top: 7px solid darkmagenta;
+  }
+}

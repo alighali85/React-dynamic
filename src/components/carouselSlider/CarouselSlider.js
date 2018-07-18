@@ -1,35 +1,55 @@
 import React, { Component } from 'react'
 import { Carousel } from 'react-bootstrap'
-import SlideImageOne from '../../assest/img/slider-1.png'
-import SlideImageTwo from '../../assest/img/slider-1.jpg'
-import SlideImageThree from '../../assest/img/slider-2.jpg'
+import PropTypes from 'prop-types'
 import './carousel.scss'
+import { Link } from 'react-router-dom'
+
+const propTypes = {
+  source: PropTypes.array
+}
+
+const defaultProps = {
+  source: [
+    {
+      title: 'واتس أب',
+      text: '0966379892',
+      icon: 'whatsapp'
+    },
+    {
+      title: 'الموبايل',
+      text: '0966379892',
+      icon: 'mobile'
+    },
+    {
+      title: 'فيس بوك',
+      text: '/albasserah',
+      icon: 'apple'
+    }
+  ]
+}
 
 class CarouselSlider extends Component {
   render () {
-    return (
+    const { source } = this.props
+    return (<div className='carousel-slider'>
       <Carousel>
-        <Carousel.Item height={500} style={{backgroundImage: SlideImageOne, height: 500}}>
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item height={500} style={{backgroundImage: SlideImageTwo, height: 500}} >
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item height={500} style={{backgroundImage: SlideImageThree, height: 500}}>
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+        {
+          source.map(item => <Carousel.Item height={500} style={{backgroundImage: `url(${item.image})`, height: 500}}>
+            <Carousel.Caption>
+              <Link to={`/category/page/${item.pageId}`}>
+                <h2>{item.name}</h2><br />
+                <h4>{item.title}</h4>
+              </Link>
+            </Carousel.Caption>
+          </Carousel.Item>
+          )}
       </Carousel>
+    </div>
     )
   }
 }
+
+CarouselSlider.propTypes = propTypes
+CarouselSlider.defaultProps = defaultProps
 
 export default CarouselSlider

@@ -1,0 +1,59 @@
+.videos-library {
+  .badge {
+    background-color: green;
+    border-radius: 16px;
+    font-size: 14px;
+    padding-top: 8px;
+  }
+  .vidoe-thumpnail {
+    width: 20%;
+    height: 200px;
+    margin: 14px;
+    background-size: cover;
+    border: 1px double lightgray;
+    border-style: double;
+    border-radius: 5px;
+    overflow: hidden;
+    float: left;
+    .overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      justify-items: center;
+      height: 100%;
+    }
+    &:hover .overlay {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background: rgba($color: #000000, $alpha: 0.7)
+    }
+  }
+}
+
+// transiton effects 
+.remove-btn {
+  margin-right: 0.5rem;
+}
+
+.fade-enter {
+  opacity: 0.01;
+  transform: scale(0.5)
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: all 200ms ease-in;
+  transform: scale(1)
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0.01;
+  transition: all 200ms ease-in;
+  // margin-left: -100px;
+  // position: relative;
+  transform: scale(0.5)
+}

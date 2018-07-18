@@ -23,23 +23,29 @@ class SocialMedaibarSmall extends Component {
           <Row>
             <Col mdOffset={3} md={1}xs={2}>
               <img src={Twitter} alt='twitter' /><br />
+              <a href='https://twitter/albaserah_7'>Whatsapp</a>
             </Col>
             <Col md={1}xs={2}>
               <img src={Youtube} alt='youtube' /><br />
+              <a href='https://www.youtube.com/channel/UCJUF11GM2u81hIv80gs5J3g'>Youtube</a>
             </Col>
             <Col md={1}xs={2}>
               <img src={Facebook} alt='facebook' /><br />
+              <a href='https://www.facebook.com/albaserah.web.7'>Facebook</a>
             </Col>
             <Col md={1}xs={2}>
-              <img src={SnapChat} alt='snapchat' /><br />
+            سوشل ميديا<br />
             </Col>
             <Col md={1}xs={2}>
               <img src={Instagram} alt='instagram' /><br />
+              <a href='https://www.facebook.com/albaserah.web.7'>Instagram</a>
             </Col>
             <Col md={1}xs={2}>
               <img src={Whatsapp} alt='Whatsapp' /><br />
+              <a href='https://wa.me/905533347333'>Whatsapp</a>
             </Col>
           </Row>
+
         </Grid>
       </Row>
     )

@@ -1,0 +1,19 @@
+.app-block {
+  .app-block__container-main {
+    margin-top: 40px;
+    @media(max-width: 768px){
+      padding: 0px;
+    }
+  }
+
+  padding-top: 80px;
+  &__container {
+    &-main {
+      margin-top: 40px;
+    }
+    @media(max-width: 768px) {
+      padding-right: 0px !important;
+      padding-left: 0px !important;
+    }
+  }
+}

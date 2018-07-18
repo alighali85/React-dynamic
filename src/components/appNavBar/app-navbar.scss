@@ -5,18 +5,24 @@
 .app-navbar {
   height: 89px;
   background: #800285;
+  position: fixed;
+  z-index: 9;
+  top: 0px;
 }
 
 .app-logo-container {
   display: flex;
+  cursor: pointer;
   height: 86px;
   align-items: center;
   h2 {
-    font-size: 36px;
+    font-size: 31px;
     color: white;
+    z-index: 9;
   }
   img {
+    z-index: 9;
     margin: 14px;
-    width: 42px;
+    width: 36px;
   }
 }

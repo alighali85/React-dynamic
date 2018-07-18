@@ -1,0 +1,32 @@
+
+.side-slider {
+  &__title {
+    color: #800285;
+  }
+  &__text {
+    color: #800285 !important;
+  }
+  .panel {
+    .slide {
+      border-radius: 5px;
+      overflow: hidden;
+      .carousel-control {
+      background-image: none !important;
+      color: #800285 !important;
+    }
+    }
+
+  }
+
+  .carousel-inner {
+    height: 200px;
+  }
+
+  .carousel-inner>.item {
+    height: 200px;
+    border-radius: 5px;
+    .carousel-caption { 
+      top: 0;
+    }
+  }
+}

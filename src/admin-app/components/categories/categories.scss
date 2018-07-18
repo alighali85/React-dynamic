@@ -1,0 +1,44 @@
+.admin-categories{
+  height: 400px;
+  width: 1000;
+  direction: rtl;
+  .list-group {
+    padding: 0px;
+  }
+  .list-group-item {
+    height: 48px;
+    text-align: right;
+    cursor: pointer;
+    &:hover {
+      background: #f9f9f9;
+      img:not(.list-icon) {
+        display: block;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    img:not(.list-icon) {
+      width: 21px;
+      margin: 0px 7px;
+      float: left;
+      display: none;
+      opacity: 0.5;
+    }
+
+    .list-icon {
+      width: 14px;
+      margin-left: 14px;
+      float: none !important;
+      display: inline-block;
+    }
+  }
+  .badge {
+    background-color: #5cb85c;
+    border-radius: 16px;
+    font-size: 14px;
+    padding-top: 8px;
+  }
+
+}

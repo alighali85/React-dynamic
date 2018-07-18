@@ -1,0 +1,51 @@
+.modal-content {
+ top: 20vh;
+  .modal-header {
+
+    .modal-title {
+      direction: rtl;
+    }
+    .glyphicon {
+      top: 4px;
+      margin-left: 14px;
+    }
+    button {
+      &.close {
+        float: left;
+      }
+    }
+  }
+  
+  .modal-body {
+    direction: rtl;
+    text-align: right;
+    h4, h5, h3 {
+      text-align: right;
+      direction: rtl;
+    }
+  }
+
+  .modal-footer {
+    button {
+      &.btn-danger, .btn-success {
+        margin-left: 14px;
+        padding: 7px 28px;
+        .glyphicon {
+          top: 3px;
+          margin-left: 7px;
+          margin-right: -14px;
+        }
+      }
+      &.btn-success {
+        margin-left: 14px;
+        padding: 7px 28px;
+        .glyphicon {
+          top: 3px;
+          margin-left: 7px;
+          margin-right: -14px;
+        }
+      }
+    }
+  }
+
+}

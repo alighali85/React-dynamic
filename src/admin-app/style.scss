@@ -1,0 +1,17 @@
+.admin-app-home {
+  display: flex;
+  flex-direction: row-reverse;
+  .content-area {
+    flex-grow: 1;
+    padding: 96px 28px;
+  }
+  .navigation-area {
+    padding: 0px;
+  }
+}
+.badge {
+  background-color: #5cb85c;
+  border-radius: 16px;
+  font-size: 14px;
+  padding-top: 8px;
+}

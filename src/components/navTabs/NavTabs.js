@@ -1,80 +1,118 @@
 import React, { Component } from 'react'
-import { Nav, NavItem, Grid } from 'react-bootstrap'
+import { Nav, DropdownButton, MenuItem } from 'react-bootstrap'
 import './nav-tabs.scss'
 import { navTabsContent } from './content'
-import { BREAK_POINTS } from '../../assest/constants/BreakPoints'
+import menuIcon from '../../assest/img/menu.svg'
+import closeMenuIcon from '../../assest/img/icons/menu-close.svg'
+import firebase from 'firebase'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { NAVBAR_FIXED_TABS_NUMBER } from '../../assest/constants/AppMainContent'
+import { withBreakpoints } from 'react-breakpoints'
 
 class NavTabs extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      showMenu: false,
-      showMenuMobile: false,
-      activeKey: 0,
-      subTbas: navTabsContent[0].content
-    }
-
-    this.activeMenue = (e) => {
-      const {id} = e.target
-      const screenSize = window.outerWidth
-      if (screenSize > BREAK_POINTS.tablet) {
-        this.setState({
-          subTbas: navTabsContent[id].content,
-          showMenu: true
-        })
-      }
-    }
-
-    this.inActiveMenue = (e) => {
-      console.log('mouse leving')
-      this.setState({
-        showMenu: false
-      })
-      console.log(
-        this.state.showMenu
-      )
+      showSlideMenu: false,
+      subContent: navTabsContent[0].content,
+      categories: [],
+      fixedTabs: [],
+      menuTabs: []
     }
   }
-  render () {
-    const {subTbas} = this.state
-    const subcontent = subTbas.map(item => {
-      const imageUrl = item.image
-      return (
-        <div className='nav-tabs-content-item'>
-          <img src={imageUrl} alt='post-title' />
-          <div>{item.title}</div>
-        </div>
-      )
-    })
 
-    return (
-      <div className='nav-tabs-container' onMouseLeave={this.inActiveMenue}
+  componentDidMount = () => {
+    this.getDataFromDb()
+  }
+
+  getDataFromDb = () => { 
+    const adminAppdatabase = firebase.database()
+      const categoriesData = adminAppdatabase.ref().child('Categories')
+      categoriesData.once('value', (snap) => {
+        var categories = []
+        snap.forEach((cat) => {
+          categories.push({
+            key: cat.key,
+            ...cat.val()
+          })
+        })
+        const navTabFixedTabs = categories.slice(0, NAVBAR_FIXED_TABS_NUMBER)
+        const navMenuTabs = categories.slice(NAVBAR_FIXED_TABS_NUMBER)
+        this.setState({
+          categories: categories,
+          fixedTabs: navTabFixedTabs,
+          menuTabs: navMenuTabs
+        })
+    })
+  }
+
+  inActiveMenue = (e) => {
+    this.setState({
+      showSubContent: false
+    })
+  }
+
+  hideSideMenu = () => {
+    this.setState({
+      showSlideMenu: false
+    })
+  }
+  
+  showSideMenu = () => {
+    this.setState({
+      showSlideMenu: true
+    })
+  }
+
+  render () {
+    const { fixedTabs, menuTabs, categories, showMobileMenu, showSlideMenu } = this.state
+    const { breakpoints, currentBreakpoint } = this.props
+    const fixedTabToShow = (breakpoints[currentBreakpoint] >= breakpoints.tablet ? fixedTabs : categories)
+
+      const NavBarFixedTabs = fixedTabToShow.map((tab, i) => <Link
+      className='navBar-container__item'
+      to={`/category/${tab.id}`}
+      id={i}
+      key={i}
       >
-        <Nav bsStyle='pills' className='app-navbar-tabs-list'>
-          { navTabsContent.map((tab, i) =>
-            <NavItem
-              id={i}
-              eventKey={tab.link}
-              href={tab.link}
-              onMouseOver={this.activeMenue}
+      {tab.name}
+      </Link>)
+
+      const NavBarMenudTabs = (breakpoints[currentBreakpoint] >= breakpoints.tablet ? (
+        <DropdownButton
+          title='المزيد'
+          key='MoreMenu'
+          id='MoreMenu'
+          >
+          {menuTabs.map((tab, i) => <Link
+            to={`/category/${tab.id}`}
+            key={i}
             >
-              {tab.title}
-            </NavItem>
-          )
+            <MenuItem href={`/category/${tab.id}`} className='navBar-container__item--mobile'>{tab.name}</MenuItem>
+            </Link> )
           }
-        </Nav>
-        <div className={
-          `${this.state.showMenu ? 'showList' : 'hideList'}
-           ${this.state.showMenuMobile ? 'showListMobile' : 'hideListMobile'} 
-           nav-tab-detalis hidden-sm hidden-xs`
-        } >
-          <Grid>
-            {subcontent}
-          </Grid>
-        </div>
+        </DropdownButton>
+
+      ) : null)
+    
+    return (
+      <div  onMouseLeave={this.inActiveMenue}>
+        <img src={menuIcon} alt='menu-icon' className='menu-icon visible-xs' onClick={this.showSideMenu} />
+          <div className={`${ !showSlideMenu ? 'hide-left' : 'show-menu'} nav-tabs-container`}>
+            <Nav bsStyle='pills' 
+            className={`${showMobileMenu ? 'showMobileMenu' : 'hideMobileMenu'}${showMobileMenu ? 'showListMobile' : 'hideListMobile'} app-navbar-tabs-list`}>
+              <img src={closeMenuIcon}
+              alt='menu-close-icon' 
+              className='menu-close-icon visible-xs visible-sm' 
+              onClick={this.hideSideMenu} 
+              />
+              {NavBarFixedTabs}{NavBarMenudTabs}
+          </Nav>
       </div>
+    </div>
     )
   }
 }
 
-export default NavTabs
+export default withRouter(withBreakpoints(NavTabs))

@@ -1,0 +1,82 @@
+//colors constants:
+$pink: #e83e8c;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #28a745;
+$teal: #20c997;
+$cyan: #17a2b8;
+$white: #fff;
+$gray: #6c757d;
+$gray-dark: #343a40;
+
+$primary: #5867dd;
+$secondary: #ebedf2;
+$success: #34bfa3;
+$info: #36a3f7;
+$warning: #ffb822;
+$danger: #f4516c;
+$light: #f8f9fa;
+$dark: #282a3c;
+
+.admin__app-homepage {
+  //main home page wrapper 
+  display: flex;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  flex-direction: row-reverse;
+  &--side-menu {
+    height: 100vh;
+    width: 300px;
+    color: $light;
+    background: $dark;
+    text-align: right;
+    direction: rtl;
+    .header {
+      height: 98px;
+      background: $gray-dark;
+      box-shadow: 1px 2px 7px $dark;
+      font-size: 21px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      padding: 14px;
+      color: $light;
+    }
+    .body {
+      color: $gray;
+      margin-top: 48px;
+      padding: 14px 28px 0px 0px;
+      font-size: 1.2em;
+    }
+  }
+  &--body {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    background: $light;
+    text-align: right;
+    .nav-bar {
+      padding: 14px;
+      background: $white;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      text-align: right;
+      width: 100%;
+      margin: 0;
+      height: 98px;
+      box-shadow: -1px 1px 14px $gray;
+    }
+    .content {
+      text-align: center;
+      height: 90vh;
+      overflow: scroll;
+      padding: 14px;
+    }
+  }
+
+}
+

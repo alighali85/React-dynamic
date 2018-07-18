@@ -1,0 +1,25 @@
+.related-pages {
+  &__headline {
+    border-right: 8px solid darkmagenta;
+    padding: 24px 14px 14px 0px;
+    background: #f5f5f5;
+    color: darkmagenta;
+    font-size: 26px;
+    min-height: 68px;
+  }
+  
+}
+
+.page-details {
+  margin-top: -18px;
+  &__title {
+    border-right: 8px solid gray;
+    padding: 24px 14px 14px 0px;
+    background: #f5f5f5;
+    min-height: 68px;
+  }
+  img {
+    max-width: 100%;
+    height: auto !important;
+  }
+}

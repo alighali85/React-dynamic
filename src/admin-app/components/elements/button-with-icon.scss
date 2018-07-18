@@ -1,0 +1,12 @@
+.button-with-icon {
+  min-height: 96px;
+  
+  button {
+    position: relative;
+    padding: 14px 28px;
+    margin: 14px;
+    z-index: 9;
+    border-radius: 5px;
+  }
+
+}

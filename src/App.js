@@ -1,108 +1,200 @@
 import React, { Component } from 'react'
 import AppNavBar from './components/appNavBar/AppNavBar.js'
-import CarouselSlider from './components/carouselSlider/CarouselSlider.js'
-import SocialMediaBar from './components/socialMediaBar/SocialMediaBar.js'
-import CallToActionBar from './components/callToActionBar/CallToActionBar.js'
 import NavTabs from './components/navTabs/NavTabs'
 import AppFooter from './components/appFooter/AppFooter'
+import Category from './Category'
+import { Route, Switch } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { Grid, Col } from 'react-bootstrap'
+import Page from './Page'
+import SideSlider from './components/sideSlider/SideSlider'
+import ListBlock from './components/listBlock/ListBlock'
+import firebase from 'firebase'
+import TwitterTimeline  from './components/twitterTimeline/TwitterTimeline'
+import CarouselSlider from './components/carouselSlider/CarouselSlider.js'
+import CallToActionBar from './components/callToActionBar/CallToActionBar.js'
+import ScrollToTop from 'react-scroll-up'
+import './styles/app.scss'
+import AdminApp from './admin-app/index.js'
 import AppJumbtron from './components/appJumbotron/AppJumbotron.js'
-import CardImage from './assest/img/card-header-1.jpg'
-
-const Youtube = () => (
-  <iframe width='100%' height='315' frameBorder='0' title='youtube' src='https://www.youtube.com/embed/G5TBWxjnaIE?rel=0&amp;controls=0' />
-)
-
-const articles = [
-  {
-    title: 'ارتباط الروحانيات بعضها ببعض',
-    image: ''
-  },
-  {
-    title: 'روحانيـات الإنسان*روحانيات الملائكة',
-    image: CardImage
-  },
-  {
-    title: 'روحانيات الجـــــــن*روحانيات الجمـــاد *',
-    image: CardImage
-  },
-  {
-    title: 'الروحانيات ومركزها في الإنسان',
-    image: CardImage
-  }
-]
-
-const JumbtronContent1 = [
-  {
-    title: 'تعريف الروحانيات',
-    content: 'الروحانيات لها مفاهيم كثيرة ومتعددة ولكل شيء على وجه الأرض وفي الكون له روحانية وتنقسم الروحانيات إلى أجزاء كثيرة والروحانيات معناها هو الإحساس الموجود داخل الشيء نفسه المتحكم في تصرفاته ومن المعروف أن الإنسان يعتقد أن الجن اشد و أقوى منه علما بان الإنسان أقوى من الجن والدليل على ذلك قال تعالى في كتابه الحكيم عندما خاطب سيدنا سليمان عشيرته قال * بسم الله الرحمن الرحيم * قال يا أيها الملؤا',
-    button: 'المزيد',
-    image: ''
-  },
-  {
-    title: 'تعريف الروحانيات فقرة٢ ',
-    content: 'قال تعالى في كتابه الحكيم عندما خاطب سيدنا سليمان عشيرته قال * بسم الله الرحمن الرحيم * قال يا أيها الملؤا أيكم يأتني بعرشها قبل أن يأتونى مسلمين * قال عفريت من الجن أنا أتيك به قبل أن تقوم من مقامك وان عليه لقوى أمين * قال الذي عنده علم من الكتاب أنا أتيك به قبل أن يرتد لك طرفك فلما رآه مستقرا عنده قال هذا من فضل ربى ليبلوني ءاشكر أم اكفر ومن شكر فإنما يشكر لنفسه ومن كفر فان ربى غنى كريم * صدق الله العظيم * علما بأن الذي قال أنا أتيك بها قبل أن يرتد لك طرفك كان من الأنس ولكن الفرق بينه وبين الجن انه كان يعلم علم الكتاب وهذا أوضح دليل أن الإنسان له علم اشد من علم الجن وان الجن ليس له المقدرة على شئ مثل الإنسان وإذا كان الشيطان أقوى من الإنسان ما كان استثنى أحد من عباد الله في مخاطبته مع رب العزة حين قال * فا وعزتك و جلالك لأغوينهم ألا عبادك منهم المخلصين * وهذا أوضح دليل',
-    button: 'المزيد',
-    image: ''
-  }
-]
-const JumbtronContent2 = [
-  {
-    title: 'ارتباط روحانية الإنسان وتآلفها مع جميع الروحانيات الأخرى',
-    content: 'الروحانيات عادة ما تتحرك في الإنسان بالفكر وبالتركيز العالي في تحكم الروحانيات والإنسان الروحاني بوسعه أن يعرف ما يدور بمشاعر الأشخاص المحيطة حوله وأفكارهم وذلك لا يستطيع الجن أن يعرفه والدليل على عدم معرفة الجن ما بداخل الإنسان حينما مات سيدنا سليمان لم يعرف الجن بموته إلا بعد أن أكلت القارضة العصا فقالوا) لو علمنا الغيب ما لبثنا في هذا العذاب المهين . صدق الله العظيم ( أن الإنسان الروحاني يستطيع بروحانيته العالية وهى اشد لغة في مخاطبة الأرواح وبعضها أن يخاطب أشخاص آخرين وان هذه اللغة لا تشترط على مخاطبة البشر وبعضهم من الممكن مخاطبة الإنسان مع الحيوان لان الحيوان له روحانية',
-    button: '  المزيد عن الموضوع',
-    image: ''
-  }
-]
-const JumbtronContent3 = [
-  {
-    title: 'الروحانيات ومركزها في الإنسان',
-    content: 'الروحانيات لها مفاهيم كثيرة ومتعددة ولكل شيء على وجه الأرض وفي الكون له روحانية وتنقسم الروحانيات إلى أجزاء كثيرة والروحانيات معناها هو الإحساس الموجود داخل الشيء نفسه المتحكم في تصرفاته ومن المعروف أن الإنسان يعتقد أن الجن اشد و أقوى منه علما بان الإنسان أقوى من الجن والدليل على ذلك قال تعالى في كتابه الحكيم عندما خاطب سيدنا سليمان عشيرته قال * بسم الله الرحمن الرحيم * قال يا أيها الملؤا',
-    button: 'المزيد',
-    image: ''
-  }
-]
-const JumbtronContent4 = [
-  {
-    title: 'المزيد في الروحانيات',
-    content: 'ولكنها مجهولة لعدم عقلية الحيوان ولا يشترط الإنسان أن يكون متابعا نوعا معينا من العبادة أو يسلك سلوك غير مشروع فكل هذه الأساليب تنمى الروحانية حسب ما يسلك الإنسان . أن يكون عابدا فاتكون روحانيته شفافة وطاهرة أو يكون غير ذلك في سلوكه وقد ذكرنا أن الإنسان بطبيعته روحاني ولكن شخص تظهر علية هذه الروحانية وشخص لا تظهر عليه و من الممكن إن ينمى أي شخص روحانيته بتدريبات معينة وإذا تقرب الإنسان إلى العبادة فسوف تعلق روحانيته بروحانية الملائكة كما ذكرنا في أول الأمر أما إذا بعد عن ذلك فسوف يسير معه الشيطان ويشعره بأنه هو الذي يمن عليه بكل هذا العلم ويوجهه إلى الخير حتى يصدقه وبعد ذلك يوجهه إلى الشرور والمعاصي حتى يكفر ولا يستطيع الإنسان آن يرجع عما هو فيه لأنه يشبع رغبته بكل شئ موجود حوله *',
-    button: 'المزيد',
-    image: ''
-  }
-]
-const ArticleImage = () => <img src={CardImage} alt='image1' />
-const Articles = () => (
-  <div>
-    { articles.map(item =>
-      <div className='card col-md-3'>
-        <img className='card-img-top' src={CardImage} alt='Card cap' />
-        <div className='card-body'>
-          <p className='card-text'>{item.title}</p>
-        </div>
-      </div>
-    )
-    }
-    <br />
-    <hr />
-
-  </div>
-)
+import { getDataFromDb } from './api/firebaseInstances'
+// import Categories from './admin-app/components/categories/Categories'
+import SearchBar from './components/searchBar/SearchBar'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      currentId: 0,
+      pages: [],
+      frontpagePages: [],
+      sliderPages: [],
+      footerPages: [],
+      loading: false,
+      frontpageCategories: [],
+      categories: [],
+      newpages: []
+    }
+  }
+
+  componentDidMount() {
+    this.loadPages()
+    this.loadCategories()
+    window.scrollTo(0, 0);
+  }
+
+  loadPages = (key) => {
+    const adminAppdatabase = firebase.database()
+    const pagesData = adminAppdatabase.ref().child('Pages')
+    let newSt = this.state
+    var pages = []
+    let matchedPages = []
+    let footerPages = []
+    let sliderPages = []
+    let frontpagePages = []
+    //get all pages 
+    pagesData.once('value', (snap) => {
+      snap.forEach((cat) => {
+        pages.push({ key: cat.key, ...cat.val() })
+      })
+    //filter pages and return category pages and footer
+    pages.forEach(page => {
+      if (page.category === (key) ) {
+        matchedPages.push(page )
+      } 
+      if (page.showOnfooter === '1') {
+        footerPages.push(page)
+      }
+      if (page.pageInSlide === '1') {
+        sliderPages.push(page)
+      }
+      if (page.showInFrontPage === '1') {
+        frontpagePages.push(page)
+      }
+    })
+    //save data to state
+    newSt['pages'] = pages
+    newSt['sliderPages'] = sliderPages
+    newSt['footerPages'] = footerPages
+    newSt['frontpagePages'] = frontpagePages
+    this.setState(newSt)      
+    })
+  }
+
+  loadCategories = (key) => {
+    const adminDB = firebase.database()
+    const categoriesDB = adminDB.ref().child('Categories')
+    let newState = this.state
+    let cats = []
+    let fpCats = [] 
+    categoriesDB.once('value', snap => {
+      snap.forEach( cat => {
+        const { showOnFrontpage } = cat.val()
+        if ( showOnFrontpage === '1') {
+          fpCats.push({key: cat.key, ...cat.val()})
+        }
+        cats.push({key: cat.key, ...cat.val()})
+      })
+      newState['categories'] = cats
+      newState['frontpageCategories'] = fpCats
+      this.setState(newState)
+    })
+    this.setupFrontpage(fpCats)
+}
+
+setupFrontpage = (cats) => { 
+  let newState = this.state
+  let fpCategoires = cats
+  let pages = []
+  let frontpagePages =[]
+
+  const adminAppdatabase = firebase.database()
+  const pagesData = adminAppdatabase.ref().child('Pages')
+  
+  pagesData.once('value', (snap) => {
+    snap.forEach((cat) => {
+      pages.push({ key: cat.key, ...cat.val() })
+    })
+  //filter pages and return category pages and footer
+    pages.forEach(page => { 
+      if (page.showInFrontPage === '1') {
+        frontpagePages.push(page)
+      }
+    })
+    const catWithPages = fpCategoires.map( cat => {
+      let catKey = cat.key 
+      let pages = []
+      frontpagePages.forEach(page => {
+        if (page.category == catKey) {
+          pages.push(page)
+        }
+      })
+      cat = Object.assign({pages: pages}, cat)
+      return cat
+    })
+      newState['frontpageCategories'] = catWithPages
+      this.setState(newState)
+  })
+}
+
+
+  componentWillReceiveProps (nextProps) {
+    window.scrollTo(0, 0);
+    if (this.props.match.url !== nextProps.match.url) {
+      this.loadPages()
+      this.loadCategories()
+      this.setState({
+        currentId: nextProps.match.url
+      })
+    }
+  }
+
   render () {
-    return (
-      <div className='App'>
+    const { pages, sliderPages, footerPages, frontpageCategories } = this.state
+    const { pathname } = this.props.location
+    const recentPages = pages.slice((pages.length) - 3)
+
+    if ( pathname.indexOf('admin-app') > -1 ) {
+      return <AdminApp/>
+    } 
+    else {
+      return (
+      <div className='app-block'>
         <AppNavBar children={<NavTabs />} />
-        <CarouselSlider />
         <CallToActionBar />
-        <SocialMediaBar />
-        <AppJumbtron children={<Articles />} source={JumbtronContent1} />
-        <AppJumbtron children={<Youtube />} source={JumbtronContent2} />
-        <AppJumbtron children={<ArticleImage />} source={JumbtronContent3} />
-        <AppJumbtron source={JumbtronContent4} />
-        <AppFooter />
+        {pathname === '/' && <CarouselSlider source={sliderPages}/>}
+        <Grid className='app-block__container' fluid>
+          <Col md={8} lg={8} className='app-block__container-main'>
+            {pathname === '/' &&
+              frontpageCategories.map(cat => <AppJumbtron title={cat.name} content={cat.pages}/>)
+            }
+            <Switch>
+              <Route path='/category/:id' component={Category} exact />
+              <Route path='/category/page/:id' component={Page} exact />
+            </Switch>
+          </Col>
+          <Col md={4} lg={4}>
+          <div>
+            <br /><br />
+            <SideSlider interval={10000} indicators={false} />
+            <SearchBar source={pages} />
+            <ListBlock source={recentPages} title='المضافة حديثا '/>
+            <TwitterTimeline />
+            <SideSlider controls={false} interval={5000} indicators={false}/>
+          </div>
+          
+          </Col>
+        </Grid>
+        <AppFooter source={footerPages}/>
+        <ScrollToTop showUnder={160} style={{left: '30px', width: '100px'}}>
+          <div style={{fontSize: '3em', color: '#9A12B3'}}>
+            <i class="fas fa-chevron-circle-up"></i>
+          </div>
+        </ScrollToTop>
       </div>
-    )
+      )
+    }
   }
 }
 
-export default App
+export default withRouter(App)
